@@ -63,7 +63,7 @@ public class UsuarioBean {
 
     public List listar() {
         ArrayList<Usuario> list = new ArrayList<>();
-        String sql = "SELECT usuarioapp.username, entidad.descripcion, rol.descripcion, usuarioapp.admission_date, usuarioapp.last_date FROM usuarioapp, entidad, rol WHERE entidad.id_entidad=usuarioapp.id_entidad AND rol.id_rol=usuarioapp.id_rol";
+        String sql = "SELECT usuarioapp.username, entidad.descripcion, rol.descripcion, usuarioapp.admission_date, usuarioapp.last_date FROM usuarioapp, entidad, rol WHERE entidad.id_entidad=usuarioapp.id_entidad AND rol.id_rol=usuarioapp.id_rol ORDER BY usuarioapp.id_rol DESC";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);

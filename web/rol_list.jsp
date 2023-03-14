@@ -4,6 +4,12 @@
     Author     : davidam
 --%>
 
+<%@page import="Modelo.Usuario"%>
+<%@page import="ModeloBean.UsuarioBean"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="Modelo.Persona"%>
+<%@page import="ModeloBean.PersonaBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,29 +36,81 @@
             <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="panel.jsp">GesCap</a>
-
+                    <form class="form-inline" action="logout.jsp">
+                        <a><i class="fa fa-user-circle" aria-hidden="true"></i>
+                            <%=sesion.getAttribute("user")%>
+                        </a>
+                        <button class="btn btn-outline-danger my-2 my-sm-0 ml-2" name="salir"
+                                type="submit">Salir</button>
+                    </form>
                 </div>
             </nav>            
         </header>  
 
         <main>
 
-            <div class="col-lg-8 mx-auto p-3 py-md-5">
-                <div class="card" style="width: 18rem;">
+            <div class="container my-4">
+                <div class="row">                    
+                    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                        <h2 class="centrado">Usuarios con roles</h2>
+                        <div id="search">
+                            <form class="col-4" action="" method="get">
+                                <input type="text" class="form-control" placeholder="Buscar" name="q">
+                            </form>
+                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Entidad</th>
+                                    <th>Rol</th>
+                                    <th>Entrada</th>
+                                    <th>Última</th>
 
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>   
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>  
-                </div>  
-                
-            </div>   
+                                </tr>
+                            </thead>
+                            <% UsuarioBean dao = new UsuarioBean();
+                                List<Usuario> list = dao.listar();
+                                String query = request.getParameter("q");
+                                if (query != null) {
+                                    list = dao.listar(query);
+                                }
+                                Iterator<Usuario> iter = list.iterator();
+                                Usuario per = null;
+                                while (iter.hasNext()) {
+                                    per = iter.next();
+
+                            %>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <%= per.getUsername()%>
+                                    </td>
+                                    <td>
+                                        <%= per.getEntidad()%>
+                                    </td>
+                                    <td>
+                                        <%= per.getRol()%>
+                                    </td>
+                                    <td>
+                                        <%= per.getAdmission_date()%>
+                                    </td>
+                                    <td>
+                                        <%= per.getLast_date()%>
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="btn btn-warning"
+                                           href="Controlador?accion=persona_edit&ci=<%= per.getUsername()%>">Editar</a>
+                                        <a class="btn btn-danger"
+                                           href="Controlador?accion=persona_delete&ci=<%= per.getUsername()%>">Remover</a>
+                                    </td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>            
 
         </main>
 
@@ -66,15 +124,15 @@
 
                     <!--Redes Sociales-->
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="https://es-la.facebook.com/cimexcuba/"
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/search/top?q=centro%20cimex%20de%20capacitaci%C3%B3n"
                            aria-label="Facebook"><i class="fab fa-facebook-f"></i>
                         </a>
-                        <a class="btn btn-dark btn-social mx-2" href="404.jsp" aria-label="Twitter"><i
+                        <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/CentroCimex" aria-label="Twitter"><i
                                 class="fab fa-twitter"></i>
                         </a>
-                        <a class="btn btn-dark btn-social mx-2" href="404.jsp" aria-label="Youtube"><i
-                                class="fab fa-youtube"></i>
-                        </a>                    
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/centro_cimex_cap/" aria-label="Instagram"><i
+                                class="fab fa-instagram"></i>
+                        </a>                  
                     </div>
                 </div>
             </div>
