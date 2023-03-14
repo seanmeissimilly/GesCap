@@ -60,7 +60,7 @@
                             <div class="mb-3">
                                 <label for="username" class="form-label">Nombre de Usuario</label>
                                 <input class="form-control" type="text" name="txtusername"
-                                       value="<%= p.getUsername()%>" id="username">
+                                       value="<%= p.getUsername()%>" id="username" disabled="true">
                             </div>                            
                             <div class="mb-3">
                                 <label for="area_accion" class="form-label">Roles</label>
