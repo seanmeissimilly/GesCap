@@ -1,0 +1,362 @@
+package Controlador;
+
+import Modelo.Accion;
+import Modelo.Coordinador;
+import Modelo.Cursista;
+import Modelo.Entidad;
+import Modelo.Organizacion;
+import Modelo.Persona;
+import Modelo.Profesor;
+import Modelo.Usuario;
+import ModeloBean.AccionBean;
+import ModeloBean.EntidadBean;
+import ModeloBean.OrganizacionBean;
+import ModeloBean.PersonaBean;
+import ModeloBean.UsuarioBean;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class Controlador extends HttpServlet {
+
+    //Referencias a las paginas
+    String persona_list = "persona_list.jsp";
+    String persona_add = "persona_add.jsp";
+    String persona_edit = "persona_edit.jsp";
+    String usuario_edit = "usuario_edit.jsp";
+    String usuario_list = "usuario_list.jsp";
+    String organizacion_list = "organizacion_list.jsp";
+    String entidad_list = "entidad_list.jsp";
+    String organizacion_edit = "organizacion_edit.jsp";
+    String entidad_edit = "entidad_edit.jsp";
+    String login = "login.jsp";
+    String panel = "panel.jsp";
+    String accion_add = "accion_add.jsp";
+    String accion_edit = "accion_edit.jsp";
+
+    Persona persona = new Persona();
+    Usuario user = new Usuario();
+    Profesor profe = new Profesor();
+    Coordinador coordinador = new Coordinador();
+    Cursista cursista = new Cursista();
+    Organizacion organizacion = new Organizacion();
+    Entidad entidad = new Entidad();
+    Accion accion = new Accion();
+
+    PersonaBean dao = new PersonaBean();
+    UsuarioBean userdao = new UsuarioBean();
+    OrganizacionBean orgdao = new OrganizacionBean();
+    EntidadBean entdao = new EntidadBean();
+    AccionBean acciondao = new AccionBean();
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Controlador</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Controlador at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String acceso = "";
+        String action = request.getParameter("accion");
+
+        switch (action) {
+
+            case "persona_list": {
+
+                acceso = persona_list;
+
+                break;
+
+            }
+
+            case "organizacion_edit": {
+
+                request.setAttribute("id", request.getParameter("id"));
+                acceso = organizacion_edit;
+
+                break;
+
+            }
+            case "entidad_edit": {
+
+                request.setAttribute("id_entidad", request.getParameter("id_entidad"));
+                acceso = entidad_edit;
+
+                break;
+
+            }
+
+            case "persona_add": {
+
+                acceso = persona_add;
+
+                break;
+
+            }
+            case "edit_accion": {             
+                
+                String id_accion = request.getParameter("number_accion");
+                //Empiezo a asignarle los valores.
+                accion.setNombre(request.getParameter("nombre_accion"));
+                accion.setFecha_inicial(request.getParameter("fechainicial_accion"));
+                accion.setFecha_final(request.getParameter("fechafinal_accion"));
+                accion.setId_clasificacion(request.getParameter("clasificacion_accion"));
+                accion.setId_formaorganizativa(request.getParameter("forganizativa_accion"));
+                accion.setId_area(request.getParameter("area_accion"));
+                accion.setId_entidadejecutora(request.getParameter("entidad_accion"));
+                accion.setId_modalidad(request.getParameter("modalidad_accion"));
+                accion.setExtraplan(request.getParameter("extrapla_accion_accion") != null);
+                
+                //Reviso si el parametro de creditos esta vacio.
+                if (request.getParameter("creditos_accion").equals("")) {
+                    accion.setCreditos("0");
+                } else {
+                    accion.setCreditos(request.getParameter("creditos_accion"));
+                }
+                
+                accion.setId_evaluacionfinal(request.getParameter("evaluacion_accion"));
+                accion.setObservaciones(request.getParameter("observaciones_accion"));
+                acciondao.edit(accion, id_accion);                
+                acceso = accion_add;
+
+                break;
+
+            }
+            case "login": {
+
+                acceso = panel;
+
+                break;
+
+            }
+            case "accion_delete": {
+
+                String id = request.getParameter("id");
+                acciondao.eliminar(id);
+                acceso = accion_add;
+
+                break;
+
+            }
+            case "accion_edit": {
+
+                request.setAttribute("id", request.getParameter("id"));
+                acceso = accion_edit;
+                break;
+
+            }
+            case "add_person": {
+
+                String ci = request.getParameter("txtCi");
+                //Para no entrar espacios vacios
+                if (ci.equals("")) {
+                    acceso = persona_list;
+                    break;
+                }
+                String nombre = request.getParameter("txtNombre");
+                String primerapellido = request.getParameter("txtPrimerApellido");
+                String segundoapellido = request.getParameter("txtSegundoApellido");
+                persona.setCi(ci);
+                persona.setNombre(nombre);
+                persona.setPrimerApellido(primerapellido);
+                persona.setSegundoApellido(segundoapellido);
+                dao.add(persona);
+                acceso = persona_list;
+
+                break;
+
+            }
+            case "persona_edit": {
+
+                request.setAttribute("ci", request.getParameter("ci"));
+                acceso = persona_edit;
+
+                break;
+
+            }
+            case "usuario_edit": {
+
+                request.setAttribute("username", request.getParameter("username"));
+                acceso = usuario_edit;
+
+                break;
+
+            }
+            case "edit_organizacion": {
+                String id_org = request.getParameter("txtnumero_organizacion");
+                String numero_org = request.getParameter("txtnumero_organizacionnew");
+                String nombre = request.getParameter("txtnombre_organizacionnew");
+                organizacion.setNumero(numero_org);
+                organizacion.setNombre(nombre);
+                orgdao.edit(organizacion, id_org);
+                acceso = organizacion_list;
+
+                break;
+
+            }
+            case "edit_entidad": {
+                String id_entidad = request.getParameter("txtnumero_entidad");
+                String id_entidadnew = request.getParameter("txtnumero_entidadnew");
+                String nombre = request.getParameter("txtnombre_entidadnew");
+                String prefix = request.getParameter("prefix_entidadnew");
+                entidad.setid_entidad(id_entidadnew);
+                entidad.setNombre(nombre);
+                entidad.setPrefix(prefix);
+                entdao.edit(entidad, id_entidad);
+                acceso = entidad_list;
+
+                break;
+
+            }
+            case "Actualizar": {
+
+                String cinuevo = request.getParameter("txtCinuevo");
+                String ci = request.getParameter("txtCi");
+                String nombre = request.getParameter("txtNombre");
+                String primerapellido = request.getParameter("txtPrimerApellido");
+                String segundoapellido = request.getParameter("txtSegundoApellido");
+                persona.setCi(ci);
+                persona.setNombre(nombre);
+                persona.setPrimerApellido(primerapellido);
+                persona.setSegundoApellido(segundoapellido);
+                dao.edit(persona, cinuevo);
+                acceso = persona_list;
+
+                break;
+
+            }
+            case "usuario_delete": {
+
+                String username = request.getParameter("username");
+                userdao.eliminar(username);
+                acceso = usuario_list;
+
+                break;
+
+            }
+            case "persona_delete": {
+
+                String ci = request.getParameter("ci");
+                dao.eliminar(ci);
+                acceso = persona_list;
+
+                break;
+
+            }
+            case "organizacion_delete": {
+
+                String numero = request.getParameter("numero");
+                orgdao.eliminar(numero);
+                acceso = organizacion_list;
+
+                break;
+
+            }
+            case "entidad_delete": {
+
+                String numero = request.getParameter("numero");
+                entdao.eliminar(numero);
+                acceso = entidad_list;
+
+                break;
+
+            }
+            case "add_organizacion": {
+                String numero_org = request.getParameter("txtnumero_organizacion");
+                if (numero_org.equals("")) {
+                    acceso = organizacion_list;
+                    break;
+                }
+                String nombre = request.getParameter("txtnombre_organizacion");
+                organizacion.setNumero(numero_org);
+                organizacion.setNombre(nombre);
+                orgdao.add(organizacion);
+                acceso = organizacion_list;
+                break;
+
+            }
+            case "add_entidad": {
+                String numero_entidad = request.getParameter("txtnumero_entidad");
+                if (numero_entidad.equals("")) {
+                    acceso = entidad_list;
+                    break;
+                }
+                String nombre = request.getParameter("txtnombre_entidad");
+                String numero_org = request.getParameter("txtnumero_organizacion");
+                String prefix= request.getParameter("txtprefix_entidad");
+                entidad = new Entidad();
+                entidad.setid_entidad(numero_entidad);
+                entidad.setNombre(nombre);
+                entidad.setid_org(numero_org);
+                entidad.setPrefix(prefix);
+                entdao.add(entidad);
+                acceso = entidad_list;
+                break;
+
+            }
+            case "add_accion": {
+                //creo una nueva accion.
+                accion = new Accion();
+                //Empiezo a asignarle los valores.
+                accion.setNombre(request.getParameter("nombre_accion"));
+                accion.setFecha_inicial(request.getParameter("fechainicial_accion"));
+                accion.setFecha_final(request.getParameter("fechafinal_accion"));
+                accion.setId_clasificacion(request.getParameter("clasificacion_accion"));
+                accion.setId_formaorganizativa(request.getParameter("forganizativa_accion"));
+                accion.setId_area(request.getParameter("area_accion"));
+                accion.setId_entidadejecutora(request.getParameter("entidad_accion"));
+                accion.setId_modalidad(request.getParameter("modalidad_accion"));
+                accion.setExtraplan(request.getParameter("extrapla_accion_accion") != null);
+                
+                //Reviso si el parametro de creditos esta vacio.
+                if (request.getParameter("creditos_accion").equals("")) {
+                    accion.setCreditos("0");
+                } else {
+                    accion.setCreditos(request.getParameter("creditos_accion"));
+                }
+                
+                accion.setId_evaluacionfinal(request.getParameter("evaluacion_accion"));
+                accion.setObservaciones(request.getParameter("observaciones_accion"));
+                accion.setFicha(request.getParameter("descripcion_accion"));
+                acciondao.add(accion);
+                acceso = accion_add;
+                break;
+
+            }
+
+        }
+
+        RequestDispatcher vista = request.getRequestDispatcher(acceso);
+
+        vista.forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
