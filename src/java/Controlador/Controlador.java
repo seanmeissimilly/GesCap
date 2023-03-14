@@ -37,6 +37,8 @@ public class Controlador extends HttpServlet {
     String panel = "panel.jsp";
     String accion_add = "accion_add.jsp";
     String accion_edit = "accion_edit.jsp";
+    String urol_edit ="rol_edit.jsp";
+    String urol_list ="rol_list.jsp";   
 
     Persona persona = new Persona();
     Usuario user = new Usuario();
@@ -52,11 +54,12 @@ public class Controlador extends HttpServlet {
     OrganizacionBean orgdao = new OrganizacionBean();
     EntidadBean entdao = new EntidadBean();
     AccionBean acciondao = new AccionBean();
+    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -110,8 +113,8 @@ public class Controlador extends HttpServlet {
                 break;
 
             }
-            case "edit_accion": {             
-                
+            case "edit_accion": {
+
                 String id_accion = request.getParameter("number_accion");
                 //Empiezo a asignarle los valores.
                 accion.setNombre(request.getParameter("nombre_accion"));
@@ -123,17 +126,17 @@ public class Controlador extends HttpServlet {
                 accion.setId_entidadejecutora(request.getParameter("entidad_accion"));
                 accion.setId_modalidad(request.getParameter("modalidad_accion"));
                 accion.setExtraplan(request.getParameter("extrapla_accion_accion") != null);
-                
+
                 //Reviso si el parametro de creditos esta vacio.
                 if (request.getParameter("creditos_accion").equals("")) {
                     accion.setCreditos("0");
                 } else {
                     accion.setCreditos(request.getParameter("creditos_accion"));
                 }
-                
+
                 accion.setId_evaluacionfinal(request.getParameter("evaluacion_accion"));
                 accion.setObservaciones(request.getParameter("observaciones_accion"));
-                acciondao.edit(accion, id_accion);                
+                acciondao.edit(accion, id_accion);
                 acceso = accion_add;
 
                 break;
@@ -162,6 +165,22 @@ public class Controlador extends HttpServlet {
                 break;
 
             }
+            case "urol_edit": {
+
+                request.setAttribute("id", request.getParameter("id"));                
+                acceso = urol_edit;
+                break;
+
+            }
+            case "urol_delete": {
+
+                String username = request.getParameter("id");
+                userdao.eliminar(username);
+                acceso = urol_list;               
+                break;
+
+            }
+
             case "add_person": {
 
                 String ci = request.getParameter("txtCi");
@@ -300,7 +319,7 @@ public class Controlador extends HttpServlet {
                 }
                 String nombre = request.getParameter("txtnombre_entidad");
                 String numero_org = request.getParameter("txtnumero_organizacion");
-                String prefix= request.getParameter("txtprefix_entidad");
+                String prefix = request.getParameter("txtprefix_entidad");
                 entidad = new Entidad();
                 entidad.setid_entidad(numero_entidad);
                 entidad.setNombre(nombre);
@@ -324,14 +343,14 @@ public class Controlador extends HttpServlet {
                 accion.setId_entidadejecutora(request.getParameter("entidad_accion"));
                 accion.setId_modalidad(request.getParameter("modalidad_accion"));
                 accion.setExtraplan(request.getParameter("extrapla_accion_accion") != null);
-                
+
                 //Reviso si el parametro de creditos esta vacio.
                 if (request.getParameter("creditos_accion").equals("")) {
                     accion.setCreditos("0");
                 } else {
                     accion.setCreditos(request.getParameter("creditos_accion"));
                 }
-                
+
                 accion.setId_evaluacionfinal(request.getParameter("evaluacion_accion"));
                 accion.setObservaciones(request.getParameter("observaciones_accion"));
                 accion.setFicha(request.getParameter("descripcion_accion"));

@@ -23,6 +23,7 @@ public class UsuarioBean {
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
+    
 
     public UsuarioBean() {
     }
@@ -101,6 +102,27 @@ public class UsuarioBean {
         } catch (Exception e) {
         }
         return list;
+    }
+    
+    public Usuario list(String username) {
+       Usuario p = new Usuario();;
+        String sql = "select * from usuarioapp where username = '" + username + "'";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) { 
+                p = new Usuario();
+                p.setUsername(rs.getString("username"));
+                p.setEntidad(rs.getString("id_entidad"));
+                p.setRol(rs.getString("id_rol"));
+                p.setAdmission_date(rs.getString("admission_date"));
+                p.setLast_date(rs.getString("last_date"));
+
+            }
+        } catch (Exception e) {
+        }
+        return p;
     }
 
 }

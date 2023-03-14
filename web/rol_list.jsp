@@ -100,9 +100,9 @@
                                     </td>
                                     <td class="text-center">
                                         <a class="btn btn-warning"
-                                           href="Controlador?accion=persona_edit&ci=<%= per.getUsername()%>">Editar</a>
+                                           href="Controlador?accion=urol_edit&id=<%= per.getUsername()%>">Editar</a>
                                         <a class="btn btn-danger"
-                                           href="Controlador?accion=persona_delete&ci=<%= per.getUsername()%>">Remover</a>
+                                           href="Controlador?accion=urol_delete&id=<%= per.getUsername()%>">Borrar</a>
                                     </td>
                                 </tr>
                                 <%}%>
