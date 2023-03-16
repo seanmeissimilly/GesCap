@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="./css/bootstrap.min.css">
         <link rel="icon" href="./img/Logo_CCC.jpg" type="image/jpg" sizes="32x32">       
         <script src="./js/fontawesome-all.js"></script>
+        <link href="./css/styles.css" rel="stylesheet" />
 
         <title>GesCap Panel</title>
 

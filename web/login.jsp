@@ -14,7 +14,7 @@
         <title>GesCap</title>
         <script src="./js/fontawesome-all.js"></script>
         <link rel="icon" href="./img/Logo_CCC.jpg" type="image/jpg" sizes="32x32">
-        
+        <link href="./css/styles.css" rel="stylesheet" />
     </head>
 
     <body>
