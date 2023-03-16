@@ -52,7 +52,7 @@
             <div class="container my-4">
                 <div class="row">                    
                     <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                        <h2 class="centrado">Usuarios con roles</h2>
+                        <h2 class="centrado">Usuarios</h2>
                         <div id="search">
                             <form class="col-4" action="" method="get">
                                 <input type="text" class="form-control" placeholder="Buscar" name="q">
@@ -61,11 +61,11 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Username</th>
+                                    <th>Nombre</th>
                                     <th>Entidad</th>
                                     <th>Rol</th>
-                                    <th>Entrada</th>
-                                    <th>Última</th>
+                                    <th>Inscripción</th>
+                                    <th>Última Entrada</th>
 
                                 </tr>
                             </thead>
@@ -124,7 +124,7 @@
 
                     <!--Redes Sociales-->
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/search/top?q=centro%20cimex%20de%20capacitaci%C3%B3n"
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/profile.php?id=100075958596586"
                            aria-label="Facebook"><i class="fab fa-facebook-f"></i>
                         </a>
                         <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/CentroCimex" aria-label="Twitter"><i

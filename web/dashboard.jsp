@@ -88,22 +88,22 @@
                     <div class="row gy-5 py-4">
                         <div class="col-3">
                             <div class="p-3 border bg-light">                                
-                                <a class="navbar-brand" href="usuario_list.jsp">Usuarios</a>
+                                <a class="navbar-brand" href="404.jsp">Roles</a>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="p-3 border bg-light">                                
-                                <a class="navbar-brand" href="rol_list.jsp">Roles</a>
+                                <a class="navbar-brand" href="rol_list.jsp">Usuarios</a>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="p-3 border bg-light">                                
-                                <a class="navbar-brand" href="cursista_list.jsp">Cursistas</a>
+                                <a class="navbar-brand" href="404.jsp">Cursistas</a>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="p-3 border bg-light">                                
-                                <a class="navbar-brand" href="profesor_list.jsp">Profesor</a>
+                                <a class="navbar-brand" href="404.jsp">Profesores</a>
                             </div>
                         </div>
                     </div>
