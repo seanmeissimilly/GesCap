@@ -11,8 +11,7 @@
         <meta name="author" content="David Sean Meissimilly">
 
         <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <link rel="icon" href="./img/Logo_CCC.jpg" type="image/jpg" sizes="32x32">
-        <link href="./css/styles.css" rel="stylesheet" />
+        <link rel="icon" href="./img/Logo_CCC.jpg" type="image/jpg" sizes="32x32">       
         <script src="./js/fontawesome-all.js"></script>
 
         <title>GesCap Panel</title>
