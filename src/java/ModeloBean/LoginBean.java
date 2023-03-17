@@ -116,10 +116,14 @@ public class LoginBean {
             String prefix = "";
             String distinguishedName = attr.get("distinguishedName").toString();
 
-            for (int i = 0; i < distinguishedName.length(); i++) {
+            int cont = 0;
+            for (int i = distinguishedName.length() - 1; i >= 0; i--) {
                 char c = distinguishedName.charAt(i);
-                if (c == ',') {
-                    prefix = distinguishedName.substring(i + 4, i + 6);
+                if (c == 'U') {
+                    cont++;
+                }
+                if (c == 'U' && cont == 3) {
+                    prefix = distinguishedName.substring(i + 2, i + 4);
                     break;
                 }
             }
@@ -141,7 +145,7 @@ public class LoginBean {
 
         for (int i = 0; i < distinguishedName.length(); i++) {
             char c = distinguishedName.charAt(i);
-            if (c == '-') {
+            if (c == '=') {
                 //para empezar a copiar el nombre en el proximo caracter.
                 copy = true;
             } //para saber si ya copie el nombre completo.
