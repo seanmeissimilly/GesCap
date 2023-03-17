@@ -1,5 +1,8 @@
 <%-- Document : entidad_list Created on : 9 abr 2022, 1:12:44 Author : David Sean --%>
 
+<%@page import="ModeloBean.UsuarioBean"%>
+<%@page import="Modelo.Usuario"%>
+<%@page import="Modelo.Usuario"%>
 <%@page import="Modelo.Organizacion"%>
 <%@page import="ModeloBean.OrganizacionBean"%>
 <%@page import="ModeloBean.EntidadBean"%>

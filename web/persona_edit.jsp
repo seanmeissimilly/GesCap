@@ -1,4 +1,6 @@
 <%-- Document : edit Created on : Apr 5, 2022, 2:39:33 PM Author : davidam --%>
+<%@page import="ModeloBean.UsuarioBean"%>
+<%@page import="Modelo.Usuario"%>
 <%@page import="Modelo.Persona" %>
 <%@page import="ModeloBean.PersonaBean" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>

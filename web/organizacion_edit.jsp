@@ -4,6 +4,8 @@
     Author     : David Sean
 --%>
 
+<%@page import="ModeloBean.UsuarioBean"%>
+<%@page import="Modelo.Usuario"%>
 <%@page import="Modelo.Organizacion"%>
 <%@page import="ModeloBean.OrganizacionBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

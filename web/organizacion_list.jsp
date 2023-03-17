@@ -1,5 +1,7 @@
 <%-- Document : organizacion_list Created on : 9 abr 2022, 9:07:11 Author : David Sean --%>
 
+<%@page import="ModeloBean.UsuarioBean"%>
+<%@page import="Modelo.Usuario"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.PreparedStatement"%>

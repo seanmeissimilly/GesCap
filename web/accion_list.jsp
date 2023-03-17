@@ -1,5 +1,7 @@
 <%-- Document : accion_list Created on : Apr 9, 2022, 12:43:27 AM Author : davidam --%>
 
+<%@page import="ModeloBean.UsuarioBean"%>
+<%@page import="Modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="es">

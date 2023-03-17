@@ -1,4 +1,6 @@
 <%-- Document : listar Created on : Apr 5, 2022, 2:39:33 PM Author : davidam --%>
+<%@page import="ModeloBean.UsuarioBean"%>
+<%@page import="Modelo.Usuario"%>
 <%@page import="java.util.Iterator" %>
 <%@page import="Modelo.Persona" %>
 <%@page import="java.util.List" %>

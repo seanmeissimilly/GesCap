@@ -4,6 +4,8 @@
     Author     : davidam
 --%>
 
+<%@page import="ModeloBean.UsuarioBean"%>
+<%@page import="Modelo.Usuario"%>
 <%@page import="Modelo.Accion"%>
 <%@page import="ModeloBean.AccionBean"%>
 <%@page import="Modelo.Organizacion"%>
