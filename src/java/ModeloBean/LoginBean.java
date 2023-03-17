@@ -127,7 +127,7 @@ public class LoginBean {
             long millis = System.currentTimeMillis();
             Date date = new java.sql.Date(millis);
 
-            usuario = new Usuario(username, new EntidadBean().searchprefix(prefix), "1", date.toString(), date.toString());
+            usuario = new Usuario("1", date.toString(), date.toString(), username, new EntidadBean().searchprefix(prefix), searchName(distinguishedName));
 
         }
 
@@ -135,18 +135,23 @@ public class LoginBean {
         return userPrincipalName;
     }
 
-    private void registeruser(String username) {
-        String sql = "select * from usuarioapp where username='" + username + "'";
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
+    private String searchName(String distinguishedName) {
+        String name = "";
+        boolean copy = false;
 
-                sql = "UPDATE usuarioapp SET `last_date`='" + username + "'" + "WHERE username='" + username + "'";
+        for (int i = 0; i < distinguishedName.length(); i++) {
+            char c = distinguishedName.charAt(i);
+            if (c == '-') {
+                //para empezar a copiar el nombre en el proximo caracter.
+                copy = true;
+            } //para saber si ya copie el nombre completo.
+            else if (c == ',') {
+                break;
+            } else if (copy) {
+                name += c;
             }
-        } catch (Exception e) {
         }
+        return name;
     }
 
 }

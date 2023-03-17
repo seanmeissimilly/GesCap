@@ -1,5 +1,5 @@
 <%-- 
-    Document   : dashboardn
+    Document   : dashboard
     Created on : 16 mar 2023, 10:56:33
     Author     : davidam
 --%>
@@ -13,18 +13,11 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <script src="./js/fontawesome-all.js"></script>
         <title>GesCap Tablero</title>
-
-        <!-- Favicons -->
+        
         <link href="assets/img/favicon.png" rel="icon">
-        <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> 
-
-
-        <!-- Vendor CSS Files -->
+        <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">  
         <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
-
-        <!-- Template Main CSS File -->
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">  
         <link href="assets/css/style.css" rel="stylesheet"> 
 
 
@@ -46,7 +39,8 @@
                     <span class="d-none d-lg-block">GesCap</span>
                 </a>
                 <i class="bi bi-list toggle-sidebar-btn"></i>
-            </div><!-- End Logo -->
+            </div>
+        <!-- End Logo -->
 
             <nav class="header-nav ms-auto">
                 <ul class="d-flex align-items-center">

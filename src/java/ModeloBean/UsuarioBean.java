@@ -30,7 +30,7 @@ public class UsuarioBean {
 
     public boolean add(Usuario user) {
 
-        String sql = "insert into usuarioapp(username, id_entidad, id_rol, admission_date, last_date)values('" + user.getUsername() + "','" + user.getEntidad() + "','" + user.getRol() + "','" + user.getAdmission_date() + "','" + user.getLast_date() + "')";
+        String sql = "insert into usuarioapp(username, id_entidad, id_rol, admission_date, last_date, nombre)values('" + user.getUsername() + "','" + user.getEntidad() + "','" + user.getRol() + "','" + user.getAdmission_date() + "','" + user.getLast_date() + "','" + user.getNombre() + "')";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -52,7 +52,7 @@ public class UsuarioBean {
     }
 
     public boolean update(Usuario user, String username) {
-        String sql = "update usuarioapp set id_entidad='" + user.getEntidad() + "', id_rol='" + user.getRol() + "', last_date='" + user.getLast_date() + "' where username= '" + username + "'";
+        String sql = "update usuarioapp set id_entidad='" + user.getEntidad() + "', id_rol='" + user.getRol() + "', last_date='" + user.getLast_date() +"', nombre='" + user.getNombre() + "' where username= '" + username + "'";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -118,6 +118,7 @@ public class UsuarioBean {
                 p.setRol(rs.getString("id_rol"));
                 p.setAdmission_date(rs.getString("admission_date"));
                 p.setLast_date(rs.getString("last_date"));
+                p.setNombre(rs.getString("nombre"));
 
             }
         } catch (Exception e) {

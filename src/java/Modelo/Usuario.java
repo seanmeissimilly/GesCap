@@ -15,17 +15,27 @@ public class Usuario {
     String last_date;
     String username;
     String entidad;
+    String nombre;
 
-    public Usuario(String username, String entidad, String rol, String admission_date, String last_date) {
-        this.username = username;
-        this.entidad = entidad;
+    public Usuario(String rol, String admission_date, String last_date, String username, String entidad, String nombre) {
         this.rol = rol;
         this.admission_date = admission_date;
         this.last_date = last_date;
+        this.username = username;
+        this.entidad = entidad;
+        this.nombre = nombre;
     }
 
     public Usuario() {
 
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getAdmission_date() {
