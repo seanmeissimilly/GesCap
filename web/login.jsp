@@ -1,5 +1,7 @@
 <%-- Document : login Created on : Apr 25, 2022, 12:05:23 PM Author : davidam --%>
 
+<%@page import="ModeloBean.UsuarioBean"%>
+<%@page import="Modelo.Usuario"%>
 <%@page import="ModeloBean.LoginBean" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -14,7 +16,7 @@
         <script src="./js/fontawesome-all.js"></script>
         <link rel="icon" href="./img/Logo_CCC.jpg" type="image/jpg" sizes="32x32">
         <link rel="stylesheet" href="./css/bootstrap.min.css">
-        
+
     </head>
 
     <body>
@@ -27,8 +29,7 @@
                 <div class="container">
                     <div class="row justify-content-md-center">
                         <div class="card" style="width: 18rem;">
-                            <div class="text-center">
-                                <!--<img src="./img/prescap.png" class="card-img-top" alt="...">-->
+                            <div class="text-center">                               
                                 <h2>GesCap</h2>
                                 <h5>Gestión de la Capacitación</h5>
                             </div>
@@ -39,7 +40,7 @@
                                         <label for="user" class="form-label">Usuario</label>
                                         <input type="text" name="user" class="form-control"
                                                aria-describedby="emailHelp" required>
-                                        <div id="userHelp" class="form-text">Escriba su Usuario.</div>
+                                        <div id="userHelp" class="form-text">Escriba su usuario.</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Contraseña</label>
@@ -89,10 +90,13 @@
         clave = request.getParameter("password");
         HttpSession sesion = request.getSession();
         LoginBean login = new LoginBean();
-        //lo de admin es un parche por si el directorio activo esta caido.
+        //lo de administrator es un parche por si el directorio activo esta caido.
         if (user.equals("administrator") || login.authuser(user, clave)) {
             sesion.setAttribute("login", "1");
             sesion.setAttribute("user", user);
+
+            //Busco en la base de datos el usuario.      
+            sesion.setAttribute("usuario", new UsuarioBean().list(user));
             response.sendRedirect("panel.jsp");
         } else {
             sesion.setAttribute("login", "0");
