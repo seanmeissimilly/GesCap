@@ -94,9 +94,6 @@
         if (user.equals("administrator") || login.authuser(user, clave)) {
             sesion.setAttribute("login", "1");
             sesion.setAttribute("user", user);
-
-            //Busco en la base de datos el usuario.      
-            sesion.setAttribute("usuario", new UsuarioBean().list(user));
             response.sendRedirect("panel.jsp");
         } else {
             sesion.setAttribute("login", "0");

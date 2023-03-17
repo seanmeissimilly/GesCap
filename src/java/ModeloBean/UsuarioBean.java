@@ -64,7 +64,7 @@ public class UsuarioBean {
 
     public List listar() {
         ArrayList<Usuario> list = new ArrayList<>();
-        String sql = "SELECT usuarioapp.username, entidad.descripcion, rol.descripcion, usuarioapp.admission_date, usuarioapp.last_date FROM usuarioapp, entidad, rol WHERE entidad.id_entidad=usuarioapp.id_entidad AND rol.id_rol=usuarioapp.id_rol ORDER BY usuarioapp.id_rol DESC";
+        String sql = "SELECT usuarioapp.username, usuarioapp.nombre, entidad.descripcion, rol.descripcion, usuarioapp.admission_date, usuarioapp.last_date FROM usuarioapp, entidad, rol WHERE entidad.id_entidad=usuarioapp.id_entidad AND rol.id_rol=usuarioapp.id_rol ORDER BY usuarioapp.id_rol DESC";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -76,6 +76,7 @@ public class UsuarioBean {
                 user.setRol(rs.getString("rol.descripcion"));
                 user.setAdmission_date(rs.getString("usuarioapp.admission_date"));
                 user.setLast_date(rs.getString("usuarioapp.last_date"));
+                user.setNombre(rs.getString("usuarioapp.nombre"));
                 list.add(user);
             }
         } catch (Exception e) {
@@ -85,7 +86,7 @@ public class UsuarioBean {
 
     public List listar(String query) {
         ArrayList<Usuario> list = new ArrayList<>();
-        String sql = "SELECT usuarioapp.username, entidad.descripcion, rol.descripcion, usuarioapp.admission_date, usuarioapp.last_date from usuarioapp, entidad, rol where entidad.id_entidad=usuarioapp.id_entidad AND rol.id_rol=usuarioapp.id_rol And( usuarioapp.username like '%" + query + "%' or entidad.descripcion like '%" + query + "%' or rol.descripcion like '%" + query + "%' or usuarioapp.last_date like '%" + query + "%' or usuarioapp.admission_date like '%" + query + "%')";
+        String sql = "SELECT usuarioapp.username, usuarioapp.nombre, entidad.descripcion, rol.descripcion, usuarioapp.admission_date, usuarioapp.last_date from usuarioapp, entidad, rol where entidad.id_entidad=usuarioapp.id_entidad AND rol.id_rol=usuarioapp.id_rol And( usuarioapp.username like '%" + query + "%' or entidad.descripcion like '%" + query + "%' or rol.descripcion like '%" + query + "%' or usuarioapp.last_date like '%" + query + "%' or usuarioapp.admission_date like '%" + query + "%')";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -97,6 +98,7 @@ public class UsuarioBean {
                 user.setRol(rs.getString("rol.descripcion"));
                 user.setAdmission_date(rs.getString("usuarioapp.admission_date"));
                 user.setLast_date(rs.getString("usuarioapp.last_date"));
+                user.setNombre(rs.getString("usuarioapp.nombre"));
                 list.add(user);
             }
         } catch (Exception e) {

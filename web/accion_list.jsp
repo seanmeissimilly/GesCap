@@ -23,34 +23,52 @@
                 response.sendRedirect("login.jsp");
             }%>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="panel.jsp">GesCap</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" href=".jsp">Areas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href=".jsp">Modalidades</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href=".jsp">Escolaridad</a>
-                            </li>                           
+            <nav class="header-nav ms-auto">
+                <ul class="d-flex align-items-center">
+                    <li class="nav-item dropdown pe-3">
+                        <!-- Para que el usuario logueado salgo en la navbar -->
+                        <%
+                            //Busco en la base de datos el usuario.  
+                            Usuario userapp = new UsuarioBean().list(sesion.getAttribute("user").toString());
+                        %>
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0"  data-bs-toggle="dropdown">                            
+                            <span class="d-none d-md-block dropdown-toggle ps-2"><%=userapp.getNombre()%></span>
+                        </a><!-- End Profile Iamge Icon -->
 
-                        </ul>
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search"
-                                   aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Buscar</button>
-                        </form>
-                    </div>
-                </div>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                            <li class="dropdown-header">
+                                <h6><%=userapp.getUsername()%></h6>                                
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>                            
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>                            
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="404.jsp">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>¿Necesitas Ayuda ?</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="logout.jsp">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Salir</span>
+                                </a>
+                            </li>
+
+                        </ul><!-- End Profile Dropdown Items -->
+                    </li><!-- End Profile Nav -->
+                </ul>                
             </nav>
         </header>
 
