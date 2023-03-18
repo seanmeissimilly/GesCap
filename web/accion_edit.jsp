@@ -4,6 +4,8 @@
     Author     : davidam
 --%>
 
+<%@page import="ModeloBean.UsuarioBean"%>
+<%@page import="Modelo.Usuario"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Modelo.Evaluacion"%>
 <%@page import="ModeloBean.EvaluacionBean"%>

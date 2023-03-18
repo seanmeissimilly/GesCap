@@ -82,7 +82,7 @@ public class EntidadBean {
     }
 
     public boolean add(Entidad ent) {
-        String sql = "insert into entidad(id_entidad, descripcion,id_org, prefix)values('" + ent.getid_entidad() + "','" + ent.getNombre() + "','" + ent.getid_org() + "','" + ent.getPrefix() + "')";
+        String sql = "insert into entidad(descripcion,id_org, prefix)values('" + ent.getNombre() + "','" + ent.getid_org() + "','" + ent.getPrefix() + "')";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -90,31 +90,9 @@ public class EntidadBean {
         } catch (Exception e) {
         }
         return false;
-    }
+    }   
 
-    //Para contar la cantidad de registros. 
-    public Integer contregistros() {
-        Integer cont = 0;
-        String sql = "select count(id_entidad) as cont from entidad";
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                cont = Integer.valueOf(rs.getString("cont"));
-            }
-
-        } catch (Exception e) {
-        }
-
-        return cont;
-    }
-
-    /**
-     *
-     * @param id_entidad
-     * @return
-     */
+    
     public List list(String id_entidad) {
         ArrayList<Entidad> list = new ArrayList<>();
         String sql = "select entidad.id_entidad,entidad.descripcion ,organizacion.descripcion, entidad.id_org, entidad.prefix from entidad,organizacion WHERE entidad.id_org=organizacion.id_org and entidad.id_entidad=" + id_entidad;
@@ -137,7 +115,7 @@ public class EntidadBean {
     }
 
     public boolean edit(Entidad ent, String id_entidad) {
-        String sql = "update entidad set id_entidad='" + ent.getid_entidad() + "', descripcion='" + ent.getNombre() + "', prefix='" + ent.getPrefix() + "' where id_entidad=" + id_entidad;
+        String sql = "update entidad set descripcion='" + ent.getNombre() + "', prefix='" + ent.getPrefix() + "' where id_entidad=" + id_entidad;
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);

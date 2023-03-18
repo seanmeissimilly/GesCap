@@ -97,7 +97,7 @@
             </nav>
 
         </header><!-- End Header -->
-        
+
         <!-- ======= Sidebar ======= -->
         <aside id="sidebar" class="sidebar">
 
@@ -198,25 +198,16 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
                         <h2>Formulario de Entidades</h2>
-                        <form action="Controlador">
-                            <div class="mb-3">
-                                <label for="numero_entidad" class="form-label">Número de la Entidad</label>
-                                <%
-                                    EntidadBean entcont = new EntidadBean();
-                                    int min = entcont.contregistros() + 1;
-                                %> 
-                                <input type="number" class="form-control" id="numero_entidad"
-                                       placeholder="Numero de la Entidad" min="<%= min%>" max="1000" name="txtnumero_entidad">
-                            </div>
+                        <form action="Controlador">                           
                             <div class="mb-3">
                                 <label for="nombre_entidad" class="form-label">Nombre de la Entidad</label>
                                 <input type="text" class="form-control" id="nombre_entidad"
-                                       placeholder="Nombre de la Entidad" name="txtnombre_entidad">
+                                       placeholder="Nombre de la Entidad" name="txtnombre_entidad" required="required">
                             </div>
                             <div class="mb-3">
                                 <label for="prefix_entidad" class="form-label">Prefijo de la Entidad</label>
                                 <input type="text" class="form-control" id="prefix_entidad"
-                                       placeholder="Prefijo de la Entidad" name="txtprefix_entidad">
+                                       placeholder="Prefijo de la Entidad" name="txtprefix_entidad" required="required">
                             </div>
                             <div class="mb-3">
                                 <label for="nombre_organizacion" class="form-label">Organización</label>
@@ -310,8 +301,8 @@
                 </div>
             </div>
         </footer>
-        
-         <!-- Vendor JS Files -->
+
+        <!-- Vendor JS Files -->
         <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
         <script src="./js/bootstrap.bundle.min.js"></script>
         <script src="assets/vendor/chart.js/chart.umd.js"></script>

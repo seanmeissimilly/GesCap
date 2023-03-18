@@ -203,15 +203,7 @@
                             <% EntidadBean dao = new EntidadBean();
                                 String id = ((String) request.getAttribute("id_entidad"));
                                 Entidad p = (Entidad) dao.list(id).get(0);%>
-
-                            <div class="mb-3">
-                                <label for="numero_entidadnew" class="form-label">Número de la
-                                    Entidad</label>
-
-                                <input type="number" class="form-control" id="numero_entidadnew"
-                                       name="txtnumero_entidadnew" value="<%= p.getid_entidad()%>">
-
-                            </div>
+                            
                             <div class="mb-3">
                                 <label for="nombre_entidadnew" class="form-label">Nombre de la
                                     Entidad</label>
@@ -224,8 +216,7 @@
                                         name="prefix_entidadnew" value="<%= p.getPrefix()%>">
                             </div>
 
-                            <div class="mb-3">
-                                <!-- Para pasar el numero de organizacion antiguo -->
+                            <div class="mb-3">                               
                                 <input type="hidden" name="txtnumero_entidad" value="<%= p.getid_entidad()%>">
                             </div> 
 

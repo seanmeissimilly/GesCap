@@ -231,11 +231,10 @@ public class Controlador extends HttpServlet {
 
             }
             case "edit_entidad": {
-                String id_entidad = request.getParameter("txtnumero_entidad");
-                String id_entidadnew = request.getParameter("txtnumero_entidadnew");
+                String id_entidad = request.getParameter("txtnumero_entidad");                
                 String nombre = request.getParameter("txtnombre_entidadnew");
                 String prefix = request.getParameter("prefix_entidadnew");
-                entidad.setid_entidad(id_entidadnew);
+                entidad.setid_entidad(id_entidad);
                 entidad.setNombre(nombre);
                 entidad.setPrefix(prefix);
                 entdao.edit(entidad, id_entidad);
@@ -311,17 +310,12 @@ public class Controlador extends HttpServlet {
                 break;
 
             }
-            case "add_entidad": {
-                String numero_entidad = request.getParameter("txtnumero_entidad");
-                if (numero_entidad.equals("")) {
-                    acceso = entidad_list;
-                    break;
-                }
+            case "add_entidad": {                
+                
                 String nombre = request.getParameter("txtnombre_entidad");
                 String numero_org = request.getParameter("txtnumero_organizacion");
                 String prefix = request.getParameter("txtprefix_entidad");
-                entidad = new Entidad();
-                entidad.setid_entidad(numero_entidad);
+                entidad = new Entidad();                
                 entidad.setNombre(nombre);
                 entidad.setid_org(numero_org);
                 entidad.setPrefix(prefix);
