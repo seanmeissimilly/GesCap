@@ -210,7 +210,7 @@
             <div class="container my-4">
                 <div class="row">
                     <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                        <h2>Seleccione las fechas</h2>
+                        <h2>Plan de Curso</h2>
                         <form name="form_accion" action="accionp.jsp">
                             <div class="mb-3">
                                 <label for="fechainicial_accion" class="form-label">Fecha Inicial</label>
@@ -232,7 +232,7 @@
         </main>
 
         <!-- Footer -->
-        <footer class="footer py-4">
+        <footer id="footer" class="footer">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-start">Copyright 2022 &copy Centro Cimex de Capacitación,
