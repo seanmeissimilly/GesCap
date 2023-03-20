@@ -50,7 +50,7 @@ public class UsuarioBean {
     }
 
     public boolean update(Usuario user, String username) {
-        String sql = "update usuarioapp set id_entidad='" + user.getEntidad() + "', id_rol='" + user.getRol() + "', last_date='" + user.getLast_date() + "', nombre='" + user.getNombre() + "' where username= '" + username + "'";
+        String sql = "update usuarioapp set id_entidad='" + user.getEntidad() + "', last_date='" + user.getLast_date()  + "' where username= '" + username + "'";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
