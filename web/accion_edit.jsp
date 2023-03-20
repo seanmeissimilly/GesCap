@@ -46,7 +46,7 @@
         <title>GesCap Editar Acción</title>
     </head>
 
-   <body id="page-top">
+    <body id="page-top">
         <!-- Reviso si ya se ha logueado -->
         <% HttpSession sesion = request.getSession();
             if (sesion.getAttribute("login") == null
@@ -113,7 +113,7 @@
             </nav>
 
         </header><!-- End Header -->
-        
+
         <!-- ======= Sidebar ======= -->
         <aside id="sidebar" class="sidebar">
 
@@ -373,7 +373,7 @@
                                         Evaluacion evaluacion = null;
                                         for (int i = 0; i < listevaluacion.size(); i++) {
                                             evaluacion = listevaluacion.get(i);
-String marcado = "";
+                                            String marcado = "";
                                             if (p.getId_evaluacionfinal().equals(evaluacion.getNombre())) {
                                                 marcado = "selected";
                                             }
@@ -398,7 +398,7 @@ String marcado = "";
         </main>
 
         <!-- Footer -->
-        <footer class="footer py-4">
+        <footer  id="footer" class="footer">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-start">Copyright 2022 &copy Centro Cimex de Capacitación,
@@ -420,8 +420,8 @@ String marcado = "";
                 </div>
             </div>
         </footer>
-        
-         <!-- Vendor JS Files -->
+
+        <!-- Vendor JS Files -->
         <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
         <script src="./js/bootstrap.bundle.min.js"></script>
         <script src="assets/vendor/chart.js/chart.umd.js"></script>

@@ -233,7 +233,7 @@
                     <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
                         <h2 class="centrado">Listado de Entidades</h2>
                         <div id="search">
-                            <form class="col-4" action="" method="get">
+                            <form class="col-4" action="" method="post">
                                 <input type="text" class="form-control" placeholder="Buscar" name="q">
                             </form>
                         </div>
@@ -279,7 +279,7 @@
         </main>
 
         <!-- Footer -->
-        <footer class="footer py-4">
+        <footer id="footer" class="footer">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-start">Copyright 2022 &copy Centro Cimex de Capacitación,
