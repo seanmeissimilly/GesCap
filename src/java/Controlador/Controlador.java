@@ -123,6 +123,7 @@ public class Controlador extends HttpServlet {
                 accion.setId_formaorganizativa(request.getParameter("forganizativa_accion"));
                 accion.setId_area(request.getParameter("area_accion"));
                 accion.setId_entidadejecutora(request.getParameter("entidad_accion"));
+                accion.setId_entidad(request.getParameter("entidad_p"));
                 accion.setId_modalidad(request.getParameter("modalidad_accion"));
                 accion.setExtraplan(request.getParameter("extrapla_accion_accion") != null);
 
@@ -343,6 +344,7 @@ public class Controlador extends HttpServlet {
                 accion.setId_formaorganizativa(request.getParameter("forganizativa_accion"));
                 accion.setId_area(request.getParameter("area_accion"));
                 accion.setId_entidadejecutora(request.getParameter("entidad_accion"));
+                accion.setId_entidad(request.getParameter("entidad_p"));
                 accion.setId_modalidad(request.getParameter("modalidad_accion"));
                 accion.setExtraplan(request.getParameter("extrapla_accion_accion") != null);
 

@@ -6,7 +6,6 @@ package ModeloBean;
 
 import Config.Conexion;
 import Modelo.Entidad;
-import static java.lang.Integer.parseInt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

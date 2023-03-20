@@ -46,7 +46,7 @@
         <link href="assets/css/style.css" rel="stylesheet">
         <title>GesCap Acciones Addicionar</title>
     </head>
-     <body id="page-top">
+    <body id="page-top">
         <!-- Reviso si ya se ha logueado -->
         <% HttpSession sesion = request.getSession();
             if (sesion.getAttribute("login") == null
@@ -113,7 +113,7 @@
             </nav>
 
         </header><!-- End Header -->
-        
+
         <!-- ======= Sidebar ======= -->
         <aside id="sidebar" class="sidebar">
 
@@ -301,6 +301,22 @@
                                 </select>                               
                             </div>
                             <div class="mb-3">
+                                <label for="entidad_p" class="form-label">Entidad</label>
+                                <select class="form-control" name="entidad_p" id="entidad_p">
+                                    <%
+                                        EntidadBean daoentidad = new EntidadBean();
+                                        List<Entidad> listent = daoentidad.listar();
+
+                                        Entidad entp = null;
+                                        for (int i = 0; i < listent.size(); i++) {
+                                            entp = listent.get(i);
+
+                                    %> 
+                                    <option value="<%= entp.getid_entidad()%>"><%= entp.getNombre()%></option>
+                                    <%}%>                                     
+                                </select>                               
+                            </div>
+                            <div class="mb-3">
                                 <label for="modalidad_accion" class="form-label">Modalidad</label>
                                 <select class="form-control" name="modalidad_accion" id="modalidad_accion">
                                     <%
@@ -450,8 +466,8 @@
                 </div>
             </div>
         </footer>
-        
-         <!-- Vendor JS Files -->
+
+        <!-- Vendor JS Files -->
         <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
         <script src="./js/bootstrap.bundle.min.js"></script>
         <script src="assets/vendor/chart.js/chart.umd.js"></script>

@@ -4,6 +4,8 @@
     Author     : davidam
 --%>
 
+<%@page import="Modelo.Entidad"%>
+<%@page import="ModeloBean.EntidadBean"%>
 <%@page import="ModeloBean.UsuarioBean"%>
 <%@page import="Modelo.Usuario"%>
 <%@page import="java.util.ArrayList"%>
@@ -325,6 +327,27 @@
                                     <%}%>
                                 </select>
                             </div>
+                                <div class="mb-3">
+                                 <label for="entidad_p" class="form-label">Entidad</label>
+                                <select class="form-control" name="entidad_p" id="entidad_p">
+                                     <%
+                                        EntidadBean daoentidad = new EntidadBean();
+                                        List<Entidad> listent = daoentidad.listar();
+
+                                        Entidad entp = null;
+                                        for (int i = 0; i < listent.size(); i++) {
+                                            entp = listent.get(i);
+                                            String marcado = "";
+                                            if (p.getId_entidad().equals(entp.getNombre())) {
+                                                marcado = "selected";
+                                            }
+
+                                    %>
+                                    <option value="<%= entp.getid_entidad()%>"<%=marcado%>><%= entp.getNombre()%></option>
+                                    <%}%>
+                                </select>
+                            </div>
+                            
                             <div class="mb-3">
                                 <label for="modalidad_accion" class="form-label">Modalidad</label>
                                 <select class="form-control" name="modalidad_accion" id="modalidad_accion">
