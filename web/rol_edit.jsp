@@ -95,7 +95,7 @@
             </nav>
 
         </header><!-- End Header -->
-        
+
         <!-- ======= Sidebar ======= -->
         <aside id="sidebar" class="sidebar">
 
@@ -199,15 +199,20 @@
                             <% UsuarioBean dao = new UsuarioBean();
                                 String id = ((String) request.getAttribute("id"));
                                 Usuario p = dao.list(id);%>                                
-                            
+
                             <div class="mb-3">
-                                <label for="username" class="form-label">Nombre de Usuario</label>
-                                <input class="form-control" type="text" name="txtusername"
-                                       value="<%= p.getUsername()%>" id="username" disabled="true">
+                                
+                                <input class="form-control" type="hidden" name="txtusername"
+                                       value="<%= p.getUsername()%>" id="username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nombre</label>
+                                <input class="form-control" type="text" name="txtname"
+                                       value="<%= p.getNombre() %>" id="name" required="required">
                             </div>                            
                             <div class="mb-3">
-                                <label for="area_accion" class="form-label">Roles</label>
-                                <select class="form-control" name="area_accion" id="area_accion">
+                                <label for="area_accion" class="form-label">Rol</label>
+                                <select class="form-control" name="id_rol" id="id_rol">
                                     <%
                                         RolBean rolbean = new RolBean();
                                         List<Rol> listarol = rolbean.listar();
@@ -216,19 +221,18 @@
                                         for (int i = 0; i < listarol.size(); i++) {
                                             rol = listarol.get(i);
                                             String marcado = "";
-                                            if (p.getRol().equals(rol.getId())) {                                            
+                                            if (p.getRol().equals(rol.getId())) {
                                                 marcado = "selected";
                                             }
 
                                     %>
-                                    <option value="<%= rol.getId() %>" <%=marcado%>><%= rol.getDescripcion() %></option>
+                                    <option value="<%= rol.getId()%>" <%=marcado%>><%= rol.getDescripcion()%></option>
                                     <%}%>
                                 </select>
                             </div>                       
 
                             <div class="d-grid gap-2">
-                                <input class="btn btn-success" type="submit" name="accion"
-                                       value="Actualizar">
+                                 <button class="btn btn-success" type="submit" name="accion" value="edit_userapp">Actualizar</button>
                             </div>                            
                         </form>
                     </div>
@@ -259,8 +263,8 @@
                 </div>
             </div>
         </footer>
-        
-         <!-- Vendor JS Files -->
+
+        <!-- Vendor JS Files -->
         <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
         <script src="./js/bootstrap.bundle.min.js"></script>
         <script src="assets/vendor/chart.js/chart.umd.js"></script>
