@@ -124,7 +124,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="entidad_list.jsp">
+                            <a href="entidad_list.jsp?page=1">
                                 <i class="bi bi-circle"></i><span>Entidades</span>
                             </a>
                         </li>

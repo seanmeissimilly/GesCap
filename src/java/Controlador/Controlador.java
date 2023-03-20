@@ -39,7 +39,7 @@ public class Controlador extends HttpServlet {
     String accion_edit = "accion_edit.jsp";
     String urol_edit = "rol_edit.jsp";
     String urol_list = "rol_list.jsp";
-    
+
     Persona persona = new Persona();
     Usuario user = new Usuario();
     Profesor profe = new Profesor();
@@ -48,13 +48,13 @@ public class Controlador extends HttpServlet {
     Organizacion organizacion = new Organizacion();
     Entidad entidad = new Entidad();
     Accion accion = new Accion();
-    
+
     PersonaBean dao = new PersonaBean();
     UsuarioBean userdao = new UsuarioBean();
     OrganizacionBean orgdao = new OrganizacionBean();
     EntidadBean entdao = new EntidadBean();
     AccionBean acciondao = new AccionBean();
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -71,49 +71,56 @@ public class Controlador extends HttpServlet {
             out.println("</html>");
         }
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String acceso = "";
         String action = request.getParameter("accion");
-        
+
         switch (action) {
-            
-            case "persona_list": {
+
+            case "entidad_page": {              
                 
-                acceso = persona_list;
-                
+                request.setAttribute("page", request.getParameter("page"));                
+                acceso = entidad_list;
                 break;
-                
+
             }
-            
+            case "persona_list": {
+
+                acceso = persona_list;
+
+                break;
+
+            }
+
             case "organizacion_edit": {
-                
+
                 request.setAttribute("id", request.getParameter("id"));
                 acceso = organizacion_edit;
-                
+
                 break;
-                
+
             }
             case "entidad_edit": {
-                
+
                 request.setAttribute("id_entidad", request.getParameter("id_entidad"));
                 acceso = entidad_edit;
-                
+
                 break;
-                
+
             }
-            
+
             case "persona_add": {
-                
+
                 acceso = persona_add;
-                
+
                 break;
-                
+
             }
             case "edit_accion": {
-                
+
                 String id_accion = request.getParameter("number_accion");
                 //Empiezo a asignarle los valores.
                 accion.setNombre(request.getParameter("nombre_accion"));
@@ -133,14 +140,14 @@ public class Controlador extends HttpServlet {
                 } else {
                     accion.setCreditos(request.getParameter("creditos_accion"));
                 }
-                
+
                 accion.setId_evaluacionfinal(request.getParameter("evaluacion_accion"));
                 accion.setObservaciones(request.getParameter("observaciones_accion"));
                 acciondao.edit(accion, id_accion);
                 acceso = accion_add;
-                
+
                 break;
-                
+
             }
             case "edit_userapp": {
                 String username = request.getParameter("txtusername");
@@ -153,51 +160,51 @@ public class Controlador extends HttpServlet {
                 user.setRol(id_rol);
                 userdao.edit(user, username);
                 acceso = urol_list;
-                
+
                 break;
-                
+
             }
             case "login": {
-                
+
                 acceso = panel;
-                
+
                 break;
-                
+
             }
             case "accion_delete": {
-                
+
                 String id = request.getParameter("id");
                 acciondao.eliminar(id);
                 acceso = accion_add;
-                
+
                 break;
-                
+
             }
             case "accion_edit": {
-                
+
                 request.setAttribute("id", request.getParameter("id"));
                 acceso = accion_edit;
                 break;
-                
+
             }
             case "urol_edit": {
-                
+
                 request.setAttribute("id", request.getParameter("id"));
                 acceso = urol_edit;
                 break;
-                
+
             }
             case "urol_delete": {
-                
+
                 String username = request.getParameter("id");
                 userdao.eliminar(username);
                 acceso = urol_list;
                 break;
-                
+
             }
-            
+
             case "add_person": {
-                
+
                 String ci = request.getParameter("txtCi");
                 //Para no entrar espacios vacios
                 if (ci.equals("")) {
@@ -213,37 +220,37 @@ public class Controlador extends HttpServlet {
                 persona.setSegundoApellido(segundoapellido);
                 dao.add(persona);
                 acceso = persona_list;
-                
+
                 break;
-                
+
             }
             case "persona_edit": {
-                
+
                 request.setAttribute("ci", request.getParameter("ci"));
                 acceso = persona_edit;
-                
+
                 break;
-                
+
             }
             case "usuario_edit": {
-                
+
                 request.setAttribute("username", request.getParameter("username"));
                 acceso = usuario_edit;
-                
+
                 break;
-                
+
             }
             case "edit_organizacion": {
-                
+
                 String numero_org = request.getParameter("txtnumero_organizacion");
                 String nombre = request.getParameter("txtnombre_organizacionnew");
                 organizacion.setNumero(numero_org);
                 organizacion.setNombre(nombre);
                 orgdao.edit(organizacion, numero_org);
                 acceso = organizacion_list;
-                
+
                 break;
-                
+
             }
             case "edit_entidad": {
                 String id_entidad = request.getParameter("txtnumero_entidad");
@@ -254,12 +261,12 @@ public class Controlador extends HttpServlet {
                 entidad.setPrefix(prefix);
                 entdao.edit(entidad, id_entidad);
                 acceso = entidad_list;
-                
+
                 break;
-                
+
             }
             case "Actualizar": {
-                
+
                 String cinuevo = request.getParameter("txtCinuevo");
                 String ci = request.getParameter("txtCi");
                 String nombre = request.getParameter("txtNombre");
@@ -271,45 +278,45 @@ public class Controlador extends HttpServlet {
                 persona.setSegundoApellido(segundoapellido);
                 dao.edit(persona, cinuevo);
                 acceso = persona_list;
-                
+
                 break;
-                
+
             }
             case "usuario_delete": {
-                
+
                 String username = request.getParameter("username");
                 userdao.eliminar(username);
                 acceso = usuario_list;
-                
+
                 break;
-                
+
             }
             case "persona_delete": {
-                
+
                 String ci = request.getParameter("ci");
                 dao.eliminar(ci);
                 acceso = persona_list;
-                
+
                 break;
-                
+
             }
             case "organizacion_delete": {
-                
+
                 String numero = request.getParameter("numero");
                 orgdao.eliminar(numero);
                 acceso = organizacion_list;
-                
+
                 break;
-                
+
             }
             case "entidad_delete": {
-                
+
                 String numero = request.getParameter("numero");
                 entdao.eliminar(numero);
                 acceso = entidad_list;
-                
+
                 break;
-                
+
             }
             case "add_organizacion": {
                 String nombre = request.getParameter("txtnombre_organizacion");
@@ -317,10 +324,10 @@ public class Controlador extends HttpServlet {
                 orgdao.add(organizacion);
                 acceso = organizacion_list;
                 break;
-                
+
             }
             case "add_entidad": {
-                
+
                 String nombre = request.getParameter("txtnombre_entidad");
                 String numero_org = request.getParameter("txtnumero_organizacion");
                 String prefix = request.getParameter("txtprefix_entidad");
@@ -331,7 +338,7 @@ public class Controlador extends HttpServlet {
                 entdao.add(entidad);
                 acceso = entidad_list;
                 break;
-                
+
             }
             case "add_accion": {
                 //creo una nueva accion.
@@ -354,29 +361,29 @@ public class Controlador extends HttpServlet {
                 } else {
                     accion.setCreditos(request.getParameter("creditos_accion"));
                 }
-                
+
                 accion.setId_evaluacionfinal(request.getParameter("evaluacion_accion"));
                 accion.setObservaciones(request.getParameter("observaciones_accion"));
                 accion.setFicha(request.getParameter("descripcion_accion"));
                 acciondao.add(accion);
                 acceso = accion_add;
                 break;
-                
+
             }
-            
+
         }
-        
+
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
-        
+
         vista.forward(request, response);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
+
     @Override
     public String getServletInfo() {
         return "Short description";
