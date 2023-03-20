@@ -219,12 +219,12 @@ public class Controlador extends HttpServlet {
 
             }
             case "edit_organizacion": {
-                String id_org = request.getParameter("txtnumero_organizacion");
-                String numero_org = request.getParameter("txtnumero_organizacionnew");
+                
+                String numero_org = request.getParameter("txtnumero_organizacion");
                 String nombre = request.getParameter("txtnombre_organizacionnew");
                 organizacion.setNumero(numero_org);
                 organizacion.setNombre(nombre);
-                orgdao.edit(organizacion, id_org);
+                orgdao.edit(organizacion, numero_org);
                 acceso = organizacion_list;
 
                 break;
@@ -296,14 +296,8 @@ public class Controlador extends HttpServlet {
                 break;
 
             }
-            case "add_organizacion": {
-                String numero_org = request.getParameter("txtnumero_organizacion");
-                if (numero_org.equals("")) {
-                    acceso = organizacion_list;
-                    break;
-                }
-                String nombre = request.getParameter("txtnombre_organizacion");
-                organizacion.setNumero(numero_org);
+            case "add_organizacion": {                
+                String nombre = request.getParameter("txtnombre_organizacion");                
                 organizacion.setNombre(nombre);
                 orgdao.add(organizacion);
                 acceso = organizacion_list;

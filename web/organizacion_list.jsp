@@ -198,23 +198,13 @@
             <div class="container my-4">
                 <div class="row">
                     <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                        <h2>Formulario de Organizaciones</h2>
-                        <form action="Controlador">
-                            <div class="mb-3">
-                                <label for="numero_organizacion" class="form-label">Número de la
-                                    Organización</label>
-                                    <%
-                                        OrganizacionBean orgcont = new OrganizacionBean();
-                                        int min = orgcont.contregistros() + 1;
-                                    %>                                   
-                                <input type="number" class="form-control" id="numero_organizacion"
-                                       placeholder="Numero de la Organización" name="txtnumero_organizacion" min="<%= min%>" max="100">
-                            </div>
+                        <h2>Organizaciones</h2>
+                        <form action="Controlador">                            
                             <div class="mb-3">
                                 <label for="nombre_organizacion" class="form-label">Nombre de la
                                     Organización</label>
                                 <input type="text" class="form-control" id="nombre_organizacion"
-                                       placeholder="Nombre de la Organización" name="txtnombre_organizacion">
+                                       placeholder="Nombre de la Organización" name="txtnombre_organizacion" required="required">
                             </div>
                             <div class="d-grid gap-2">
                                 <button class="btn btn-success" type="submit" name="accion" value="add_organizacion">Agregar</button>

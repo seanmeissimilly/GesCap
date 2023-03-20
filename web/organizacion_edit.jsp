@@ -197,23 +197,15 @@
                         <form action="Controlador">
                             <% OrganizacionBean dao = new OrganizacionBean();
                                 String id = ((String) request.getAttribute("id"));
-                                Organizacion p = (Organizacion) dao.list(id).get(0);%>
-                            <div class="mb-3">
-                                <label for="numero_organizacionnew" class="form-label">Número de la
-                                    Organización</label>
-
-                                <input type="number" class="form-control" id="numero_organizacionnew"
-                                       name="txtnumero_organizacionnew" value="<%= p.getNumero()%>">
-
-                            </div>
+                                Organizacion p = (Organizacion) dao.list(id).get(0);%>                            
                             <div class="mb-3">
                                 <label for="nombre_organizacionnew" class="form-label">Nombre de la
                                     Organización</label>
                                 <input type="text" class="form-control" id="nombre_organizacionnew"
-                                       name="txtnombre_organizacionnew" value="<%= p.getNombre()%>">
+                                       name="txtnombre_organizacionnew" value="<%= p.getNombre()%>" required="required">
                             </div>
                             <div class="mb-3">
-                                <!-- Para pasar el numero de organizacion antiguo -->
+                                <!-- Para pasar el numero de organizacion -->
                                 <input type="hidden" name="txtnumero_organizacion" value="<%= p.getNumero()%>">
                             </div> 
 

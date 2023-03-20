@@ -82,7 +82,7 @@ public class OrganizacionBean {
     }
 
     public boolean add(Organizacion org) {
-        String sql = "insert into organizacion(id_org, descripcion)values('" + org.getNumero() + "','" + org.getNombre() + "')";
+        String sql = "insert into organizacion(descripcion)values('" + org.getNombre() + "')";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
