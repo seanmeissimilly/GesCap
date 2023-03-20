@@ -6,7 +6,6 @@ package ModeloBean;
 
 import Modelo.Accion;
 import Config.Conexion;
-import Modelo.Entidad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -145,7 +144,43 @@ public class AccionBean {
     }
     public List listar(String query) {
         ArrayList<Accion> list = new ArrayList<>();
-        String sql = "SELECT accioncapacitacion.id_accion as id_accion, accioncapacitacion.creditos as creditos, accioncapacitacion.observaciones as observaciones, accioncapacitacion.planificada as planificada, accioncapacitacion.nombre as nombre, accioncapacitacion.fechainicio as fechainicio, accioncapacitacion.fechafinal as fechafinal, clasificacionaccion.descripcion as id_clafcaccion, formaorganizativa.descripcion as id_formorg, areaaccion.descripcion as id_areaaccion, entidadejecutora.descripcion as id_entejecutora, evalfinal.descripcion as id_evalfinal, accioncapacitacion.ficha as ficha, modalidadaccion.descripcion as id_modaccion FROM accioncapacitacion, formaorganizativa, clasificacionaccion, areaaccion, entidadejecutora, evalfinal, modalidadaccion WHERE clasificacionaccion.id_clafcaccion=accioncapacitacion.id_clafcaccion AND formaorganizativa.id_formorg=accioncapacitacion.id_formorg AND areaaccion.id_areaaccion=accioncapacitacion.id_areaaccion AND entidadejecutora.id_entejecutora=accioncapacitacion.id_entejecutora AND evalfinal.id_evalfinal=accioncapacitacion.id_evalfinal AND accioncapacitacion.id_modaccion=modalidadaccion.id_modaccion";
+        String sql = "SELECT\n" +
+"	accioncapacitacion.id_accion AS id_accion,\n" +
+"	accioncapacitacion.creditos AS creditos,\n" +
+"	accioncapacitacion.observaciones AS observaciones,\n" +
+"	accioncapacitacion.planificada AS planificada,\n" +
+"	accioncapacitacion.nombre AS nombre,\n" +
+"	accioncapacitacion.fechainicio AS fechainicio,\n" +
+"	accioncapacitacion.fechafinal AS fechafinal,\n" +
+"	clasificacionaccion.descripcion AS id_clafcaccion,\n" +
+"	formaorganizativa.descripcion AS id_formorg,\n" +
+"	areaaccion.descripcion AS id_areaaccion,\n" +
+"	entidadejecutora.descripcion AS id_entejecutora,\n" +
+"	evalfinal.descripcion AS id_evalfinal,\n" +
+"	accioncapacitacion.ficha AS ficha,\n" +
+"	modalidadaccion.descripcion AS id_modaccion \n" +
+"FROM\n" +
+"	accioncapacitacion,\n" +
+"	formaorganizativa,\n" +
+"	clasificacionaccion,\n" +
+"	areaaccion,\n" +
+"	entidadejecutora,\n" +
+"	evalfinal,\n" +
+"	modalidadaccion \n" +
+"WHERE\n" +
+"	clasificacionaccion.id_clafcaccion = accioncapacitacion.id_clafcaccion \n" +
+"	AND formaorganizativa.id_formorg = accioncapacitacion.id_formorg \n" +
+"	AND areaaccion.id_areaaccion = accioncapacitacion.id_areaaccion \n" +
+"	AND entidadejecutora.id_entejecutora = accioncapacitacion.id_entejecutora \n" +
+"	AND evalfinal.id_evalfinal = accioncapacitacion.id_evalfinal \n" +
+"	AND accioncapacitacion.id_modaccion = modalidadaccion.id_modaccion \n" +
+"	AND (\n" +
+"		nombre LIKE '%" + query + "%' \n" +
+"		OR clasificacionaccion.descripcion LIKE '%" + query + "%' \n" +
+"		OR formaorganizativa.descripcion LIKE '%" + query + "%' \n" +
+"	OR areaaccion.descripcion LIKE '%" + query + "%' \n" +
+"	OR entidadejecutora.descripcion LIKE '%" + query + "%'\n" +
+"	OR modalidadaccion.descripcion LIKE '%" + query + "%')";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);

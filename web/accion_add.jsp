@@ -213,7 +213,7 @@
             <div class="container my-4">
                 <div class="row">
                     <div class="col-4">
-                        <h2>Formulario de Acciones</h2>
+                        <h2>Acciones</h2>
                         <form name="form_accion" action="Controlador" onsubmit='return validar()'>
                             <div class="mb-3">
                                 <label for="nombre_accion" class="form-label">Nombre</label>
