@@ -424,7 +424,7 @@
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                     <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
+                                        <h6>Filtros</h6>
                                     </li>
 
                                     <li><a class="dropdown-item" href="#">Today</a></li>
@@ -434,7 +434,7 @@
                             </div>
 
                             <div class="card-body pb-0">
-                                <h5 class="card-title">Website Traffic <span>| Today</span></h5>
+                                <h5 class="card-title">Acciones por Areas</h5>
 
                                 <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
 
@@ -449,7 +449,7 @@
                                                 left: 'center'
                                             },
                                             series: [{
-                                                    name: 'Access From',
+                                                    name: 'Acciones',
                                                     type: 'pie',
                                                     radius: ['40%', '70%'],
                                                     avoidLabelOverlap: false,
@@ -469,23 +469,39 @@
                                                     },
                                                     data: [{
                                                             value: 1048,
-                                                            name: 'Search Engine'
+                                                            name: 'Informatica'
                                                         },
                                                         {
                                                             value: 735,
-                                                            name: 'Direct'
+                                                            name: 'Idioma'
                                                         },
                                                         {
                                                             value: 580,
-                                                            name: 'Email'
+                                                            name: 'Comercial'
                                                         },
                                                         {
                                                             value: 484,
-                                                            name: 'Union Ads'
+                                                            name: 'Logística'
                                                         },
                                                         {
-                                                            value: 300,
-                                                            name: 'Video Ads'
+                                                            value: 100,
+                                                            name: 'Recursos Humanos'
+                                                        },
+                                                        {
+                                                            value: 100,
+                                                            name: 'Dirección'
+                                                        },
+                                                        {
+                                                            value: 100,
+                                                            name: 'Economía'
+                                                        },
+                                                        {
+                                                            value: 100,
+                                                            name: 'Defensa'
+                                                        },
+                                                        {
+                                                            value: 100,
+                                                            name: 'Otros'
                                                         }
                                                     ]
                                                 }]
