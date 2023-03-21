@@ -31,8 +31,16 @@
         <% HttpSession sesion = request.getSession();
             if (sesion.getAttribute("login") == null
                     || sesion.getAttribute("login").equals("0")) {
-                                            response.sendRedirect("login.jsp");
-                                        }%>
+                response.sendRedirect("login.jsp");
+            }
+            //recibo el parametro para saber cual pagina mostrar
+            int spageid;
+            if (request.getParameter("page") == null) {
+                spageid = 1;
+            } else {
+                spageid = Integer.parseInt(request.getParameter("page"));
+            }
+        %>
         <!-- ======= Header ======= -->
         <header id="header" class="header fixed-top d-flex align-items-center">
             <div class="d-flex align-items-center justify-content-between">
@@ -218,17 +226,35 @@
 
                                 </tr>
                             </thead>
-                            <% UsuarioBean dao = new UsuarioBean();
+                            <% //cantidad de registros por pagina
+                                int cantidad = 8;
+
+                                UsuarioBean dao = new UsuarioBean();
                                 List<Usuario> list
                                         = dao.listar();
                                 String query = request.getParameter("q");
                                 if (query != null) {
                                     list = dao.listar(query);
                                 }
-                                Iterator<Usuario> iter = list.iterator();
-                                Usuario per = null;
-                                while (iter.hasNext()) {
-                                    per = iter.next();
+
+                                //Calculo la cantidad de paginas mostrando 15 registros
+                                int contpage = list.size() / cantidad;
+                                if (list.size() % cantidad != 0) {
+                                    contpage += 1;
+                                }
+
+                                int tope = 0;
+                                if (spageid != 1) {
+                                    tope = cantidad * (spageid - 1);
+                                }
+
+                                for (int i = 0; (i < list.size() && i < cantidad * spageid); i++) {
+                                    if (i < tope) {
+                                        continue;
+                                    }
+
+                                    Usuario per = null;
+                                    per = list.get(i);
 
                             %>
                             <tbody>
@@ -237,7 +263,7 @@
                                         <%= per.getUsername()%>
                                     </td>
                                     <td>
-                                        <%= per.getNombre() %>
+                                        <%= per.getNombre()%>
                                     </td>
                                     <td>
                                         <%= per.getEntidad()%>
@@ -253,14 +279,21 @@
                                     </td>
                                     <td class="text-center">
                                         <a class="btn btn-warning"
-                                           href="Controlador?accion=urol_edit&id=<%= per.getUsername()%>">Editar</a>
+                                           href="Controlador?accion=urol_edit&id=<%= per.getUsername()%>&page=<%=spageid%>">Editar</a>
                                         <a class="btn btn-danger"
-                                           href="Controlador?accion=urol_delete&id=<%= per.getUsername()%>">Borrar</a>
+                                           href="Controlador?accion=urol_delete&id=<%= per.getUsername()%>&page=<%=spageid%>">Borrar</a>
                                     </td>
                                 </tr>
                                 <%}%>
                             </tbody>
                         </table>
+                            <%
+                            //para generar los numeros de paginas.
+                            for (int i = 0; i < contpage; i++) {
+
+                        %>                       
+                        <a href="Controlador?accion=rol_page&page=<%=(i + 1)%>"><%=i + 1%></a>
+                        <%}%>
                     </div>
                 </div>
             </div>

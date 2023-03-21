@@ -87,6 +87,13 @@ public class Controlador extends HttpServlet {
                 break;
 
             }
+            case "rol_page": {
+
+                request.setAttribute("page", request.getParameter("page"));
+                acceso = urol_list;
+                break;
+
+            }
             case "accion_page": {
 
                 request.setAttribute("page", request.getParameter("page"));
@@ -201,6 +208,7 @@ public class Controlador extends HttpServlet {
             case "urol_edit": {
 
                 request.setAttribute("id", request.getParameter("id"));
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = urol_edit;
                 break;
 
@@ -209,6 +217,7 @@ public class Controlador extends HttpServlet {
 
                 String username = request.getParameter("id");
                 userdao.eliminar(username);
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = urol_list;
                 break;
 
