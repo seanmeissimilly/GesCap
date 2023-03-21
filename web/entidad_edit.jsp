@@ -37,7 +37,16 @@
             if (sesion.getAttribute("login") == null
                     || sesion.getAttribute("login").equals("0")) {
                 response.sendRedirect("login.jsp");
-            }%>
+            }
+            
+            //recibo el parametro para saber cual pagina mostrar
+            int spageid;
+            if (request.getParameter("page") == null) {
+                spageid = 1;
+            } else {
+                spageid = Integer.parseInt(request.getParameter("page"));
+            }
+        %>
 
 
         <!-- ======= Header ======= -->
@@ -98,7 +107,7 @@
             </nav>
 
         </header><!-- End Header -->
-        
+
         <!-- ======= Sidebar ======= -->
         <aside id="sidebar" class="sidebar">
 
@@ -203,7 +212,7 @@
                             <% EntidadBean dao = new EntidadBean();
                                 String id = ((String) request.getAttribute("id_entidad"));
                                 Entidad p = (Entidad) dao.list(id).get(0);%>
-                            
+
                             <div class="mb-3">
                                 <label for="nombre_entidadnew" class="form-label">Nombre de la
                                     Entidad</label>
@@ -213,12 +222,14 @@
                             <div class="mb-3">
                                 <label for="prefix_entidadnew" class="form-label">Prefijo de la Entidad</label>
                                 <input type="text" class="form-control" id="prefix_entidadnew"
-                                        name="prefix_entidadnew" value="<%= p.getPrefix()%>">
+                                       name="prefix_entidadnew" value="<%= p.getPrefix()%>">
                             </div>
 
                             <div class="mb-3">                               
                                 <input type="hidden" name="txtnumero_entidad" value="<%= p.getid_entidad()%>">
-                            </div> 
+                            </div>
+                            
+                            <input type="hidden" name="page" value=<%=spageid%>>
 
                             <div class="d-grid gap-2">
                                 <button class="btn btn-success" type="submit" name="accion" value="edit_entidad">Actualizar</button>
@@ -253,8 +264,8 @@
                 </div>
             </div>
         </footer>
-        
-         <!-- Vendor JS Files -->
+
+        <!-- Vendor JS Files -->
         <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
         <script src="./js/bootstrap.bundle.min.js"></script>
         <script src="assets/vendor/chart.js/chart.umd.js"></script>

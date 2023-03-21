@@ -36,7 +36,17 @@
             if (sesion.getAttribute("login") == null
                     || sesion.getAttribute("login").equals("0")) {
                 response.sendRedirect("login.jsp");
-            }%>
+            }
+            
+            //recibo el parametro para saber cual pagina mostrar
+            int spageid;
+            if (request.getParameter("page") == null) {
+                spageid = 1;
+            } else {
+                spageid = Integer.parseInt(request.getParameter("page"));
+            }
+
+        %>
 
 
         <!-- ======= Header ======= -->
@@ -52,8 +62,7 @@
                 <ul class="d-flex align-items-center">
                     <li class="nav-item dropdown pe-3">
                         <!-- Para que el usuario logueado salgo en la navbar -->
-                        <%
-                            //Busco en la base de datos el usuario.  
+                        <%                            //Busco en la base de datos el usuario.  
                             Usuario userapp = new UsuarioBean().list(sesion.getAttribute("user").toString());
                         %>
                         <a class="nav-link nav-profile d-flex align-items-center pe-0"  data-bs-toggle="dropdown">                            
@@ -197,7 +206,7 @@
             <div class="container my-4">
                 <div class="row">
                     <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                        <h2>Formulario de Entidades</h2>
+                        <h2>Entidades</h2>
                         <form action="Controlador">                           
                             <div class="mb-3">
                                 <label for="nombre_entidad" class="form-label">Nombre de la Entidad</label>
@@ -225,6 +234,8 @@
                                     <%}%> 
                                 </select>                               
                             </div>
+                            <input type="hidden" name="page" value=<%=spageid%>>
+
                             <div class="d-grid gap-2">
                                 <button class="btn btn-success" type="submit" name="accion" value="add_entidad">Agregar</button>
                             </div>
@@ -246,8 +257,6 @@
                                 </tr>
                             </thead>
                             <%
-                                //recibo el parametro para saber cual pagina mostrar
-                                int spageid = Integer.parseInt(request.getParameter("page"));
 
                                 //cantidad de registros por pagina
                                 int cantidad = 8;
@@ -264,11 +273,6 @@
                                 if (list.size() % cantidad != 0) {
                                     contpage += 1;
                                 }
-                                int aux = cantidad * spageid;
-                                int aux2 = cantidad * (spageid - 1);
-                                // System.out.println(aux);
-                                // System.out.println(aux2);
-                                //&& i > cantidad * (spageid - 1)
 
                                 int tope = 0;
                                 if (spageid != 1) {
@@ -291,9 +295,9 @@
                                     <td><%= ent.getPrefix()%></td>
                                     <td class="text-center">
                                         <a class="btn btn-warning"
-                                           href="Controlador?accion=entidad_edit&id_entidad=<%= ent.getid_entidad()%>">Editar</a>                                    
+                                           href="Controlador?accion=entidad_edit&id_entidad=<%= ent.getid_entidad()%>&page=<%=spageid%>">Editar</a>                                    
                                         <a class="btn btn-danger"
-                                           href="Controlador?accion=entidad_delete&numero=<%= ent.getid_entidad()%>">Remover</a>                                           
+                                           href="Controlador?accion=entidad_delete&numero=<%= ent.getid_entidad()%>&page=<%=spageid%>">Remover</a>                                           
                                     </td>
                                 </tr>
                                 <%}%> 

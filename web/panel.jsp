@@ -236,7 +236,7 @@
                                                 <li><a href="http://www.cimex.com.cu/main/">Intranet Cimex</a>
                                                 </li>
                                                 <li><a
-                                                        href="https://cimexevaluacion.cimex.com.cu/login_evaluacion/">Talu</a>
+                                                        href="https://cimexevaluacion.cimex.com.cu/login_evaluacion/">Talhu</a>
                                                 </li>
                                                 <li><a href="https://www.gacetaoficial.gob.cu/es">Gaceta Oficial
                                                         de Cuba</a>

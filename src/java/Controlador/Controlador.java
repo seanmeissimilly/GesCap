@@ -80,9 +80,9 @@ public class Controlador extends HttpServlet {
 
         switch (action) {
 
-            case "entidad_page": {              
-                
-                request.setAttribute("page", request.getParameter("page"));                
+            case "entidad_page": {
+
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = entidad_list;
                 break;
 
@@ -106,6 +106,7 @@ public class Controlador extends HttpServlet {
             case "entidad_edit": {
 
                 request.setAttribute("id_entidad", request.getParameter("id_entidad"));
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = entidad_edit;
 
                 break;
@@ -260,6 +261,9 @@ public class Controlador extends HttpServlet {
                 entidad.setNombre(nombre);
                 entidad.setPrefix(prefix);
                 entdao.edit(entidad, id_entidad);
+
+                request.setAttribute("page", request.getParameter("page"));
+
                 acceso = entidad_list;
 
                 break;
@@ -313,6 +317,7 @@ public class Controlador extends HttpServlet {
 
                 String numero = request.getParameter("numero");
                 entdao.eliminar(numero);
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = entidad_list;
 
                 break;
@@ -336,6 +341,8 @@ public class Controlador extends HttpServlet {
                 entidad.setid_org(numero_org);
                 entidad.setPrefix(prefix);
                 entdao.add(entidad);
+
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = entidad_list;
                 break;
 
