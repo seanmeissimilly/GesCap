@@ -309,13 +309,21 @@
                                 <%}%> 
                             </tbody>
                         </table>
-                        <%
-                            //para generar los numeros de paginas.
-                            for (int i = 0; i < contpage; i++) {
+                            <nav aria-label="...">
+                            <ul class="pagination pagination-lg">
+                                
+                                <%
+                                    //para generar los numeros de paginas.
+                                    for (int i = 0; i < contpage; i++) {
 
-                        %>                       
-                        <a href="Controlador?accion=entidad_page&page=<%=(i + 1)%>"><%=i + 1%></a>
-                        <%}%>
+                                %>
+                                <li class="page-item"><a class="page-link" href="Controlador?accion=entidad_page&page=<%=(i + 1)%>"><%=i + 1%></a></li>
+                                    <%
+                                        }
+                                    %>
+                            </ul>
+                        </nav>
+                        
                     </div>
                 </div>
             </div>
