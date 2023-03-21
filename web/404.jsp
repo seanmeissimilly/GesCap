@@ -33,7 +33,7 @@
         <!-- ======= Header ======= -->
         <header id="header" class="header fixed-top d-flex align-items-center">
             <div class="d-flex align-items-center justify-content-between">
-                <a href="panel.jsp" class="logo d-flex align-items-center">        
+                <a href="./dashboard" class="logo d-flex align-items-center">        
                     <span class="d-none d-lg-block">GesCap</span>
                 </a>
                 <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -96,7 +96,7 @@
             <ul class="sidebar-nav" id="sidebar-nav">
 
                 <li class="nav-item">
-                    <a class="nav-link " href="panel.jsp">
+                    <a class="nav-link " href="./dashboard">
                         <i class="bi bi-grid"></i>
                         <span>Tablero</span>
                     </a>
@@ -110,7 +110,7 @@
                     </a>
                     <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         <li>
-                            <a href="accion_add.jsp">
+                            <a href="./accion">
                                 <i class="bi bi-circle"></i><span>Acciones</span>
                             </a>
                         </li>
@@ -200,7 +200,7 @@
                             <div class="text-center mt-4">
                                 <img class="mb-4 img-error" src="./img/error-404-monochrome.svg" />
                                 <p class="lead">Esta URL solicitada no se encontró en este servidor.</p>
-                                <a href="panel.jsp">
+                                <a href="./dashboard">
                                     <i class="fas fa-arrow-left me-1"></i>
                                     Retornar a Inicio.
                                 </a>

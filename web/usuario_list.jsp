@@ -34,7 +34,7 @@
         <header>
             <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="panel.jsp">GesCap</a>                    
+                    <a class="navbar-brand" href="./dashboard">GesCap</a>                    
                     <form class="form-inline" action="logout.jsp">
                         <a><i class="fa fa-user-circle" aria-hidden="true"></i>
                             <%=sesion.getAttribute("user")%>

@@ -151,7 +151,7 @@
         if (user.equals("administrator") || login.authuser(user, clave)) {
             sesion.setAttribute("login", "1");
             sesion.setAttribute("user", user);
-            response.sendRedirect("panel.jsp");
+            response.sendRedirect("./dashboard");
         } else {
             sesion.setAttribute("login", "0");
         }
