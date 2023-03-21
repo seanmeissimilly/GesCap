@@ -87,6 +87,13 @@ public class Controlador extends HttpServlet {
                 break;
 
             }
+            case "accion_page": {
+
+                request.setAttribute("page", request.getParameter("page"));
+                acceso = accion_add;
+                break;
+
+            }
             case "persona_list": {
 
                 acceso = persona_list;
@@ -145,6 +152,7 @@ public class Controlador extends HttpServlet {
                 accion.setId_evaluacionfinal(request.getParameter("evaluacion_accion"));
                 accion.setObservaciones(request.getParameter("observaciones_accion"));
                 acciondao.edit(accion, id_accion);
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = accion_add;
 
                 break;
@@ -176,6 +184,7 @@ public class Controlador extends HttpServlet {
 
                 String id = request.getParameter("id");
                 acciondao.eliminar(id);
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = accion_add;
 
                 break;
@@ -184,6 +193,7 @@ public class Controlador extends HttpServlet {
             case "accion_edit": {
 
                 request.setAttribute("id", request.getParameter("id"));
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = accion_edit;
                 break;
 
@@ -373,6 +383,7 @@ public class Controlador extends HttpServlet {
                 accion.setObservaciones(request.getParameter("observaciones_accion"));
                 accion.setFicha(request.getParameter("descripcion_accion"));
                 acciondao.add(accion);
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = accion_add;
                 break;
 

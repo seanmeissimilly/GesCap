@@ -52,7 +52,17 @@
             if (sesion.getAttribute("login") == null
                     || sesion.getAttribute("login").equals("0")) {
                 response.sendRedirect("login.jsp");
-            }%>
+            }
+
+            //recibo el parametro para saber cual pagina mostrar
+            int spageid;
+            if (request.getParameter("page") == null) {
+                spageid = 1;
+            } else {
+                spageid = Integer.parseInt(request.getParameter("page"));
+            }
+
+        %>
 
 
         <!-- ======= Header ======= -->
@@ -68,8 +78,7 @@
                 <ul class="d-flex align-items-center">
                     <li class="nav-item dropdown pe-3">
                         <!-- Para que el usuario logueado salgo en la navbar -->
-                        <%
-                            //Busco en la base de datos el usuario.  
+                        <%                            //Busco en la base de datos el usuario.  
                             Usuario userapp = new UsuarioBean().list(sesion.getAttribute("user").toString());
                         %>
                         <a class="nav-link nav-profile d-flex align-items-center pe-0"  data-bs-toggle="dropdown">                            
@@ -364,6 +373,8 @@
                                 <label for="observaciones_accion">Observaciones</label>
                                 <textarea class="form-control" name="observaciones_accion" rows="4" placeholder="Sus observaciones"></textarea>
                             </div>
+
+                            <input type="hidden" name="page" value=<%=spageid%>>
                             <div class="d-grid gap-2">
                                 <button class="btn btn-success" type="submit" name="accion" value="add_accion">Agregar</button>
                             </div>
@@ -391,18 +402,34 @@
                                 </tr>
                             </thead>
                             <%
+                                //cantidad de registros por pagina
+                                int cantidad = 8;
+
                                 AccionBean dao = new AccionBean();
                                 List<Accion> list = dao.listar();
                                 String query = request.getParameter("q");
                                 if (query != null) {
                                     list = dao.listar(query);
                                 }
-                                Iterator<Accion> iter = list.iterator();
-                                Accion accion = null;
-                                while (iter.hasNext()) {
-                                    accion = iter.next();
 
-                            %>
+                                //Calculo la cantidad de paginas mostrando cantidad registros
+                                int contpage = list.size() / cantidad;
+                                if (list.size() % cantidad != 0) {
+                                    contpage += 1;
+                                }
+
+                                int tope = 0;
+                                if (spageid != 1) {
+                                    tope = cantidad * (spageid - 1);
+                                }
+
+                                for (int i = 0; (i < list.size() && i < cantidad * spageid); i++) {
+                                    if (i < tope) {
+                                        continue;
+                                    }
+
+                                    Accion accion = null;;
+                                    accion = list.get(i);%>
                             <tbody>
                                 <tr>                                    
                                     <td>
@@ -431,14 +458,21 @@
                                     </td>                                    
                                     <td class="text-center">
                                         <a class="btn btn-warning my-1"
-                                           href="Controlador?accion=accion_edit&id=<%= accion.getId_accion()%>">Editar</a>
+                                           href="Controlador?accion=accion_edit&id=<%= accion.getId_accion()%>&page=<%=spageid%>">Editar</a>
                                         <a class="btn btn-danger" onclick="alerta()"
-                                           href="Controlador?accion=accion_delete&id=<%= accion.getId_accion()%>">Borrar</a>                                        
+                                           href="Controlador?accion=accion_delete&id=<%= accion.getId_accion()%>&page=<%=spageid%>">Borrar</a>                                        
                                     </td>
                                 </tr>
                                 <%}%> 
                             </tbody>
                         </table>
+                        <%
+                            //para generar los numeros de paginas.
+                            for (int i = 0; i < contpage; i++) {
+
+                        %>                       
+                        <a href="Controlador?accion=accion_page&page=<%=(i + 1)%>"><%=i + 1%></a>
+                        <%}%>
                     </div>
                 </div>
             </div>

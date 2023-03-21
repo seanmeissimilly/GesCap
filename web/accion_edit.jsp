@@ -54,7 +54,16 @@
             if (sesion.getAttribute("login") == null
                     || sesion.getAttribute("login").equals("0")) {
                 response.sendRedirect("login.jsp");
-            }%>
+            }
+
+            //recibo el parametro para saber cual pagina mostrar
+            int spageid;
+            if (request.getParameter("page") == null) {
+                spageid = 1;
+            } else {
+                spageid = Integer.parseInt(request.getParameter("page"));
+            }
+        %>
 
 
         <!-- ======= Header ======= -->
@@ -327,10 +336,10 @@
                                     <%}%>
                                 </select>
                             </div>
-                                <div class="mb-3">
-                                 <label for="entidad_p" class="form-label">Entidad</label>
+                            <div class="mb-3">
+                                <label for="entidad_p" class="form-label">Entidad</label>
                                 <select class="form-control" name="entidad_p" id="entidad_p">
-                                     <%
+                                    <%
                                         EntidadBean daoentidad = new EntidadBean();
                                         List<Entidad> listent = daoentidad.listar();
 
@@ -347,7 +356,7 @@
                                     <%}%>
                                 </select>
                             </div>
-                            
+
                             <div class="mb-3">
                                 <label for="modalidad_accion" class="form-label">Modalidad</label>
                                 <select class="form-control" name="modalidad_accion" id="modalidad_accion">
@@ -410,7 +419,9 @@
                                 <label for="observaciones_accion">Observaciones</label>
                                 <textarea class="form-control" name="observaciones_accion" rows="4"><%= p.getObservaciones()%></textarea>
                             </div>
-
+                            
+                            <input type="hidden" name="page" value=<%=spageid%>>
+                            
                             <div class="d-grid gap-2">
                                 <button class="btn btn-success" type="submit" name="accion" value="edit_accion">Actualizar</button>
                             </div>
