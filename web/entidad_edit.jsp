@@ -189,6 +189,13 @@
                 </li><!-- End Tables Nav -->
 
                 <li class="nav-item">
+                    <a class="nav-link collapsed" href="404.jsp">
+                        <i class="bi bi-question-circle"></i>
+                        <span>¿Necesitas Ayuda?</span>
+                    </a>
+                </li><!-- End F.A.Q Page Nav -->
+
+                <li class="nav-item">
                     <a class="nav-link collapsed" href="login.jsp">
                         <i class="bi bi-box-arrow-in-right"></i>
                         <span>Entrada</span>
