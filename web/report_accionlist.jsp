@@ -12,8 +12,9 @@
 <%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% /*recibo los parametros*/
-    String fecha_inicial = request.getParameter("fechainicial_accion");;
-    String fecha_final = request.getParameter("fechafinal_accion");;
+    String fecha_inicial = request.getParameter("fechainicial_accion");
+    String fecha_final = request.getParameter("fechafinal_accion");
+    String orden = request.getParameter("orden");
 
     /*Parametros para realizar la conexión*/
     Conexion cn = new Conexion();
@@ -26,6 +27,7 @@ cualquier cadena de texto ya que solo seguiremos el formato del método runRepor
     Map parameters = new HashMap();
     parameters.put("fecha_inicial", fecha_inicial.toString());
     parameters.put("fecha_final", fecha_final.toString());
+    parameters.put("orden", orden.toString());
     /*Enviamos la ruta del reporte, los parámetros y la conexión(objeto Connection)*/
     byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conexion);
     /*Indicamos que la respuesta va a ser en formato PDF*/ response.setContentType("application/pdf");

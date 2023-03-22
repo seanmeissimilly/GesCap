@@ -23,7 +23,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="author" content="David Sean Meissimilly">
-        
+
         <link rel="icon" href="./img/Logo_CCC.jpg" type="image/jpg" sizes="32x32">
 
         <script src="./js/fontawesome-all.js"></script>
@@ -62,7 +62,7 @@
                 <i class="bi bi-list toggle-sidebar-btn"></i>
             </div><!-- End Logo -->
 
-              <nav class="header-nav ms-auto">
+            <nav class="header-nav ms-auto">
                 <ul class="d-flex align-items-center">
                     <li class="nav-item dropdown pe-3">
                         <!-- Para que el usuario logueado salgo en la navbar -->
@@ -111,7 +111,7 @@
             </nav>
 
         </header><!-- End Header -->
-        
+
         <!-- ======= Sidebar ======= -->
         <aside id="sidebar" class="sidebar">
 
@@ -224,6 +224,16 @@
                                 <input type="date" class="form-control" id="fechafinal_accion"
                                        name="fechafinal_accion" required="required">
                             </div>
+                            <div class="mb-3">
+                                <label for="orden" class="form-label">Ordenar por</label>
+                                <select class="form-control" name="orden" id="orden">
+                                    <option value="nombre">Nombre</option>
+                                    <option value="fechainicio">Fecha Inicial</option>
+                                    <option value="fechafinal">Fecha Final</option>
+                                    <option value="id_entidad">ID</option>
+                                    <option value="id_accion">Entidad</option>
+                                </select> 
+                            </div>
                             <div class="d-grid gap-2">
                                 <button class="btn btn-success" type="submit" name="accion" value="send_reporteaccionlist">Visualizar Reporte</button>
                             </div>
@@ -256,8 +266,8 @@
                 </div>
             </div>
         </footer>
-        
-         <!-- Vendor JS Files -->
+
+        <!-- Vendor JS Files -->
         <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
         <script src="./js/bootstrap.bundle.min.js"></script>
         <script src="assets/vendor/chart.js/chart.umd.js"></script>

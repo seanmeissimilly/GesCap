@@ -15,33 +15,38 @@
 	</style>
 	<parameter name="fecha_inicial" class="java.lang.String"/>
 	<parameter name="fecha_final" class="java.lang.String"/>
+	<parameter name="orden" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT accioncapacitacion.id_accion as id_accion,
-accioncapacitacion.creditos as creditos,
-accioncapacitacion.observaciones as observaciones,
-accioncapacitacion.planificada as planificada,
-accioncapacitacion.nombre as nombre,
-accioncapacitacion.fechainicio as fechainicio,
-accioncapacitacion.fechafinal as fechafinal,
-clasificacionaccion.descripcion as id_clafcaccion,
-formaorganizativa.descripcion as id_formorg,
-modalidadaccion.descripcion as id_modaccion,
-areaaccion.descripcion as id_areaaccion,
-entidadejecutora.descripcion as id_entejecutora,
-evalfinal.descripcion as id_evalfinal,
-accioncapacitacion.ficha as ficha
-FROM accioncapacitacion, formaorganizativa, clasificacionaccion, areaaccion, entidadejecutora, evalfinal, modalidadaccion
+		<![CDATA[SELECT
+	accioncapacitacion.`id_accion` AS id_accion,
+	accioncapacitacion.`creditos` AS creditos,
+	accioncapacitacion.`observaciones` AS observaciones,
+	accioncapacitacion.`planificada` AS planificada,
+	accioncapacitacion.`nombre` AS nombre,
+	accioncapacitacion.`fechainicio` AS fechainicio,
+	accioncapacitacion.`fechafinal` AS fechafinal,
+	clasificacionaccion.`descripcion` AS id_clafcaccion,
+	formaorganizativa.`descripcion` AS id_formorg,
+	modalidadaccion.`descripcion` AS id_modaccion,
+	areaaccion.`descripcion` AS id_areaaccion,
+	entidadejecutora.`descripcion` AS id_entejecutora,
+	evalfinal.`descripcion` AS id_evalfinal,
+	entidad.`descripcion` AS id_entidad,
+	accioncapacitacion.`ficha` AS ficha
+FROM
+	`clasificacionaccion` clasificacionaccion
+	INNER JOIN `accioncapacitacion` accioncapacitacion ON clasificacionaccion.`id_clafcaccion` = accioncapacitacion.`id_clafcaccion`
+	INNER JOIN `formaorganizativa` formaorganizativa ON accioncapacitacion.`id_formorg` = formaorganizativa.`id_formorg`
+	INNER JOIN `areaaccion` areaaccion ON accioncapacitacion.`id_areaaccion` = areaaccion.`id_areaaccion`
+	INNER JOIN `entidadejecutora` entidadejecutora ON accioncapacitacion.`id_entejecutora` = entidadejecutora.`id_entejecutora`
+	INNER JOIN `evalfinal` evalfinal ON accioncapacitacion.`id_evalfinal` = evalfinal.`id_evalfinal`
+	INNER JOIN `modalidadaccion` modalidadaccion ON accioncapacitacion.`id_modaccion` = modalidadaccion.`id_modaccion`
+	INNER JOIN `entidad` entidad ON accioncapacitacion.`id_entidad` = entidad.`id_entidad`
 WHERE
-clasificacionaccion.id_clafcaccion=accioncapacitacion.id_clafcaccion AND
-formaorganizativa.id_formorg=accioncapacitacion.id_formorg AND
-areaaccion.id_areaaccion=accioncapacitacion.id_areaaccion AND
-entidadejecutora.id_entejecutora=accioncapacitacion.id_entejecutora AND
-evalfinal.id_evalfinal=accioncapacitacion.id_evalfinal AND
-modalidadaccion.id_modaccion=accioncapacitacion.id_modaccion AND
-fechainicio >= CAST($P{fecha_inicial} AS date) AND fechainicio <= CAST($P{fecha_final} AS date)
-
+	fechainicio >= $P{fecha_inicial}
+	AND fechainicio <=  $P{fecha_final}
 ORDER BY
-accioncapacitacion.id_accion]]>
+	$P{orden}]]>
 	</queryString>
 	<field name="id_accion" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -80,6 +85,9 @@ accioncapacitacion.id_accion]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="id_evalfinal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_entidad" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="ficha" class="java.lang.String">
