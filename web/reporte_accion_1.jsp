@@ -20,7 +20,7 @@
 
     <head>
         <jsp:include page="header.jsp"></jsp:include> 
-        <title>GesCap Plan de Curso</title>
+        <title>GesCap Detallado</title>
 
     </head>
 
