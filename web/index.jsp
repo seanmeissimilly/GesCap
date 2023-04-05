@@ -4,25 +4,17 @@
 <html lang="es">
 
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="author" content="David Sean Meissimilly">
-        <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <link rel="icon" href="./img/Logo_CCC.jpg" type="image/jpg" sizes="32x32">
-        <link href="./css/styles.css" rel="stylesheet" />
-        <script src="./js/fontawesome-all.js"></script>
-        <title>GesCap</title>
+        <jsp:include page="header.jsp"></jsp:include>  
+            <title>GesCap</title>
 
-    </head>
+        </head>
 
-    <body>
-
+        <body>
+        <jsp:include page="navbar.jsp"></jsp:include> 
+        
         <% response.sendRedirect("login.jsp");%>
 
-        <header>
 
-        </header>
         <main>
 
         </main>

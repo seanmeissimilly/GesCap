@@ -143,7 +143,7 @@
             <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="reporte_accion_1.jsp">
-                        <i class="bi bi-circle"></i><span>Plan de Curso</span>
+                        <i class="bi bi-circle"></i><span>Plan Detallado</span>
                     </a>
                 </li>
                 <li>

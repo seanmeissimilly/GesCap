@@ -5,36 +5,12 @@
 <html lang="es">
 
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="author" content="David Sean Meissimilly">
-        <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <link rel="stylesheet" href="./fontawesome/css/fontawesome.min.css">
-        <link rel="icon" href="./img/Logo_CCC.jpg" type="image/jpg" sizes="32x32">
-        <link href="./css/styles.css" rel="stylesheet" />
-        <script src="./js/fontawesome-all.js"></script>
+        <jsp:include page="header.jsp"></jsp:include> 
         <title>GesCap Cursistas</title>
     </head>
 
     <body>
-        <% HttpSession sesion = request.getSession();
-            if (sesion.getAttribute("login") == null
-                    || sesion.getAttribute("login").equals("0")) {
-                response.sendRedirect("login.jsp");
-            }%>
-
-        <header>
-            <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="panel.jsp">GesCap</a>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Buscar</button>
-                    </form>
-                </div>
-            </nav>
-        </header>
+        <jsp:include page="navbar.jsp"></jsp:include> 
         <main>
 
 

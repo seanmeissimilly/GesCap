@@ -8,7 +8,7 @@
 <footer id="footer" class="footer">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-4 text-lg-start">Copyright 2022 &copy Centro Cimex de Capacitación,
+            <div class="col-lg-4 text-lg-start">Copyright 2023 &copy Centro Cimex de Capacitación,
                 <strong>Cimex</strong>
             </div>
 
