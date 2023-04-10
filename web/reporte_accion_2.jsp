@@ -44,17 +44,7 @@
                                 <label for="fechafinal_accion" class="form-label">Fecha Final</label>
                                 <input type="date" class="form-control" id="fechafinal_accion"
                                        name="fechafinal_accion" required="required">
-                            </div>
-                            <div class="mb-3">
-                                <label for="orden" class="form-label">Ordenar por</label>
-                                <select class="form-control" name="orden" id="orden">
-                                    <option value="nombre">Nombre</option>
-                                    <option value="fechainicio">Fecha Inicial</option>
-                                    <option value="fechafinal">Fecha Final</option>
-                                    <option value="id_entidad">ID</option>
-                                    <option value="id_accion">Entidad</option>
-                                </select> 
-                            </div>
+                            </div>                            
                             <div class="d-grid gap-2">
                                 <button class="btn btn-success" type="submit" name="accion" value="send_reporteaccionlist">Visualizar Reporte</button>
                             </div>

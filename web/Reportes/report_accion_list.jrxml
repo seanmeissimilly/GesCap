@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_accion_list" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3ee1eea0-bccc-4881-a4a7-8db5f89df968">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="30"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
@@ -15,7 +15,6 @@
 	</style>
 	<parameter name="fecha_inicial" class="java.lang.String"/>
 	<parameter name="fecha_final" class="java.lang.String"/>
-	<parameter name="orden" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
 	accioncapacitacion.`id_accion` AS id_accion,
@@ -46,7 +45,7 @@ WHERE
 	fechainicio >= $P{fecha_inicial}
 	AND fechainicio <=  $P{fecha_final}
 ORDER BY
-	$P{orden}]]>
+	id_accion]]>
 	</queryString>
 	<field name="id_accion" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -97,7 +96,7 @@ ORDER BY
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="119" splitType="Stretch">
+		<band height="116" splitType="Stretch">
 			<textField pattern="dd/MM/yy">
 				<reportElement x="734" y="88" width="66" height="20" uuid="fb44a457-c193-4416-b041-04a959c3cc50"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
@@ -136,7 +135,7 @@ ORDER BY
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement style="Column header" x="1" y="1" width="75" height="15" forecolor="#736343" uuid="18e45ec8-f9bf-472c-afea-8aefc3d8357c"/>
+				<reportElement style="Column header" x="1" y="1" width="50" height="15" forecolor="#736343" uuid="18e45ec8-f9bf-472c-afea-8aefc3d8357c"/>
 				<textElement textAlignment="Justified">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -144,101 +143,101 @@ ORDER BY
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="381" y="1" width="100" height="15" forecolor="#736343" uuid="718d7a79-e7c6-480f-ba5f-1cc78c5ca2c4"/>
-				<textElement textAlignment="Justified">
+				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Modalidad]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="481" y="1" width="100" height="15" forecolor="#736343" uuid="8aa084b0-2ac3-4e38-a986-b8aee552a3e5"/>
-				<textElement textAlignment="Justified">
+				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Clasificación]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="582" y="1" width="115" height="15" forecolor="#736343" uuid="3fa42b52-907c-42e7-bc6e-c91ea00ea190"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Forma Organizativa]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="76" y="0" width="105" height="15" forecolor="#736343" uuid="a7849130-7edd-44ff-8281-b58ba95f4fe8"/>
-				<textElement textAlignment="Justified">
+				<reportElement style="Column header" x="51" y="0" width="190" height="15" forecolor="#736343" uuid="a7849130-7edd-44ff-8281-b58ba95f4fe8"/>
+				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="181" y="1" width="100" height="15" forecolor="#736343" uuid="5a8e3b1d-0edc-44c8-8fbb-86670543915b"/>
-				<textElement textAlignment="Justified">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Inicial]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="281" y="1" width="100" height="15" forecolor="#736343" uuid="a05c951d-9043-4fbe-bbba-5c3ac74f9b60"/>
-				<textElement textAlignment="Justified">
+				<reportElement style="Column header" x="311" y="1" width="70" height="15" forecolor="#736343" uuid="a05c951d-9043-4fbe-bbba-5c3ac74f9b60"/>
+				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Final]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="696" y="1" width="105" height="15" forecolor="#736343" uuid="65c5a2cb-5af4-498a-a462-56451b1e127b"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Área]]></text>
 			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="241" y="1" width="70" height="15" forecolor="#736343" uuid="5a8e3b1d-0edc-44c8-8fbb-86670543915b"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inicial]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="27" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<frame>
-				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="27" uuid="72998c80-f0ef-4449-b6bf-267d9a483fb5"/>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="40" uuid="72998c80-f0ef-4449-b6bf-267d9a483fb5"/>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="0" y="0" width="75" height="15" uuid="7d846c3e-815e-42c2-aef0-00e4ea2889aa"/>
+					<reportElement style="Detail" x="0" y="0" width="51" height="15" uuid="7d846c3e-815e-42c2-aef0-00e4ea2889aa"/>
 					<textElement textAlignment="Justified"/>
 					<textFieldExpression><![CDATA[$F{id_accion}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="381" y="0" width="100" height="15" uuid="8faaf852-525d-4756-938b-12c69417bc00"/>
-					<textElement textAlignment="Justified"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{id_modaccion}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="481" y="0" width="100" height="15" uuid="6fcd7963-c01c-4cb0-8485-7d0d9ecb7022"/>
-					<textElement textAlignment="Justified"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{id_clafcaccion}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="581" y="0" width="115" height="15" uuid="0339df9d-47a3-4d74-9aa3-aa89aaa6130a"/>
-					<textElement textAlignment="Justified">
-						<font size="10"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{id_formorg}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="696" y="0" width="105" height="15" uuid="e70b4711-9a50-4f0b-a279-c0d702235673"/>
-					<textElement textAlignment="Justified"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{id_areaaccion}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" pattern="dd/MM/yy">
-					<reportElement style="Detail" x="281" y="0" width="100" height="15" uuid="7dec2794-7256-42a8-98e3-1c61a536935f"/>
-					<textElement textAlignment="Justified"/>
+					<reportElement style="Detail" x="311" y="0" width="70" height="15" uuid="7dec2794-7256-42a8-98e3-1c61a536935f"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{fechafinal}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="76" y="0" width="105" height="15" uuid="4ef7bad4-2367-4480-9323-c93ff3becf1c"/>
-					<textElement>
+					<reportElement x="51" y="0" width="190" height="30" uuid="4ef7bad4-2367-4480-9323-c93ff3becf1c"/>
+					<textElement textAlignment="Center">
 						<font fontName="Arial" size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 				</textField>
 				<textField pattern="dd/MM/yy">
-					<reportElement x="181" y="0" width="100" height="15" uuid="7908ee04-c9fa-4aac-8fb9-f642e028e190"/>
-					<textElement>
+					<reportElement x="241" y="0" width="70" height="15" uuid="7908ee04-c9fa-4aac-8fb9-f642e028e190"/>
+					<textElement textAlignment="Center">
 						<font fontName="Arial" size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{fechafinal}]]></textFieldExpression>
