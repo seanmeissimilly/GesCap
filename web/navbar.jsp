@@ -7,12 +7,12 @@
 <%@page import="ModeloBean.UsuarioBean"%>
 <%@page import="Modelo.Usuario"%>
 
-  <!-- Reviso si ya se ha logueado -->
-        <% HttpSession sesion = request.getSession();
-            if (sesion.getAttribute("login") == null
-                    || sesion.getAttribute("login").equals("0")) {
-                response.sendRedirect("login.jsp");
-            }%>
+<!-- Reviso si ya se ha logueado -->
+<% HttpSession sesion = request.getSession();
+    if (sesion.getAttribute("login") == null
+            || sesion.getAttribute("login").equals("0")) {
+        response.sendRedirect("login.jsp");
+    }%>
 
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
@@ -38,18 +38,11 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6><%=userapp.getUsername()%></h6>                                
+                        <h6><%=userapp.getUsername()%></h6>                        
                     </li>
                     <li>
                         <hr class="dropdown-divider">
-                    </li>                            
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>                            
-                    <li>
-                        <hr class="dropdown-divider">
                     </li>
-
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="404.jsp">
                             <i class="bi bi-question-circle"></i>
@@ -87,8 +80,17 @@
         </li><!-- End Dashboard Nav -->
 
 
-
-        <li class="nav-item">
+        <%
+            //Para llevar el tema de los roles.
+            String consultor = "";
+            String editor = "";
+            if (userapp.getRol().equals("1")) {
+                consultor = "hidden";
+            } else if (userapp.getRol().equals("2")) {
+                editor = "hidden";
+            }
+        %>
+        <li class="nav-item" <%=consultor%>>
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="">
                 <i class="bi bi-journal-text"></i><span>Formularios</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
@@ -99,37 +101,37 @@
                     </a>
                 </li>
                 <li>
-                    <a href="persona_list.jsp">
+                    <a href="persona_list.jsp" <%=editor%>>
                         <i class="bi bi-circle"></i><span>Personas</span>
                     </a>
                 </li>
                 <li>
-                    <a href="entidad_list.jsp?page=1">
+                    <a href="entidad_list.jsp?page=1"  <%=editor%>>
                         <i class="bi bi-circle"></i><span>Entidades</span>
                     </a>
                 </li>
                 <li>
-                    <a href="organizacion_list.jsp">
+                    <a href="organizacion_list.jsp" <%=editor%>>
                         <i class="bi bi-circle"></i><span>Organizaciones</span>
                     </a>
                 </li>
                 <li>
-                    <a href="404.jsp">
+                    <a href="404.jsp" <%=editor%>>
                         <i class="bi bi-circle"></i><span>Roles</span>
                     </a>
                 </li>
                 <li>
-                    <a href="rol_list.jsp">
+                    <a href="rol_list.jsp" <%=editor%>>
                         <i class="bi bi-circle"></i><span>Usuarios</span>
                     </a>
                 </li>
                 <li>
-                    <a href="404.jsp">
+                    <a href="404.jsp" <%=editor%>>
                         <i class="bi bi-circle"></i><span>Cursistas</span>
                     </a>
                 </li>
                 <li>
-                    <a href="404.jsp">
+                    <a href="404.jsp" <%=editor%>>
                         <i class="bi bi-circle"></i><span>Profesores</span>
                     </a>
                 </li>

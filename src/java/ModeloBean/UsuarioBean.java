@@ -127,7 +127,7 @@ public class UsuarioBean {
     }
 
     public boolean edit(Usuario usuarioapp, String username) {
-        String sql = "UPDATE usuarioapp SET nombre='" + usuarioapp.getNombre() + "', id_rol='" + usuarioapp.getRol() + "' where username='" + username + "'";
+        String sql = "UPDATE usuarioapp SET nombre='" + usuarioapp.getNombre() + "', id_rol='" + usuarioapp.getRol()+ "', id_entidad='" + usuarioapp.getEntidad() + "' where username='" + username + "'";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);

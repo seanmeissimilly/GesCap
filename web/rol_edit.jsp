@@ -56,13 +56,13 @@
                                         Entidad entp = null;
                                         for (int i = 0; i < listent.size(); i++) {
                                             entp = listent.get(i);
-                                            String marcado = "";
-                                            if (p.getEntidad().equals(entp.getNombre())) {
+                                            String marcado = "";                                            
+                                            if (p.getEntidad().equals(entp.getid_entidad())) {
                                                 marcado = "selected";
                                             }
 
                                     %>
-                                    <option value="<%= entp.getid_entidad()%>"<%=marcado%>><%= entp.getNombre()%></option>
+                                    <option value="<%= entp.getid_entidad() %>"<%=marcado%>><%= entp.getNombre()%></option>
                                     <%}%>
                                 </select>
                             </div>

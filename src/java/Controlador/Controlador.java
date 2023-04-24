@@ -169,11 +169,13 @@ public class Controlador extends HttpServlet {
                 String username = request.getParameter("txtusername");
                 String name = request.getParameter("txtname");
                 String id_rol = request.getParameter("id_rol");
-                userdao = new UsuarioBean();
+                String entidad = request.getParameter("entidad_p");
+                userdao = new UsuarioBean();               
                 user = new Usuario();
                 user.setNombre(name);
                 user.setUsername(username);
                 user.setRol(id_rol);
+                user.setEntidad(entidad);
                 userdao.edit(user, username);
                 acceso = urol_list;
 

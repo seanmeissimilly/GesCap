@@ -11,7 +11,7 @@
         <title>GesCap</title>
         <jsp:include page="header.jsp"></jsp:include>
 
-    </head>
+        </head>
 
         <body>
             <header>
@@ -90,10 +90,9 @@
         </body>
     <%
         if (request.getParameter("login") != null) {
-            String user;
-            String clave;
-            user = request.getParameter("user");
-            clave = request.getParameter("password");
+        
+            String user = request.getParameter("user");
+            String clave = request.getParameter("password");
             HttpSession sesion = request.getSession();
             LoginBean login = new LoginBean();
             //lo de administrator es un parche por si el directorio activo esta caido.
