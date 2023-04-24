@@ -1,7 +1,7 @@
 <%-- Document : dashboard Created on : 16 mar 2023, 10:56:33 Author : davidam
 --%> <%@page import="ModeloBean.UsuarioBean" %> <%@page import="Modelo.Usuario"
 %> <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+
 <html lang="es">
   <head>
     <jsp:include page="header.jsp"></jsp:include>
