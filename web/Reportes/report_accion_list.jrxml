@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_accion_list" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3ee1eea0-bccc-4881-a4a7-8db5f89df968">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="30"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
@@ -15,37 +15,42 @@
 	</style>
 	<parameter name="fecha_inicial" class="java.lang.String"/>
 	<parameter name="fecha_final" class="java.lang.String"/>
+	<parameter name="ent" class="java.lang.String"/>
+	<parameter name="entj" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[SELECT
-	accioncapacitacion.`id_accion` AS id_accion,
-	accioncapacitacion.`creditos` AS creditos,
-	accioncapacitacion.`observaciones` AS observaciones,
-	accioncapacitacion.`planificada` AS planificada,
-	accioncapacitacion.`nombre` AS nombre,
-	accioncapacitacion.`fechainicio` AS fechainicio,
-	accioncapacitacion.`fechafinal` AS fechafinal,
-	clasificacionaccion.`descripcion` AS id_clafcaccion,
-	formaorganizativa.`descripcion` AS id_formorg,
-	modalidadaccion.`descripcion` AS id_modaccion,
-	areaaccion.`descripcion` AS id_areaaccion,
-	entidadejecutora.`descripcion` AS id_entejecutora,
-	evalfinal.`descripcion` AS id_evalfinal,
-	entidad.`descripcion` AS id_entidad,
-	accioncapacitacion.`ficha` AS ficha
-FROM
-	`clasificacionaccion` clasificacionaccion
-	INNER JOIN `accioncapacitacion` accioncapacitacion ON clasificacionaccion.`id_clafcaccion` = accioncapacitacion.`id_clafcaccion`
-	INNER JOIN `formaorganizativa` formaorganizativa ON accioncapacitacion.`id_formorg` = formaorganizativa.`id_formorg`
-	INNER JOIN `areaaccion` areaaccion ON accioncapacitacion.`id_areaaccion` = areaaccion.`id_areaaccion`
-	INNER JOIN `entidadejecutora` entidadejecutora ON accioncapacitacion.`id_entejecutora` = entidadejecutora.`id_entejecutora`
-	INNER JOIN `evalfinal` evalfinal ON accioncapacitacion.`id_evalfinal` = evalfinal.`id_evalfinal`
-	INNER JOIN `modalidadaccion` modalidadaccion ON accioncapacitacion.`id_modaccion` = modalidadaccion.`id_modaccion`
-	INNER JOIN `entidad` entidad ON accioncapacitacion.`id_entidad` = entidad.`id_entidad`
+		<![CDATA[SELECT accioncapacitacion.id_accion as id_accion,
+accioncapacitacion.creditos as creditos,
+accioncapacitacion.observaciones as observaciones,
+accioncapacitacion.planificada as planificada,
+accioncapacitacion.nombre as nombre,
+accioncapacitacion.fechainicio as fechainicio,
+accioncapacitacion.fechafinal as fechafinal,
+clasificacionaccion.descripcion as id_clafcaccion,
+formaorganizativa.descripcion as id_formorg,
+areaaccion.descripcion as id_areaaccion,
+entidadejecutora.descripcion as id_entejecutora,
+evalfinal.descripcion as id_evalfinal,
+accioncapacitacion.ficha as ficha,
+modalidadaccion.descripcion as id_modaccion,
+entidad.descripcion as id_entidad
+FROM accioncapacitacion, formaorganizativa, clasificacionaccion, areaaccion, entidadejecutora, evalfinal, modalidadaccion, entidad
 WHERE
-	fechainicio >= $P{fecha_inicial}
-	AND fechainicio <=  $P{fecha_final}
-ORDER BY
-	id_accion]]>
+clasificacionaccion.id_clafcaccion=accioncapacitacion.id_clafcaccion AND
+formaorganizativa.id_formorg=accioncapacitacion.id_formorg AND
+modalidadaccion.id_modaccion=accioncapacitacion.id_modaccion AND
+areaaccion.id_areaaccion=accioncapacitacion.id_areaaccion AND
+entidadejecutora.id_entejecutora=accioncapacitacion.id_entejecutora AND
+entidad.id_entidad = accioncapacitacion.id_entidad AND
+evalfinal.id_evalfinal=accioncapacitacion.id_evalfinal AND
+CAST($P{fecha_inicial} AS date) <= fechainicio AND fechainicio <= CAST($P{fecha_final} AS date)
+AND accioncapacitacion.id_entejecutora=$P{entj}
+AND accioncapacitacion.id_entidad =$P{ent}
+
+Order by
+accioncapacitacion.id_accion
+]]>
 	</queryString>
 	<field name="id_accion" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -74,9 +79,6 @@ ORDER BY
 	<field name="id_formorg" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="id_modaccion" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
 	<field name="id_areaaccion" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -86,10 +88,13 @@ ORDER BY
 	<field name="id_evalfinal" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="id_entidad" class="java.lang.String">
+	<field name="ficha" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="ficha" class="java.lang.String">
+	<field name="id_modaccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_entidad" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<background>

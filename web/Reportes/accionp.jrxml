@@ -40,8 +40,7 @@ evalfinal.id_evalfinal=accioncapacitacion.id_evalfinal AND
 fechainicio >= CAST($P{fecha_inicial} AS date) AND fechainicio <= CAST($P{fecha_final} AS date)
 AND accioncapacitacion.id_entejecutora=$P{entj}
 AND accioncapacitacion.id_entidad =$P{ent}
-Group By
-$P{entj}
+
 Order by
 accioncapacitacion.id_accion
 ]]>
