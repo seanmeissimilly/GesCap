@@ -1,14 +1,13 @@
 <%-- Document : dashboard Created on : 16 mar 2023, 10:56:33 Author : davidam
---%> <%@page import="ModeloBean.UsuarioBean" %> <%@page import="Modelo.Usuario"
-                                                        %> <%@page contentType="text/html" pageEncoding="UTF-8" %>
+--%> 
+<%@page import="ModeloBean.UsuarioBean" %> 
+<%@page import="Modelo.Usuario"%> 
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <html lang="es">
     <head>
         <jsp:include page="header.jsp"></jsp:include>
             <title>GesCap Tablero</title>
-        </head>
-
-        <body>
 
         <%
             HttpSession sesion = request.getSession();
@@ -21,10 +20,14 @@
             }
             String user = sesion.getAttribute("user").toString();
         %>
+    </head>
+    <body>        
+        <header>
+            <jsp:include page="navbar.jsp">
+                <jsp:param name="user" value="<%=user%>"/> 
+            </jsp:include>
+        </header>
 
-        <jsp:include page="navbar.jsp">
-            <jsp:param name="user" value="<%=user%>"/> 
-        </jsp:include>
 
         <main id="main" class="main">
             <section class="section dashboard">
