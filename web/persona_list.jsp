@@ -90,7 +90,7 @@
                                         <a class="btn btn-warning"
                                            href="Controlador?accion=persona_edit&ci=<%= per.getCi()%>">Editar</a>
                                         <a class="btn btn-danger"
-                                           href="Controlador?accion=persona_delete&ci=<%= per.getCi()%>">Remover</a>
+                                           href="Controlador?accion=persona_delete&ci=<%= per.getCi()%>">Borrar</a>
                                     </td>
                                 </tr>
                                 <%}%>

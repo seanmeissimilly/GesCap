@@ -1,5 +1,5 @@
 <%-- 
-    Document   : reporte_accion
+    Document   : reporte_accion_1
     Created on : 22 ago 2022, 12:32:53
     Author     : David Sean
 --%>
@@ -37,7 +37,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
                             <h2>Plan Detallado</h2>
-                            <form name="form_accion" action="accionp.jsp">
+                            <form name="form_accion" action="report_accion_1.jsp">
                                 <div class="mb-3">
                                     <label for="fechainicial_accion" class="form-label">Fecha Inicial</label>
                                     <input type="date" class="form-control" id="fechainicial_accion"

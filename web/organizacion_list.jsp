@@ -75,7 +75,7 @@
                                         <a class="btn btn-warning"
                                            href="Controlador?accion=organizacion_edit&id=<%= org.getNumero()%>">Editar</a>                                    
                                         <a class="btn btn-danger"
-                                           href="Controlador?accion=organizacion_delete&numero=<%= org.getNumero()%>">Remover</a>                                           
+                                           href="Controlador?accion=organizacion_delete&numero=<%= org.getNumero()%>">Borrar</a>                                           
                                     </td>
                                 </tr>
                                 <%}%>                                
