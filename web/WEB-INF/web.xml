@@ -17,6 +17,10 @@
         <servlet-name>accion</servlet-name>
         <jsp-file>/accion_add.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>login</servlet-name>
+        <jsp-file>/login.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dasboard</servlet-name>
         <url-pattern>/dashboard</url-pattern>
@@ -28,6 +32,10 @@
     <servlet-mapping>
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

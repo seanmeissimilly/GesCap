@@ -7,12 +7,12 @@
 <%@page import="ModeloBean.UsuarioBean"%>
 <%@page import="Modelo.Usuario"%>
 
-<!-- Reviso si ya se ha logueado -->
-<% HttpSession sesion = request.getSession();
-    if (sesion.getAttribute("login") == null
-            || sesion.getAttribute("login").equals("0")) {
-        response.sendRedirect("login.jsp");
-    }%>
+
+<%
+    String user = request.getParameter("user");
+    Usuario userapp = new UsuarioBean().list(user);
+%>
+
 
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
@@ -27,11 +27,7 @@
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
             <li class="nav-item dropdown pe-3">
-                <!-- Para que el usuario logueado salgo en la navbar -->
-                <%
-                    //Busco en la base de datos el usuario.  
-                    Usuario userapp = new UsuarioBean().list(sesion.getAttribute("user").toString());
-                %>
+
                 <a class="nav-link nav-profile d-flex align-items-center pe-0"  data-bs-toggle="dropdown">                            
                     <span class="d-none d-md-block dropdown-toggle ps-2"><%=userapp.getNombre()%></span>
                 </a><!-- End Profile Iamge Icon -->
@@ -159,7 +155,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="404.jsp">
                 <i class="bi bi-question-circle"></i>
-                <span>¿Necesitas Ayuda?</span>
+                <span>ï¿½Necesitas Ayuda?</span>
             </a>
         </li><!-- End F.A.Q Page Nav -->
 
