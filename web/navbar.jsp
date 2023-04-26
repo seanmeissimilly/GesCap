@@ -114,27 +114,14 @@
                     <a href="organizacion_list.jsp" <%=editor%>>
                         <i class="bi bi-circle"></i><span>Organizaciones</span>
                     </a>
-                </li>
-                <li>
-                    <a href="404.jsp" <%=editor%>>
-                        <i class="bi bi-circle"></i><span>Roles</span>
-                    </a>
-                </li>
+                </li>                
                 <li>
                     <a href="rol_list.jsp" <%=editor%>>
                         <i class="bi bi-circle"></i><span>Usuarios</span>
                     </a>
                 </li>
-                <li>
-                    <a href="404.jsp" <%=editor%>>
-                        <i class="bi bi-circle"></i><span>Cursistas</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="404.jsp" <%=editor%>>
-                        <i class="bi bi-circle"></i><span>Profesores</span>
-                    </a>
-                </li>
+                
+                
             </ul>
         </li><!-- End Forms Nav -->
 
