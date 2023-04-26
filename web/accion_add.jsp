@@ -4,7 +4,6 @@
     Author     : davidam
 --%>
 
-
 <%@page import="ModeloBean.UsuarioBean"%>
 <%@page import="Modelo.Usuario"%>
 <%@page import="Modelo.Accion"%>
@@ -33,35 +32,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include page="header.jsp"></jsp:include> 
-
+        <jsp:include page="header.jsp"></jsp:include>  
             <title>GesCap Acciones Addicionar</title>
         </head>
         <body id="page-top">
-        <%
-            HttpSession sesion = request.getSession();
-            if (sesion.getAttribute("login") == null
-                    || sesion.getAttribute("login").equals("0")) {
-                response.sendRedirect("./login");
-            }else 
-            {// Para que el usuario logueado salgo en la navbar
-            //Busco en la base de datos el usuario.  
-            Usuario userapp = new UsuarioBean().list(sesion.getAttribute("user").toString());
-            }
-            
 
-        %>
-        <%            //recibo el parametro para saber cual pagina mostrar
+        <%
+
+            //recibo el parametro para saber cual pagina mostrar
             int spageid;
             if (request.getParameter("page") == null) {
                 spageid = 1;
             } else {
                 spageid = Integer.parseInt(request.getParameter("page"));
             }
-//<jsp:include page="navbar.jsp"></jsp:include> 
-        //<jsp:include page="checkRol.jsp"></jsp:include> 
+
         %>
-        
+        <jsp:include page="navbar.jsp"></jsp:include> 
 
             <main id="main" class="main">
                 <div class="container my-4">
