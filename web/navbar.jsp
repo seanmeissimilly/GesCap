@@ -12,7 +12,9 @@
     if (sesion.getAttribute("login") == null
             || sesion.getAttribute("login").equals("0")) {
         response.sendRedirect("login.jsp");
-    }%>
+        return;
+    }
+%>
 
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">

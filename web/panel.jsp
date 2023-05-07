@@ -4,7 +4,7 @@
 
 <html lang="es">
   <head>
-    <jsp:include page="header.jsp"></jsp:include>
+    <jsp:include page='header.jsp'></jsp:include>
     <title>GesCap Tablero</title>
   </head>
 
