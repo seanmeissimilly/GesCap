@@ -11,7 +11,7 @@
 
         <body>
         <jsp:include page="navbar.jsp"></jsp:include> 
-        
+
         <% response.sendRedirect("login.jsp");%>
 
 

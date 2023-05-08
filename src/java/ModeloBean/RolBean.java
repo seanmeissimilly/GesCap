@@ -5,7 +5,6 @@
 package ModeloBean;
 
 import Config.Conexion;
-import Modelo.Persona;
 import Modelo.Rol;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

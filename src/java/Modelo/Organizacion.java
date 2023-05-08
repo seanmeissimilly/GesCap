@@ -9,9 +9,16 @@ package Modelo;
  * @author David Sean
  */
 public class Organizacion {
-
     String numero;
     String nombre;
+    
+    public Organizacion() {
+    }
+
+    public Organizacion(String numero, String nombre) {
+        this.numero = numero;
+        this.nombre = nombre;
+    }
 
     public void setNumero(String numero) {
         this.numero = numero;

@@ -90,6 +90,8 @@
 
                                 //cantidad de registros por pagina
                                 int cantidad = 8;
+                                
+                                Entidad ent;
 
                                 EntidadBean dao = new EntidadBean();
                                 List<Entidad> list = dao.listar();
@@ -112,9 +114,7 @@
                                 for (int i = 0; (i < list.size() && i < cantidad * spageid); i++) {
                                     if (i < tope) {
                                         continue;
-                                    }
-
-                                    Entidad ent = null;
+                                    }                                   
                                     ent = list.get(i);
 
                             %>
@@ -153,11 +153,11 @@
             </div>
         </main>
                             
-        <!-- Footer -->
-        <footer  id="footer" class="footer">
+        <!-- ======= Footer ======= -->
+        <footer id="footer" class="footer">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright 2022 &copy Centro Cimex de Capacitación,
+                    <div class="col-lg-4 text-lg-start">Copyright 2023 &copy Centro Cimex de Capacitación,
                         <strong>Cimex</strong>
                     </div>
 
@@ -175,7 +175,7 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer><!-- End Footer -->  
 
         <!-- Vendor JS Files -->
         <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -189,6 +189,7 @@
 
         <!-- Template Main JS File -->
         <script src="assets/js/main.js"></script>
+       
 
     </body>
 

@@ -12,11 +12,11 @@
 
     <head>
         <jsp:include page="header.jsp"></jsp:include> 
-        <title>GesCap Rol Listar</title>
-    </head>
+            <title>GesCap Rol Listar</title>
+        </head>
 
-    <body id="page-top">    
-        <% 
+        <body id="page-top">    
+        <%
             //recibo el parametro para saber cual pagina mostrar
             int spageid;
             if (request.getParameter("page") == null) {
@@ -25,32 +25,32 @@
                 spageid = Integer.parseInt(request.getParameter("page"));
             }
         %>
-       <jsp:include page="navbar.jsp"></jsp:include> 
+        <jsp:include page="navbar.jsp"></jsp:include> 
 
-        <main id="main" class="main">
+            <main id="main" class="main">
 
-            <div class="container my-4">
-                <div class="row">
-                    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                        <h2 class="centrado">Usuarios</h2>
-                        <div id="search">
-                            <form class="col-4" action="" method="get">
-                                <input type="text" class="form-control"
-                                       placeholder="Buscar" name="q">
-                            </form>
-                        </div>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Username</th>
-                                    <th>Nombre</th>
-                                    <th>Entidad</th>
-                                    <th>Rol</th>
-                                    <th>Inscripción</th>
-                                    <th>Última Entrada</th>
+                <div class="container my-4">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                            <h2 class="centrado">Usuarios</h2>
+                            <div id="search">
+                                <form class="col-4" action="" method="get">
+                                    <input type="text" class="form-control"
+                                           placeholder="Buscar" name="q">
+                                </form>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Nombre</th>
+                                        <th>Entidad</th>
+                                        <th>Rol</th>
+                                        <th>Inscripción</th>
+                                        <th>Última Entrada</th>
 
-                                </tr>
-                            </thead>
+                                    </tr>
+                                </thead>
                             <% //cantidad de registros por pagina
                                 int cantidad = 8;
 
@@ -112,9 +112,9 @@
                                 <%}%>
                             </tbody>
                         </table>
-                            <nav aria-label="...">
+                        <nav aria-label="...">
                             <ul class="pagination pagination-lg">
-                                
+
                                 <%
                                     //para generar los numeros de paginas.
                                     for (int i = 0; i < contpage; i++) {
@@ -131,47 +131,7 @@
             </div>
 
         </main>
-
-        <!-- Footer -->
-        <footer  id="footer" class="footer">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright 2022 &copy Centro
-                        Cimex de Capacitación,
-                        <strong>Cimex</strong>
-                    </div>
-
-                    <!--Redes Sociales-->
-                    <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2"
-                           href="https://www.facebook.com/profile.php?id=100075958596586"
-                           aria-label="Facebook"><i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="btn btn-dark btn-social mx-2"
-                           href="https://twitter.com/CentroCimex"
-                           aria-label="Twitter"><i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="btn btn-dark btn-social mx-2"
-                           href="https://www.instagram.com/centro_cimex_cap/"
-                           aria-label="Instagram"><i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Vendor JS Files -->
-        <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-        <script src="./js/bootstrap.bundle.min.js"></script>
-        <script src="assets/vendor/chart.js/chart.umd.js"></script>
-        <script src="assets/vendor/echarts/echarts.min.js"></script>
-        <script src="assets/vendor/quill/quill.min.js"></script>
-        <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-        <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-        <script src="assets/vendor/php-email-form/validate.js"></script>
-
-        <!-- Template Main JS File -->
-        <script src="assets/js/main.js"></script>
+        <jsp:include page="footer.jsp"></jsp:include>
     </body>
 
 </html>
