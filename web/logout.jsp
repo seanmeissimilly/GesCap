@@ -15,7 +15,7 @@
             sesion.invalidate();
             response.sendRedirect("login.jsp");%>      
 
-
+        <%@ include file="footer.jspf" %>
 
     </body>
 
