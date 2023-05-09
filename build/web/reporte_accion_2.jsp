@@ -24,13 +24,13 @@
 <html lang="es">
 
     <head>
-        <jsp:include page="header.jsp"></jsp:include>  
+        <%@ include file="header.jspf" %>
 
-            <title>GesCap Listar Acciones</title>
+        <title>GesCap Listar Acciones</title>
 
-        </head>
+    </head>
 
-        <body id="page-top">
+    <body id="page-top">
         <jsp:include page="navbar.jsp"></jsp:include> 
 
 

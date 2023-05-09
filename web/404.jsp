@@ -7,7 +7,7 @@
 <html lang="es">
 
     <head>
-        <jsp:include page="header.jsp"></jsp:include>  
+        <%@ include file="header.jspf" %> 
         <title>GesCap 404 Error</title>
     </head>
 

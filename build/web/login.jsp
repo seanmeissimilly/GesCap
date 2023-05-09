@@ -9,7 +9,7 @@
 
     <head>
         <title>GesCap</title>
-        <jsp:include page="header.jsp"></jsp:include>
+        <%@ include file="header.jspf" %>
 
         </head>
 

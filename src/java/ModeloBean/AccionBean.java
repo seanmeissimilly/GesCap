@@ -81,7 +81,7 @@ public class AccionBean {
         return false;
     }
 
-    public List list(String id) {
+    public ArrayList<Accion> list(String id) {
         ArrayList<Accion> list = new ArrayList<>();
         String sql = "SELECT\n"
                 + "	accioncapacitacion.id_accion AS id_accion,\n"
@@ -98,6 +98,7 @@ public class AccionBean {
                 + "	entidadejecutora.descripcion AS id_entejecutora,\n"
                 + "	entidad.descripcion AS id_entidad,\n"
                 + "	evalfinal.descripcion AS id_evalfinal,\n"
+                + "	accioncapacitacion.id_entidad AS entidad,\n"
                 + "	accioncapacitacion.ficha AS ficha \n"
                 + "FROM\n"
                 + "	accioncapacitacion,\n"
@@ -138,6 +139,7 @@ public class AccionBean {
                 accion.setId_evaluacionfinal(rs.getString("id_evalfinal"));
                 accion.setObservaciones(rs.getString("observaciones"));
                 accion.setFicha(rs.getString("ficha"));
+                accion.setEntidad(rs.getString("entidad"));
                 list.add(accion);
             }
         } catch (Exception e) {

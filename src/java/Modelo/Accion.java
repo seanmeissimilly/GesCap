@@ -23,6 +23,7 @@ public class Accion {
     String ficha;
     String id_entidadejecutora;
     String id_entidad;
+    String entidad;
     String id_modalidad;
     boolean masiva;
     boolean exterior;
@@ -36,6 +37,14 @@ public class Accion {
 
     public String getId_entidad() {
         return id_entidad;
+    }
+
+    public String getEntidad() {
+        return entidad;
+    }
+
+    public void setEntidad(String entidad) {
+        this.entidad = entidad;
     }
 
     public void setId_entidad(String id_entidad) {

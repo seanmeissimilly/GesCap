@@ -31,11 +31,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <jsp:include page="header.jsp"></jsp:include>  
-            <title>GesCap Acciones Addicionar</title>
-        </head>
-        <body id="page-top">
+    <head>      
+       
+        <%@ include file="header.jspf" %>
+        <title>GesCap Acciones Addicionar</title>
+    </head>
+    <body id="page-top">
 
         <%
 
@@ -295,9 +296,9 @@
                                     </td>                                    
                                     <td class="text-center">
                                         <a class="btn btn-warning my-1"
-                                           href="Controlador?accion=accion_edit&id=<%= accion.getId_accion()%>&page=<%=spageid%>">Editar</a>
+                                           href="Controlador?accion=accion_edit&id=<%= accion.getId_accion()%>&page=<%=spageid%>&user=<%=user%>">Editar</a>
                                         <a class="btn btn-danger" onclick="alerta()"
-                                           href="Controlador?accion=accion_delete&id=<%= accion.getId_accion()%>&page=<%=spageid%>">Borrar</a>                                        
+                                           href="Controlador?accion=accion_delete&id=<%= accion.getId_accion()%>&page=<%=spageid%>&user=<%=user%>">Borrar</a>                                        
                                     </td>
                                 </tr>
                                 <%}%> 

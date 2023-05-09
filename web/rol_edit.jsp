@@ -16,10 +16,10 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <jsp:include page="header.jsp"></jsp:include> 
-            <title>GesCap Editar Usuario</title>
-        </head>
-        <body id="page-top">
+        <%@ include file="header.jspf" %>
+        <title>GesCap Editar Usuario</title>
+    </head>
+    <body id="page-top">
 
         <jsp:include page="navbar.jsp"></jsp:include> 
 
@@ -56,13 +56,13 @@
                                         Entidad entp = null;
                                         for (int i = 0; i < listent.size(); i++) {
                                             entp = listent.get(i);
-                                            String marcado = "";                                            
+                                            String marcado = "";
                                             if (p.getEntidad().equals(entp.getid_entidad())) {
                                                 marcado = "selected";
                                             }
 
                                     %>
-                                    <option value="<%= entp.getid_entidad() %>"<%=marcado%>><%= entp.getNombre()%></option>
+                                    <option value="<%= entp.getid_entidad()%>"<%=marcado%>><%= entp.getNombre()%></option>
                                     <%}%>
                                 </select>
                             </div>
@@ -96,6 +96,6 @@
             </div>
         </main>
 
-       <%@ include file="footer.jspf" %>
+        <%@ include file="footer.jspf" %>
     </body>
 </html>

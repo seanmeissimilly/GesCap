@@ -5,7 +5,7 @@
 <html lang="es">
 
     <head>
-        <jsp:include page="header.jsp"></jsp:include> 
+        <%@ include file="header.jspf" %>
             <title>Gescap Logout</title>
         </head>
 

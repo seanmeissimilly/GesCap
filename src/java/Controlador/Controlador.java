@@ -15,6 +15,8 @@ import ModeloBean.PersonaBean;
 import ModeloBean.UsuarioBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -191,11 +193,27 @@ public class Controlador extends HttpServlet {
             }
             case "accion_delete": {
 
-                String id = request.getParameter("id");
-                acciondao.eliminar(id);
+                userdao = new UsuarioBean();
+                Usuario user = userdao.list(request.getParameter("user"));
+
+                //Reviso si el usuario solo tiene rol de consultor.
+                if (!user.getRol().equals("1")) {
+                    //Resivo el parametro del id de la accion.
+                    String id = request.getParameter("id");
+
+                    //Busco esa accion en la base de datos.
+                    acciondao = new AccionBean();
+                    Accion ac = acciondao.list(id).get(0);
+
+                    //Reviso si el usuario que quiere eliminar la accion es de la misma entidad que la accion.
+                    if (ac.getEntidad().equals(user.getEntidad())) {
+                        //Borro la accion.
+                        acciondao.eliminar(id);
+                    }
+
+                }
                 request.setAttribute("page", request.getParameter("page"));
                 acceso = accion_add;
-
                 break;
 
             }

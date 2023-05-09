@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <jsp:include page="header.jsp"></jsp:include>  
+        <%@ include file="header.jspf" %>
             <title>GesCap Organizaciones</title>
         </head>
         <body id="page-top">
