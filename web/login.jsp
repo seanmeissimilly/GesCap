@@ -1,8 +1,8 @@
 <%-- Document : login Created on : Apr 25, 2022, 12:05:23 PM Author : davidam --%>
 
+<%@page import="Config.Login"%>
 <%@page import="ModeloBean.UsuarioBean"%>
 <%@page import="Modelo.Usuario"%>
-<%@page import="ModeloBean.LoginBean" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="es">
@@ -48,9 +48,6 @@
                                                     <label for="user" class="form-label">Usuario</label>
                                                     <div class="input-group has-validation">
 
-
-
-
                                                         <input type="text" name="user" class="form-control"
                                                                aria-describedby="emailHelp" required>
                                                         <div id="userHelp" class="invalid-feedback">Escriba su usuario.</div>
@@ -87,14 +84,14 @@
             </main>
         <%@ include file="footer.jspf" %>
 
-        </body>
+    </body>
     <%
         if (request.getParameter("login") != null) {
-        
+
             String user = request.getParameter("user");
             String clave = request.getParameter("password");
             HttpSession sesion = request.getSession();
-            LoginBean login = new LoginBean();
+            Login login = new Login();
             //lo de administrator es un parche por si el directorio activo esta caido.
             if (user.equals("administrator") || login.authuser(user, clave)) {
                 sesion.setAttribute("login", "1");
