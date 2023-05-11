@@ -15,6 +15,7 @@
     </head>
 
      <body id="page-top">
+         <%@ include file="login.jspf" %> 
         <jsp:include page="navbar.jsp"></jsp:include> 
 
         <main id="main" class="main">

@@ -31,6 +31,7 @@
     </head>
 
     <body id="page-top">
+        <%@ include file="login.jspf" %> 
         <jsp:include page="navbar.jsp"></jsp:include> 
 
 
@@ -53,8 +54,7 @@
                                 <div class="mb-3">
                                     <label for="entidad_accion" class="form-label">Entidad Ejecutora</label>
                                     <select class="form-control" name="entidad_accion" id="entidad_accion">
-                                    <%
-                                        EntidadEjectBean daoentidadejec = new EntidadEjectBean();
+                                    <%                                        EntidadEjectBean daoentidadejec = new EntidadEjectBean();
                                         List<EntidadEject> listentidad = daoentidadejec.listar();
 
                                         EntidadEject entidad = null;

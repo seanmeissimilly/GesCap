@@ -5,12 +5,14 @@
 <html lang="es">
     <head>
         <%@ include file="header.jspf" %>
-            <title>GesCap Tablero</title>
-        </head>
+        <title>GesCap Tablero</title>
+    </head>
 
-        <body>
-
-        <jsp:include page="navbar.jsp"></jsp:include>
+    <body>        
+        <%@ include file="login.jspf" %>        
+        <jsp:include page="navbar.jsp">
+            <jsp:param name="user" value="<%=userapp%>" />  
+        </jsp:include>
 
             <main id="main" class="main">
                 <section class="section dashboard">

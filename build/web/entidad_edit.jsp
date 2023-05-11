@@ -20,7 +20,7 @@
             <title>GesCap Editar Entidad</title>
         </head>
         <body id="page-top">
-
+<%@ include file="login.jspf" %> 
         <%
 
             //recibo el parametro para saber cual pagina mostrar

@@ -7,12 +7,16 @@
 <html lang="es">
 
     <head>
-        <%@ include file="header.jspf" %> 
+        <%@ include file="header.jspf" %>
         <title>GesCap 404 Error</title>
     </head>
 
     <body>
-        <jsp:include page="navbar.jsp"></jsp:include> 
+        <%@ include file="login.jspf" %>
+        <jsp:include page="navbar.jsp">
+            <jsp:param name="user" value="<%=userapp%>" />  
+        </jsp:include>
+
 
         <main id="main" class="main">
             <section class="page-section">
@@ -31,8 +35,8 @@
                     </div>
                 </div>
             </section>
-        </main>       
-        
+        </main>
+
         <%@ include file="footer.jspf" %>
     </body>
 

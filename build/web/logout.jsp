@@ -6,14 +6,14 @@
 
     <head>
         <%@ include file="header.jspf" %>
-            <title>Gescap Logout</title>
-        </head>
+        <title>Gescap Logout</title>
+    </head>
 
-        <body>
+    <body>
 
         <% HttpSession sesion = request.getSession();
             sesion.invalidate();
-            response.sendRedirect("login.jsp");%>      
+            response.sendRedirect("login.jsp");%>
 
         <%@ include file="footer.jspf" %>
 

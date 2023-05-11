@@ -19,7 +19,7 @@
         </head>
 
         <body>
-
+<%@ include file="login.jspf" %> 
         <%
 
             //recibo el parametro para saber cual pagina mostrar

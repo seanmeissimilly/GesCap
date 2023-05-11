@@ -20,7 +20,7 @@
         <title>GesCap Editar Usuario</title>
     </head>
     <body id="page-top">
-
+        <%@ include file="login.jspf" %> 
         <jsp:include page="navbar.jsp"></jsp:include> 
 
             <main id="main" class="main">
@@ -29,8 +29,7 @@
                         <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
                             <h4>Modificar Rol Usuario</h4>
                             <form action="Controlador">
-                            <%
-                                //Para saber el usuario que hay que modificar.
+                            <%                                //Para saber el usuario que hay que modificar.
                                 UsuarioBean dao = new UsuarioBean();
                                 String id = ((String) request.getAttribute("id"));
                                 Usuario p = dao.list(id);%>                                

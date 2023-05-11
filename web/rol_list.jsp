@@ -12,12 +12,12 @@
 
     <head>
         <%@ include file="header.jspf" %>
-            <title>GesCap Rol Listar</title>
-        </head>
+        <title>GesCap Rol Listar</title>
+    </head>
 
-        <body id="page-top">    
-        <%
-            //recibo el parametro para saber cual pagina mostrar
+    <body id="page-top">   
+        <%@ include file="login.jspf" %> 
+        <%            //recibo el parametro para saber cual pagina mostrar
             int spageid;
             if (request.getParameter("page") == null) {
                 spageid = 1;

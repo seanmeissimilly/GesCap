@@ -13,6 +13,7 @@
         <title>GesCap Entradas</title>
     </head>
     <body>
+        <%@ include file="login.jspf" %> 
         <!-- Reviso si ya se ha logueado -->
         <% HttpSession sesion = request.getSession();
             if (sesion.getAttribute("login") == null

@@ -25,11 +25,12 @@
 
     <head>
         <%@ include file="header.jspf" %>
-            <title>GesCap Detallado</title>
+        <title>GesCap Detallado</title>
 
-        </head>
+    </head>
 
-        <body id="page-top">
+    <body id="page-top">
+        <%@ include file="login.jspf" %> 
         <jsp:include page="navbar.jsp"></jsp:include> 
 
             <main id="main" class="main">
@@ -51,8 +52,7 @@
                                 <div class="mb-3">
                                     <label for="entidad_accion" class="form-label">Entidad Ejecutora</label>
                                     <select class="form-control" name="entidad_accion" id="entidad_accion">
-                                    <%
-                                        EntidadEjectBean daoentidadejec = new EntidadEjectBean();
+                                    <%                                        EntidadEjectBean daoentidadejec = new EntidadEjectBean();
                                         List<EntidadEject> listentidad = daoentidadejec.listar();
 
                                         EntidadEject entidad = null;

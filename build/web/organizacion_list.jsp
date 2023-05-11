@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : organizacion_list
     Created on : 8 may 2023, 13:37:56
     Author     : davidam
@@ -13,9 +13,10 @@
 <html lang="es">
     <head>
         <%@ include file="header.jspf" %>
-            <title>GesCap Organizaciones</title>
-        </head>
-        <body id="page-top">
+        <title>GesCap Organizaciones</title>
+    </head>
+    <body id="page-top">
+        <%@ include file="login.jspf" %>
         <jsp:include page="navbar.jsp"></jsp:include>
 
             <main id="main" class="main">
@@ -23,7 +24,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
                             <h2>Organizaciones</h2>
-                            <form action="Controlador">                            
+                            <form action="Controlador">
                                 <div class="mb-3">
                                     <label for="nombre_organizacion" class="form-label">Nombre de la
                                         Organización</label>
@@ -45,12 +46,11 @@
                             </div>
                             <table class="table table-striped">
                                 <thead>
-                                    <tr>                                    
+                                    <tr>
                                         <th>Nombre</th>
                                     </tr>
                                 </thead>
-                            <%
-                                OrganizacionBean dao = new OrganizacionBean();
+                            <%                                OrganizacionBean dao = new OrganizacionBean();
                                 List<Organizacion> list = dao.listar();
                                 String query = request.getParameter("q");
                                 if (query != null) {
@@ -63,15 +63,15 @@
                                     for (int i = 0; i < list.size(); i++) {
                                         org = list.get(i);
                                 %>
-                                <tr>                                    
+                                <tr>
                                     <td><%= org.getNombre()%></td>
                                     <td class="text-center">
                                         <a class="btn btn-warning"
-                                           href="Controlador?accion=organizacion_edit&id=<%= org.getNumero()%>">Editar</a>                                    
+                                           href="Controlador?accion=organizacion_edit&id=<%= org.getNumero()%>">Editar</a>
                                         <a class="btn btn-danger"
-                                           href="Controlador?accion=organizacion_delete&numero=<%= org.getNumero()%>">Borrar</a>                                           
+                                           href="Controlador?accion=organizacion_delete&numero=<%= org.getNumero()%>">Borrar</a>
                                     </td>
-                                </tr>   
+                                </tr>
                                 <%
                                     }
                                 %>
@@ -82,7 +82,7 @@
                 </div>
             </div>
 
-        </main>        
+        </main>
         <%@ include file="footer.jspf" %>
     </body>
 </html>

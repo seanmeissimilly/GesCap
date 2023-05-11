@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : navbar
     Created on : 5 abr 2023, 8:55:30
     Author     : davidam
@@ -7,19 +7,10 @@
 <%@page import="ModeloBean.UsuarioBean"%>
 <%@page import="Modelo.Usuario"%>
 
-<!-- Reviso si ya se ha logueado -->
-<% HttpSession sesion = request.getSession();
-    if (sesion.getAttribute("login") == null
-            || sesion.getAttribute("login").equals("0")) {
-        response.sendRedirect("login.jsp");
-        return;
-    }
-%>
-
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
-        <a href="./dashboard" class="logo d-flex align-items-center">        
+        <a href="./dashboard" class="logo d-flex align-items-center">
             <span class="d-none d-lg-block">GesCap</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -31,16 +22,16 @@
             <li class="nav-item dropdown pe-3">
                 <!-- Para que el usuario logueado salgo en la navbar -->
                 <%
-                    //Busco en la base de datos el usuario.  
-                    Usuario userapp = new UsuarioBean().list(sesion.getAttribute("user").toString());
+                    //Busco en la base de datos el usuario.                  
+                    Usuario userapp = new UsuarioBean().list(request.getParameter("user"));
                 %>
-                <a class="nav-link nav-profile d-flex align-items-center pe-0"  data-bs-toggle="dropdown">                            
+                <a class="nav-link nav-profile d-flex align-items-center pe-0"  data-bs-toggle="dropdown">
                     <span class="d-none d-md-block dropdown-toggle ps-2"><%=userapp.getNombre()%></span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6><%=userapp.getUsername()%></h6>                        
+                        <h6><%=userapp.getUsername()%></h6>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
@@ -64,7 +55,7 @@
 
                 </ul><!-- End Profile Dropdown Items -->
             </li><!-- End Profile Nav -->
-        </ul>                
+        </ul>
     </nav>
 
 </header><!-- End Header -->
@@ -116,14 +107,14 @@
                     <a href="organizacion_list.jsp" <%=editor%>>
                         <i class="bi bi-circle"></i><span>Organizaciones</span>
                     </a>
-                </li>                
+                </li>
                 <li>
                     <a href="rol_list.jsp" <%=editor%>>
                         <i class="bi bi-circle"></i><span>Usuarios</span>
                     </a>
                 </li>
-                
-                
+
+
             </ul>
         </li><!-- End Forms Nav -->
 

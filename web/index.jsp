@@ -4,13 +4,14 @@
 <html lang="es">
 
     <head>
-        <%@ include file="header.jspf" %> 
-            <title>GesCap</title>
+        <%@ include file="header.jspf" %>
+        <title>GesCap</title>
 
-        </head>
+    </head>
 
-        <body>
-        <jsp:include page="navbar.jsp"></jsp:include> 
+    <body>
+        <%@ include file="login.jspf" %>
+        <jsp:include page="navbar.jsp"></jsp:include>
 
         <% response.sendRedirect("login.jsp");%>
 

@@ -46,10 +46,12 @@
                 spageid = 1;
             } else {
                 spageid = Integer.parseInt(request.getParameter("page"));
-            }
+            } 
 
         %>
-        <jsp:include page="navbar.jsp"></jsp:include> 
+        <%@ include file="login.jspf" %> 
+        <%@ include file="navbar.jspf" %> 
+        
 
             <main id="main" class="main">
                 <div class="container my-4">

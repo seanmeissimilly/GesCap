@@ -38,7 +38,7 @@
     </head>
 
     <body id="page-top">
-        
+        <%@ include file="login.jspf" %> 
         <%             //recibo el parametro para saber cual pagina mostrar
             int spageid;
             if (request.getParameter("page") == null) {
