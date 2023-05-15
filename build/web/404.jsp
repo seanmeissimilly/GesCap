@@ -14,7 +14,7 @@
     <body>
         <%@ include file="login.jspf" %>
         <jsp:include page="navbar.jsp">
-            <jsp:param name="user" value="<%=userapp%>" />  
+            <jsp:param name="user" value="<%=user%>" />  
         </jsp:include>
 
 

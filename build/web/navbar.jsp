@@ -99,7 +99,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="entidad_list.jsp?page=1"  <%=editor%>>
+                    <a href="entidad_list.jsp"  <%=editor%>>
                         <i class="bi bi-circle"></i><span>Entidades</span>
                     </a>
                 </li>

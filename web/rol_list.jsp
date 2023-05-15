@@ -25,7 +25,9 @@
                 spageid = Integer.parseInt(request.getParameter("page"));
             }
         %>
-        <jsp:include page="navbar.jsp"></jsp:include> 
+        <jsp:include page="navbar.jsp">
+            <jsp:param name="user" value="<%=user%>" />  
+        </jsp:include>
 
             <main id="main" class="main">
 

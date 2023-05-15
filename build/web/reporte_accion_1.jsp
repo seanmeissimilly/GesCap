@@ -31,7 +31,9 @@
 
     <body id="page-top">
         <%@ include file="login.jspf" %> 
-        <jsp:include page="navbar.jsp"></jsp:include> 
+        <jsp:include page="navbar.jsp">
+            <jsp:param name="user" value="<%=user%>" />  
+        </jsp:include>
 
             <main id="main" class="main">
                 <div class="container my-4">

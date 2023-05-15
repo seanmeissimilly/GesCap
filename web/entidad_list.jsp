@@ -14,15 +14,13 @@
 <html lang="es">
 
     <head>
-       <%@ include file="header.jspf" %>
-            <title>GesCap Entidades</title>
-        </head>
+        <%@ include file="header.jspf" %>
+        <title>GesCap Entidades</title>
+    </head>
 
-        <body>
-<%@ include file="login.jspf" %> 
-        <%
-
-            //recibo el parametro para saber cual pagina mostrar
+    <body>
+        <%@ include file="login.jspf" %> 
+        <%            //recibo el parametro para saber cual pagina mostrar
             int spageid;
             if (request.getParameter("page") == null) {
                 spageid = 1;
@@ -31,27 +29,29 @@
             }
 
         %>
-        <jsp:include page="navbar.jsp"></jsp:include> 
+        <jsp:include page="navbar.jsp">
+            <jsp:param name="user" value="<%=user%>" />  
+        </jsp:include>
 
-            <main id="main" class="main">
-                <div class="container my-4">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                            <h2>Entidades</h2>
-                            <form action="Controlador">                           
-                                <div class="mb-3">
-                                    <label for="nombre_entidad" class="form-label">Nombre de la Entidad</label>
-                                    <input type="text" class="form-control" id="nombre_entidad"
-                                           placeholder="Nombre de la Entidad" name="txtnombre_entidad" required="required">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="prefix_entidad" class="form-label">Prefijo de la Entidad</label>
-                                    <input type="text" class="form-control" id="prefix_entidad"
-                                           placeholder="Prefijo de la Entidad" name="txtprefix_entidad" required="required">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="nombre_organizacion" class="form-label">Organización</label>
-                                    <select class="form-control" name="txtnumero_organizacion" id="nombre_organizacion">
+        <main id="main" class="main">
+            <div class="container my-4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                        <h2>Entidades</h2>
+                        <form action="Controlador">                           
+                            <div class="mb-3">
+                                <label for="nombre_entidad" class="form-label">Nombre de la Entidad</label>
+                                <input type="text" class="form-control" id="nombre_entidad"
+                                       placeholder="Nombre de la Entidad" name="txtnombre_entidad" required="required">
+                            </div>
+                            <div class="mb-3">
+                                <label for="prefix_entidad" class="form-label">Prefijo de la Entidad</label>
+                                <input type="text" class="form-control" id="prefix_entidad"
+                                       placeholder="Prefijo de la Entidad" name="txtprefix_entidad" required="required">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nombre_organizacion" class="form-label">Organización</label>
+                                <select class="form-control" name="txtnumero_organizacion" id="nombre_organizacion">
                                     <%                                        OrganizacionBean organizaciones = new OrganizacionBean();
                                         List<Organizacion> lista = organizaciones.listar();
                                         Iterator<Organizacion> x = lista.iterator();
@@ -90,7 +90,7 @@
 
                                 //cantidad de registros por pagina
                                 int cantidad = 8;
-                                
+
                                 Entidad ent;
 
                                 EntidadBean dao = new EntidadBean();
@@ -114,7 +114,7 @@
                                 for (int i = 0; (i < list.size() && i < cantidad * spageid); i++) {
                                     if (i < tope) {
                                         continue;
-                                    }                                   
+                                    }
                                     ent = list.get(i);
 
                             %>
@@ -152,7 +152,7 @@
                 </div>
             </div>
         </main>
-                            
+
         <%@ include file="footer.jspf" %>
 
     </body>

@@ -17,13 +17,11 @@
 <html lang="es">
     <head>
         <%@ include file="header.jspf" %>
-            <title>GesCap Editar Entidad</title>
-        </head>
-        <body id="page-top">
-<%@ include file="login.jspf" %> 
-        <%
-
-            //recibo el parametro para saber cual pagina mostrar
+        <title>GesCap Editar Entidad</title>
+    </head>
+    <body id="page-top">
+        <%@ include file="login.jspf" %> 
+        <%            //recibo el parametro para saber cual pagina mostrar
             int spageid;
             if (request.getParameter("page") == null) {
                 spageid = 1;
@@ -32,15 +30,17 @@
             }
         %>
 
-        <jsp:include page="navbar.jsp"></jsp:include> 
+        <jsp:include page="navbar.jsp">
+            <jsp:param name="user" value="<%=user%>" />  
+        </jsp:include>
 
 
-            <main id="main" class="main">
-                <div class="container my-4">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                            <h4>Modificar Entidad</h4>
-                            <form action="Controlador">
+        <main id="main" class="main">
+            <div class="container my-4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                        <h4>Modificar Entidad</h4>
+                        <form action="Controlador">
                             <% EntidadBean dao = new EntidadBean();
                                 String id = ((String) request.getAttribute("id_entidad"));
                                 Entidad p = (Entidad) dao.list(id).get(0);%>

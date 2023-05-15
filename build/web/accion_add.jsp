@@ -32,7 +32,7 @@
 <!DOCTYPE html>
 <html>
     <head>      
-       
+
         <%@ include file="header.jspf" %>
         <title>GesCap Acciones Addicionar</title>
     </head>
@@ -46,41 +46,43 @@
                 spageid = 1;
             } else {
                 spageid = Integer.parseInt(request.getParameter("page"));
-            } 
+            }
 
         %>
         <%@ include file="login.jspf" %> 
-        <%@ include file="navbar.jspf" %> 
-        
+        <jsp:include page="navbar.jsp">
+            <jsp:param name="user" value="<%=user%>" />  
+        </jsp:include> 
 
-            <main id="main" class="main">
-                <div class="container my-4">
-                    <div class="row">
-                        <div class="col-4">
-                            <h2>Acciones</h2>
-                            <form name="form_accion" action="Controlador" onsubmit='return validar()'>
-                                <div class="mb-3">
-                                    <label for="nombre_accion" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre_accion"
-                                           placeholder="Nombre de la Acción" name="nombre_accion" required="required">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="descripcion_accion" class="form-label">Descripción</label>                                                             
-                                    <textarea class="form-control" name="descripcion_accion" rows="4" placeholder="Descripción de la Acción"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="fechainicial_accion" class="form-label">Fecha Inicial</label>
-                                    <input type="date" class="form-control" id="fechainicial_accion"
-                                           name="fechainicial_accion" required="required">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="fechafinal_accion" class="form-label">Fecha Final</label>
-                                    <input type="date" class="form-control" id="fechafinal_accion"
-                                           name="fechafinal_accion" required="required">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="clasificacion_accion" class="form-label">Clasificación</label>
-                                    <select class="form-control" name="clasificacion_accion" id="clasificacion_accion">
+
+        <main id="main" class="main">
+            <div class="container my-4">
+                <div class="row">
+                    <div class="col-4">
+                        <h2>Acciones</h2>
+                        <form name="form_accion" action="Controlador" onsubmit='return validar()'>
+                            <div class="mb-3">
+                                <label for="nombre_accion" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre_accion"
+                                       placeholder="Nombre de la Acción" name="nombre_accion" required="required">
+                            </div>
+                            <div class="mb-3">
+                                <label for="descripcion_accion" class="form-label">Descripción</label>                                                             
+                                <textarea class="form-control" name="descripcion_accion" rows="4" placeholder="Descripción de la Acción"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="fechainicial_accion" class="form-label">Fecha Inicial</label>
+                                <input type="date" class="form-control" id="fechainicial_accion"
+                                       name="fechainicial_accion" required="required">
+                            </div>
+                            <div class="mb-3">
+                                <label for="fechafinal_accion" class="form-label">Fecha Final</label>
+                                <input type="date" class="form-control" id="fechafinal_accion"
+                                       name="fechafinal_accion" required="required">
+                            </div>
+                            <div class="mb-3">
+                                <label for="clasificacion_accion" class="form-label">Clasificación</label>
+                                <select class="form-control" name="clasificacion_accion" id="clasificacion_accion">
                                     <%                                        ClasificacionBean organizaciones = new ClasificacionBean();
                                         List<Clasificacion> lista = organizaciones.listar();
                                         Iterator<Clasificacion> x = lista.iterator();
@@ -209,11 +211,7 @@
                             </div>
 
                             <input type="hidden" name="page" value=<%=spageid%>>
-                            <%
-                                HttpSession sesion = request.getSession();
-                                String user = sesion.getAttribute("user").toString();
-
-                            %>
+                            
                             <input type="hidden" name="user" value=<%=user%>>
                             <div class="d-grid gap-2">
                                 <button class="btn btn-success" type="submit" name="accion" value="add_accion">Agregar</button>
