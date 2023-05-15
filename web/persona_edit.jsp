@@ -9,19 +9,21 @@
 
     <head>
         <%@ include file="header.jspf" %> 
-            <title>GesCap Editar Persona</title>
-        </head>
+        <title>GesCap Editar Persona</title>
+    </head>
 
-        <body id="page-top">
-            <%@ include file="login.jspf" %> 
-        <jsp:include page="navbar.jsp"></jsp:include>
+    <body id="page-top">
+        <%@ include file="login.jspf" %> 
+        <jsp:include page="navbar.jsp">
+            <jsp:param name="user" value="<%=user%>" />  
+        </jsp:include>
 
-            <main id="main" class="main">
-                <div class="container my-4">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                            <h4>Modificar Persona</h4>
-                            <form action="Controlador">
+        <main id="main" class="main">
+            <div class="container my-4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                        <h4>Modificar Persona</h4>
+                        <form action="Controlador">
                             <% PersonaBean dao = new PersonaBean();
                                 String id = ((String) request.getAttribute("ci"));
                                 Persona p = (Persona) dao.list(id);%>

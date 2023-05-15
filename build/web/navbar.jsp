@@ -83,21 +83,33 @@
                 editor = "hidden";
             }
         %>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-bar-chart"></i><span>Acciones</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="accion_add.jsp">
+                        <i class="bi bi-circle"></i><span>Añadir</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="accion_list.jsp">
+                        <i class="bi bi-circle"></i><span>Listar</span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </li><!-- End Acciones Nav -->
+
         <li class="nav-item" <%=consultor%>>
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="">
                 <i class="bi bi-journal-text"></i><span>Formularios</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="accion_add.jsp">
-                        <i class="bi bi-circle"></i><span>Acciones</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="persona_list.jsp" <%=editor%>>
-                        <i class="bi bi-circle"></i><span>Personas</span>
-                    </a>
-                </li>
+
                 <li>
                     <a href="entidad_list.jsp"  <%=editor%>>
                         <i class="bi bi-circle"></i><span>Entidades</span>
@@ -111,6 +123,11 @@
                 <li>
                     <a href="rol_list.jsp" <%=editor%>>
                         <i class="bi bi-circle"></i><span>Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="persona_list.jsp" <%=editor%>>
+                        <i class="bi bi-circle"></i><span>Personas</span>
                     </a>
                 </li>
 

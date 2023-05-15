@@ -219,10 +219,10 @@
                         </form>
 
                     </div>
-                    <div class="col-8">
+                    <div class="col-4">
                         <h2 class="centrado">Listado de Acciones</h2>
                         <div id="search">
-                            <form class="col-4" action="" method="get">
+                            <form class="col-8" action="" method="get">
                                 <input type="text" class="form-control" placeholder="Buscar" name="q">
                             </form>
                         </div>
