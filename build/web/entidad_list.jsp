@@ -89,10 +89,12 @@
                                     <td><%= ent.getname_org()%></td>
                                     <td><%= ent.getPrefix()%></td>
                                     <td class="text-center">
-                                        <a class="btn btn-warning"
-                                           href="Controlador?accion=entidad_edit&id_entidad=<%= ent.getid_entidad()%>">Editar</a>                                    
-                                        <a class="btn btn-danger"
-                                           href="Controlador?accion=entidad_delete&numero=<%= ent.getid_entidad()%>">Borrar</a>                                           
+                                        <a class="btn btn-sm btn-primary my-1"
+                                           href="Controlador?accion=entidad_edit&id_entidad=<%= ent.getid_entidad()%>" aria-label="Editar"><i
+                        class="fa-solid fa-pencil"></i></a>                                    
+                                        <a class="btn btn-sm btn-danger"
+                                           href="Controlador?accion=entidad_delete&numero=<%= ent.getid_entidad()%>" aria-label="Borrar"><i
+                        class="fa-solid fa-trash-can"></i></a>                                           
                                     </td>
                                 </tr>
                                 <%}%> 

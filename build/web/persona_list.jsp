@@ -85,10 +85,12 @@
                                         <%= per.getSegundoApellido()%>
                                     </td>
                                     <td class="text-center">
-                                        <a class="btn btn-warning"
-                                           href="Controlador?accion=persona_edit&ci=<%= per.getCi()%>">Editar</a>
-                                        <a class="btn btn-danger"
-                                           href="Controlador?accion=persona_delete&ci=<%= per.getCi()%>">Borrar</a>
+                                        <a class="btn btn-sm btn-primary my-1"
+                                           href="Controlador?accion=persona_edit&ci=<%= per.getCi()%>" aria-label="Editar"><i
+                        class="fa-solid fa-pencil"></i></a>
+                                        <a class="btn btn-sm btn-danger"
+                                           href="Controlador?accion=persona_delete&ci=<%= per.getCi()%>" aria-label="Borrar"><i
+                        class="fa-solid fa-trash-can"></i></a>
                                     </td>
                                 </tr>
                                 <%}%>

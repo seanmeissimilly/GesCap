@@ -258,8 +258,10 @@
                                     </td>
 
                                     <td class="text-center" >
-                                        <a class="btn btn-warning my-1" href="Controlador?accion=accion_edit&id=<%= accion.getId_accion()%>&user=<%=user%>">Editar</a>
-                                        <a class="btn btn-danger" href="Controlador?accion=accion_delete&id=<%= accion.getId_accion()%>&user=<%=user%>">Borrar</a>
+                                        <a class="btn btn-sm btn-primary my-1" href="Controlador?accion=accion_edit&id=<%= accion.getId_accion()%>&user=<%=user%>" aria-label="Editar"><i
+                        class="fa-solid fa-pencil"></i></a>
+                                        <a class="btn btn-sm btn-danger" href="Controlador?accion=accion_delete&id=<%= accion.getId_accion()%>&user=<%=user%>" aria-label="Borrar"><i
+                        class="fa-solid fa-trash-can"></i></a>
 
                                     </td>
 

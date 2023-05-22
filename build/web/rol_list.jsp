@@ -74,10 +74,12 @@
                                         <%= per.getLast_date()%>
                                     </td>
                                     <td class="text-center">
-                                        <a class="btn btn-warning"
-                                           href="Controlador?accion=urol_edit&id=<%= per.getUsername()%>">Editar</a>
-                                        <a class="btn btn-danger"
-                                           href="Controlador?accion=urol_delete&id=<%= per.getUsername()%>">Borrar</a>
+                                        <a class="btn btn-sm btn-primary my-1"
+                                           href="Controlador?accion=urol_edit&id=<%= per.getUsername()%>"aria-label="Editar"><i
+                        class="fa-solid fa-pencil"></i></a>
+                                        <a class="btn btn-sm btn-danger"
+                                           href="Controlador?accion=urol_delete&id=<%= per.getUsername()%>"aria-label="Borrar"><i
+                        class="fa-solid fa-trash-can"></i></a>
                                     </td>
                                 </tr>
                                 <%}%>

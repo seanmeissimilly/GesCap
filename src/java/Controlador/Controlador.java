@@ -82,7 +82,41 @@ public class Controlador extends HttpServlet {
         String action = request.getParameter("accion");
 
         switch (action) {
+            case "json": {
 
+                request.setAttribute("page", request.getParameter("page"));
+
+                JSONObject obj = new JSONObject();                
+                obj.put("name", "sonoo");
+                obj.put("age", new Integer(27));
+                obj.put("salary", new Double(600000));
+                System.out.print(obj);
+
+                break;
+
+            }
+
+            case "entidad_page": {
+
+                request.setAttribute("page", request.getParameter("page"));
+                acceso = entidad_list;
+                break;
+
+            }
+            case "rol_page": {
+
+                request.setAttribute("page", request.getParameter("page"));
+                acceso = urol_list;
+                break;
+
+            }
+            case "accion_page": {
+
+                request.setAttribute("page", request.getParameter("page"));
+                acceso = accion_add;
+                break;
+
+            }
             case "persona_list": {
 
                 acceso = persona_list;
@@ -102,6 +136,7 @@ public class Controlador extends HttpServlet {
             case "entidad_edit": {
 
                 request.setAttribute("id_entidad", request.getParameter("id_entidad"));
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = entidad_edit;
 
                 break;
@@ -156,7 +191,7 @@ public class Controlador extends HttpServlet {
 
                     }
                 }
-
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = accion_add;
                 break;
 
@@ -206,7 +241,7 @@ public class Controlador extends HttpServlet {
                     }
 
                 }
-
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = accion_add;
                 break;
 
@@ -229,7 +264,7 @@ public class Controlador extends HttpServlet {
 
                         request.setAttribute("id", id);
                         request.setAttribute("user", user.getUsername());
-
+                        request.setAttribute("page", request.getParameter("page"));
                         acceso = accion_edit;
                         break;
                     }
@@ -241,7 +276,7 @@ public class Controlador extends HttpServlet {
             case "urol_edit": {
 
                 request.setAttribute("id", request.getParameter("id"));
-
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = urol_edit;
                 break;
 
@@ -250,7 +285,7 @@ public class Controlador extends HttpServlet {
 
                 String username = request.getParameter("id");
                 userdao.eliminar(username);
-
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = urol_list;
                 break;
 
@@ -314,6 +349,8 @@ public class Controlador extends HttpServlet {
                 entidad.setPrefix(prefix);
                 entdao.edit(entidad, id_entidad);
 
+                request.setAttribute("page", request.getParameter("page"));
+
                 acceso = entidad_list;
 
                 break;
@@ -367,6 +404,7 @@ public class Controlador extends HttpServlet {
 
                 String numero = request.getParameter("numero");
                 entdao.eliminar(numero);
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = entidad_list;
 
                 break;
@@ -391,6 +429,7 @@ public class Controlador extends HttpServlet {
                 entidad.setPrefix(prefix);
                 entdao.add(entidad);
 
+                request.setAttribute("page", request.getParameter("page"));
                 acceso = entidad_list;
                 break;
 
@@ -403,7 +442,7 @@ public class Controlador extends HttpServlet {
                 //Reviso si el usuario solo tiene rol de consultor.
                 if (user.getRol().equals("1")) {
                     acceso = accion_add;
-
+                    request.setAttribute("page", request.getParameter("page"));
                     break;
 
                 } else {
@@ -436,7 +475,7 @@ public class Controlador extends HttpServlet {
                     //Reviso si el usuario tiene rol de editor y si esta en su entidad.
                     if (user.getRol().equals("2") && user.getEntidad().equals(accion.getId_entidad()) || user.getRol().equals("3")) {
                         acciondao.add(accion);
-
+                        request.setAttribute("page", request.getParameter("page"));
                         acceso = accion_add;
                         break;
 

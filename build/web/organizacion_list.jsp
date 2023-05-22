@@ -62,10 +62,12 @@
                                 <tr>
                                     <td><%= org.getNombre()%></td>
                                     <td class="text-center">
-                                        <a class="btn btn-warning"
-                                           href="Controlador?accion=organizacion_edit&id=<%= org.getNumero()%>">Editar</a>
-                                        <a class="btn btn-danger"
-                                           href="Controlador?accion=organizacion_delete&numero=<%= org.getNumero()%>">Borrar</a>
+                                        <a class="btn btn-sm btn-primary my-1"
+                                           href="Controlador?accion=organizacion_edit&id=<%= org.getNumero()%>" aria-label="Editar"><i
+                        class="fa-solid fa-pencil"></i></a>
+                                        <a class="btn btn-sm btn-danger"
+                                           href="Controlador?accion=organizacion_delete&numero=<%= org.getNumero()%>" aria-label="Borrar"><i
+                        class="fa-solid fa-trash-can"></i></a>
                                     </td>
                                 </tr>
                                 <%
