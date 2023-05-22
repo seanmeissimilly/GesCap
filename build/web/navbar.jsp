@@ -37,7 +37,7 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="404.jsp">
+                        <a class="dropdown-item d-flex align-items-center" href="./404">
                             <i class="bi bi-question-circle"></i>
                             <span>¿Necesitas Ayuda?</span>
                         </a>
@@ -84,13 +84,13 @@
             }
         %>
 
-        <li class="nav-item">
+        <li class="nav-item" <%=consultor%>>
             <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-bar-chart"></i><span>Acciones</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="accion_add.jsp">
+                    <a href="./accion_add" >
                         <i class="bi bi-circle"></i><span>Añadir</span>
                     </a>
                 </li>
@@ -154,7 +154,7 @@
         </li><!-- End Tables Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="404.jsp">
+            <a class="nav-link collapsed" href="./404">
                 <i class="bi bi-question-circle"></i>
                 <span>¿Necesitas Ayuda?</span>
             </a>

@@ -21,43 +21,37 @@
             <jsp:param name="user" value="<%=user%>" />  
         </jsp:include>
 
-            <main id="main" class="main">
-                <div class="container my-4">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                            <h2>Organizaciones</h2>
-                            <form action="Controlador">
-                                <div class="mb-3">
-                                    <label for="nombre_organizacion" class="form-label">Nombre de la
-                                        Organización</label>
-                                    <input type="text" class="form-control" id="nombre_organizacion"
-                                           placeholder="Nombre de la Organización" name="txtnombre_organizacion" required="required">
-                                </div>
-                                <div class="d-grid gap-2">
-                                    <button class="btn btn-success" type="submit" name="accion" value="add_organizacion">Agregar</button>
-
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                            <h2 class="centrado">Listado de Organizaciones</h2>
-                            <div id="search">
-                                <form class="col-4" action="" method="get">
-                                    <input type="text" class="form-control" placeholder="Buscar" name="q">
-                                </form>
+        <main id="main" class="main">
+            <div class="container my-4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                        <h2>Organizaciones</h2>
+                        <form action="Controlador">
+                            <div class="mb-3">
+                                <label for="nombre_organizacion" class="form-label">Nombre de la
+                                    Organización</label>
+                                <input type="text" class="form-control" id="nombre_organizacion"
+                                       placeholder="Nombre de la Organización" name="txtnombre_organizacion" required="required">
                             </div>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                    </tr>
-                                </thead>
-                            <%                                OrganizacionBean dao = new OrganizacionBean();
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-success" type="submit" name="accion" value="add_organizacion">Agregar</button>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                        <h2 class="centrado">Listado de Organizaciones</h2>
+
+                        <table class="table table-striped" id="example">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <%
+                                OrganizacionBean dao = new OrganizacionBean();
                                 List<Organizacion> list = dao.listar();
-                                String query = request.getParameter("q");
-                                if (query != null) {
-                                    list = dao.listar(query);
-                                }
                                 Organizacion org;
                             %>
                             <tbody>
@@ -86,5 +80,18 @@
 
         </main>
         <%@ include file="footer.jspf" %>
+
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'excel', 'pdf'
+                    ]
+                });
+            });
+
+
+        </script>
     </body>
 </html>

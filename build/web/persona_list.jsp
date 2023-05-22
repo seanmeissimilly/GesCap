@@ -24,7 +24,7 @@
             <div class="container my-4">
                 <div class="row">
                     <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                        <h2>Formulario de Personas</h2>
+                        <h2>Personas</h2>
                         <form action="Controlador" method="get">
                             <div class="mb-3">                           
                                 <label for="ci" class="form-label">CI</label>
@@ -48,34 +48,29 @@
                         </form>
                     </div>
                     <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                        <h2 class="centrado">Listado de Personas</h2>
-                        <div id="search">
-                            <form class="col-4" action="" method="get">
-                                <input type="text" class="form-control" placeholder="Buscar" name="q">
-                            </form>
-                        </div>
-                        <table class="table table-striped">
+                        <h2 class="centrado">Listado de Personas</h2>                        
+                        <table class="table table-striped" id="example">
                             <thead>
                                 <tr>
                                     <th>CI</th>
                                     <th>Nombre</th>
                                     <th>Primer Apellido</th>
                                     <th>Segundo Apellido</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <% PersonaBean dao = new PersonaBean();
-                                List<Persona> list = dao.listar();
-                                String query = request.getParameter("q");
-                                if (query != null) {
-                                    list = dao.listar(query);
-                                }
+                                List<Persona> list = dao.listar();                                
                                 Iterator<Persona> iter = list.iterator();
                                 Persona per = null;
-                                while (iter.hasNext()) {
-                                    per = iter.next();
+                               
 
                             %>
                             <tbody>
+                                <%
+                                     while (iter.hasNext()) {
+                                    per = iter.next();
+                                %>
                                 <tr>
                                     <td>
                                         <%= per.getCi()%>
@@ -105,6 +100,19 @@
         </main>
 
         <%@ include file="footer.jspf" %>
+        
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'excel', 'pdf'
+                    ]
+                });
+            });
+
+
+        </script>
     </body>
 
 </html>

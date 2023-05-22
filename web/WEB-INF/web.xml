@@ -17,6 +17,18 @@
         <servlet-name>accion</servlet-name>
         <jsp-file>/accion_add.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>Error 404</servlet-name>
+        <jsp-file>/404.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Añadir Accion</servlet-name>
+        <jsp-file>/accion_add.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Editar Accion</servlet-name>
+        <jsp-file>/accion_edit.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dasboard</servlet-name>
         <url-pattern>/dashboard</url-pattern>
@@ -28,6 +40,18 @@
     <servlet-mapping>
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Error 404</servlet-name>
+        <url-pattern>/404</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Añadir Accion</servlet-name>
+        <url-pattern>/accion_add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Editar Accion</servlet-name>
+        <url-pattern>/accion_edit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

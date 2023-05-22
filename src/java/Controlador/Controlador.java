@@ -1,5 +1,6 @@
 package Controlador;
 
+import org.json.simple.JSONObject;
 import Modelo.Accion;
 import Modelo.Coordinador;
 import Modelo.Cursista;
@@ -36,9 +37,9 @@ public class Controlador extends HttpServlet {
     String organizacion_edit = "organizacion_edit.jsp";
     String entidad_edit = "entidad_edit.jsp";
     String login = "login.jsp";
-    String panel = "panel.jsp";
-    String accion_add = "accion_add.jsp";
-    String accion_edit = "accion_edit.jsp";
+    String panel = "./dashboard";
+    String accion_add = "./accion_add";
+    String accion_edit = "./accion_edit";
     String urol_edit = "rol_edit.jsp";
     String urol_list = "rol_list.jsp";
 
@@ -82,27 +83,6 @@ public class Controlador extends HttpServlet {
 
         switch (action) {
 
-            case "entidad_page": {
-
-                request.setAttribute("page", request.getParameter("page"));
-                acceso = entidad_list;
-                break;
-
-            }
-            case "rol_page": {
-
-                request.setAttribute("page", request.getParameter("page"));
-                acceso = urol_list;
-                break;
-
-            }
-            case "accion_page": {
-
-                request.setAttribute("page", request.getParameter("page"));
-                acceso = accion_add;
-                break;
-
-            }
             case "persona_list": {
 
                 acceso = persona_list;
@@ -122,7 +102,6 @@ public class Controlador extends HttpServlet {
             case "entidad_edit": {
 
                 request.setAttribute("id_entidad", request.getParameter("id_entidad"));
-                request.setAttribute("page", request.getParameter("page"));
                 acceso = entidad_edit;
 
                 break;
@@ -138,32 +117,47 @@ public class Controlador extends HttpServlet {
             }
             case "edit_accion": {
 
-                String id_accion = request.getParameter("number_accion");
-                //Empiezo a asignarle los valores.
-                accion.setNombre(request.getParameter("nombre_accion"));
-                accion.setFecha_inicial(request.getParameter("fechainicial_accion"));
-                accion.setFecha_final(request.getParameter("fechafinal_accion"));
-                accion.setId_clasificacion(request.getParameter("clasificacion_accion"));
-                accion.setId_formaorganizativa(request.getParameter("forganizativa_accion"));
-                accion.setId_area(request.getParameter("area_accion"));
-                accion.setId_entidadejecutora(request.getParameter("entidad_accion"));
-                accion.setId_entidad(request.getParameter("entidad_p"));
-                accion.setId_modalidad(request.getParameter("modalidad_accion"));
-                accion.setExtraplan(request.getParameter("extrapla_accion_accion") != null);
+                userdao = new UsuarioBean();
+                user = userdao.list(request.getParameter("user"));
+                if (!user.getRol().equals("1")) {
 
-                //Reviso si el parametro de creditos esta vacio.
-                if (request.getParameter("creditos_accion").equals("")) {
-                    accion.setCreditos("0");
-                } else {
-                    accion.setCreditos(request.getParameter("creditos_accion"));
+                    //Recibo el parametro del id de la accion.
+                    String id = request.getParameter("number_accion");
+
+                    //Busco esa accion en la base de datos.
+                    acciondao = new AccionBean();
+                    Accion ac = acciondao.list(id).get(0);
+
+                    //Reviso si el usuario que quiere editar la accion es de la misma entidad que la accion.
+                    if (ac.getEntidad().equals(user.getEntidad())) {
+
+                        //Empiezo a asignarle los valores.
+                        accion.setNombre(request.getParameter("nombre_accion"));
+                        accion.setFecha_inicial(request.getParameter("fechainicial_accion"));
+                        accion.setFecha_final(request.getParameter("fechafinal_accion"));
+                        accion.setId_clasificacion(request.getParameter("clasificacion_accion"));
+                        accion.setId_formaorganizativa(request.getParameter("forganizativa_accion"));
+                        accion.setId_area(request.getParameter("area_accion"));
+                        accion.setId_entidadejecutora(request.getParameter("entidad_accion"));
+                        accion.setId_entidad(request.getParameter("entidad_p"));
+                        accion.setId_modalidad(request.getParameter("modalidad_accion"));
+                        accion.setExtraplan(request.getParameter("extrapla_accion_accion") != null);
+
+                        //Reviso si el parametro de creditos esta vacio.
+                        if (request.getParameter("creditos_accion").equals("")) {
+                            accion.setCreditos("0");
+                        } else {
+                            accion.setCreditos(request.getParameter("creditos_accion"));
+                        }
+
+                        accion.setId_evaluacionfinal(request.getParameter("evaluacion_accion"));
+                        accion.setObservaciones(request.getParameter("observaciones_accion"));
+                        acciondao.edit(accion, id);
+
+                    }
                 }
 
-                accion.setId_evaluacionfinal(request.getParameter("evaluacion_accion"));
-                accion.setObservaciones(request.getParameter("observaciones_accion"));
-                acciondao.edit(accion, id_accion);
-                request.setAttribute("page", request.getParameter("page"));
                 acceso = accion_add;
-
                 break;
 
             }
@@ -198,7 +192,7 @@ public class Controlador extends HttpServlet {
 
                 //Reviso si el usuario solo tiene rol de consultor.
                 if (!user.getRol().equals("1")) {
-                    //Resivo el parametro del id de la accion.
+                    //Recibo el parametro del id de la accion.
                     String id = request.getParameter("id");
 
                     //Busco esa accion en la base de datos.
@@ -206,29 +200,48 @@ public class Controlador extends HttpServlet {
                     Accion ac = acciondao.list(id).get(0);
 
                     //Reviso si el usuario que quiere eliminar la accion es de la misma entidad que la accion.
-                    if (ac.getEntidad().equals(user.getEntidad())) {
+                    if (ac.getEntidad().equals(user.getEntidad()) || user.getRol().equals("3")) {
                         //Borro la accion.
                         acciondao.eliminar(id);
                     }
 
                 }
-                request.setAttribute("page", request.getParameter("page"));
+
                 acceso = accion_add;
                 break;
 
             }
             case "accion_edit": {
 
-                request.setAttribute("id", request.getParameter("id"));
-                request.setAttribute("page", request.getParameter("page"));
-                acceso = accion_edit;
+                userdao = new UsuarioBean();
+                user = userdao.list(request.getParameter("user"));
+                if (!user.getRol().equals("1")) {
+
+                    //Recibo el parametro del id de la accion.
+                    String id = request.getParameter("id");
+
+                    //Busco esa accion en la base de datos.
+                    acciondao = new AccionBean();
+                    Accion ac = acciondao.list(id).get(0);
+
+                    //Reviso si el usuario que quiere editar la accion es de la misma entidad que la accion.
+                    if (ac.getEntidad().equals(user.getEntidad()) || user.getRol().equals("3")) {
+
+                        request.setAttribute("id", id);
+                        request.setAttribute("user", user.getUsername());
+
+                        acceso = accion_edit;
+                        break;
+                    }
+                }
+                acceso = accion_add;
                 break;
 
             }
             case "urol_edit": {
 
                 request.setAttribute("id", request.getParameter("id"));
-                request.setAttribute("page", request.getParameter("page"));
+
                 acceso = urol_edit;
                 break;
 
@@ -237,7 +250,7 @@ public class Controlador extends HttpServlet {
 
                 String username = request.getParameter("id");
                 userdao.eliminar(username);
-                request.setAttribute("page", request.getParameter("page"));
+
                 acceso = urol_list;
                 break;
 
@@ -301,8 +314,6 @@ public class Controlador extends HttpServlet {
                 entidad.setPrefix(prefix);
                 entdao.edit(entidad, id_entidad);
 
-                request.setAttribute("page", request.getParameter("page"));
-
                 acceso = entidad_list;
 
                 break;
@@ -356,7 +367,6 @@ public class Controlador extends HttpServlet {
 
                 String numero = request.getParameter("numero");
                 entdao.eliminar(numero);
-                request.setAttribute("page", request.getParameter("page"));
                 acceso = entidad_list;
 
                 break;
@@ -381,7 +391,6 @@ public class Controlador extends HttpServlet {
                 entidad.setPrefix(prefix);
                 entdao.add(entidad);
 
-                request.setAttribute("page", request.getParameter("page"));
                 acceso = entidad_list;
                 break;
 
@@ -394,6 +403,7 @@ public class Controlador extends HttpServlet {
                 //Reviso si el usuario solo tiene rol de consultor.
                 if (user.getRol().equals("1")) {
                     acceso = accion_add;
+
                     break;
 
                 } else {
@@ -424,9 +434,9 @@ public class Controlador extends HttpServlet {
                     accion.setFicha(request.getParameter("descripcion_accion"));
 
                     //Reviso si el usuario tiene rol de editor y si esta en su entidad.
-                    if (user.getRol().equals("2") && user.getEntidad().equals(accion.getId_entidad())) {
+                    if (user.getRol().equals("2") && user.getEntidad().equals(accion.getId_entidad()) || user.getRol().equals("3")) {
                         acciondao.add(accion);
-                        request.setAttribute("page", request.getParameter("page"));
+
                         acceso = accion_add;
                         break;
 

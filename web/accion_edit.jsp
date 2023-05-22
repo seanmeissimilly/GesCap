@@ -61,7 +61,9 @@
                         <form action="Controlador">
                             <%
                                 AccionBean accion = new AccionBean();
-                                String id = ((String) request.getAttribute("id"));
+                                String id = ((String) request.getAttribute("id"));      
+                               
+                                
                                 List<Accion> ss = accion.list(id);
                                 Accion p = ss.get(0);
 
@@ -254,6 +256,7 @@
                             </div>
                             
                             <input type="hidden" name="page" value=<%=spageid%>>
+                            <input type="hidden" name="user" value=<%=user%>>
                             
                             <div class="d-grid gap-2">
                                 <button class="btn btn-success" type="submit" name="accion" value="edit_accion">Actualizar</button>
