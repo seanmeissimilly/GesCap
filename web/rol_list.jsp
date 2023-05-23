@@ -28,7 +28,7 @@
                     <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
                         <h2 class="centrado">Usuarios</h2>
 
-                        <table class="table table-striped" id="example">
+                        <table class="table table-striped" id="datatable_users">
                             <thead>
                                 <tr>
                                     <th>Username</th>
@@ -90,20 +90,7 @@
             </div>
 
         </main>
-        <%@ include file="footer.jspf" %>
-
-        <script>
-            $(document).ready(function () {
-                $('#example').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'copy', 'excel', 'pdf'
-                    ]
-                });
-            });
-
-
-        </script>
+        <%@ include file="footer.jspf" %>        
     </body>
 
 </html>

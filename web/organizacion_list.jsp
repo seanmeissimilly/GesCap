@@ -42,7 +42,7 @@
                     <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
                         <h2 class="centrado">Listado de Organizaciones</h2>
 
-                        <table class="table table-striped" id="example">
+                        <table class="table table-striped" id="datatable_users">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -64,10 +64,10 @@
                                     <td class="text-center">
                                         <a class="btn btn-sm btn-primary my-1"
                                            href="Controlador?accion=organizacion_edit&id=<%= org.getNumero()%>" aria-label="Editar"><i
-                        class="fa-solid fa-pencil"></i></a>
+                                                class="fa-solid fa-pencil"></i></a>
                                         <a class="btn btn-sm btn-danger"
                                            href="Controlador?accion=organizacion_delete&numero=<%= org.getNumero()%>" aria-label="Borrar"><i
-                        class="fa-solid fa-trash-can"></i></a>
+                                                class="fa-solid fa-trash-can"></i></a>
                                     </td>
                                 </tr>
                                 <%
@@ -83,17 +83,5 @@
         </main>
         <%@ include file="footer.jspf" %>
 
-        <script>
-            $(document).ready(function () {
-                $('#example').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'copy', 'excel', 'pdf'
-                    ]
-                });
-            });
-
-
-        </script>
     </body>
 </html>

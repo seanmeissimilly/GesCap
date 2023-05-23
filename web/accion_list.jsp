@@ -46,7 +46,7 @@
                 <div class="row">
                     <div class="col-12">
                         <h2 class="centrado">Listado de Acciones</h2>                       
-                        <table class="table table-striped text-center" id="example">
+                        <table class="table table-striped text-center" id="datatable_users">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -134,20 +134,7 @@
             </div>
 
         </main>
-        <%@ include file="footer.jspf" %>
-
-        <script>
-            $(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'excel', 'pdf'
-        ]
-    } );
-} );
-
-
-        </script>
+        <%@ include file="footer.jspf" %>        
     </body>
 
 

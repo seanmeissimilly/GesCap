@@ -32,3 +32,4 @@
 <script src="./js/jszip.min.js"></script>
 <script src="./js/buttons.html5.min.js"></script>
 <script src="./js/dataTables.buttons.min.js"></script>
+<script src="./js/main.js"></script>

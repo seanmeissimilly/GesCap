@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
                         <h2 class="centrado">Listado de Personas</h2>                        
-                        <table class="table table-striped" id="example">
+                        <table class="table table-striped" id="datatable_users">
                             <thead>
                                 <tr>
                                     <th>CI</th>
@@ -101,20 +101,8 @@
             </div>            
         </main>
 
-        <%@ include file="footer.jspf" %>
+        <%@ include file="footer.jspf" %>      
         
-        <script>
-            $(document).ready(function () {
-                $('#example').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'copy', 'excel', 'pdf'
-                    ]
-                });
-            });
-
-
-        </script>
     </body>
 
 </html>

@@ -38,15 +38,7 @@
     </head>
 
     <body id="page-top">
-        <%@ include file="login.jspf" %> 
-        <%             //recibo el parametro para saber cual pagina mostrar
-            int spageid;
-            if (request.getParameter("page") == null) {
-                spageid = 1;
-            } else {
-                spageid = Integer.parseInt(request.getParameter("page"));
-            }
-        %>
+        <%@ include file="login.jspf" %>     
 
 
         <jsp:include page="navbar.jsp">
