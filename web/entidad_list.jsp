@@ -42,7 +42,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="nombre_organizacion" class="form-label">Organización</label>
-                                <select class="form-control" name="txtnumero_organizacion" id="nombre_organizacion">
+                                <select class="form-select" name="txtnumero_organizacion" id="nombre_organizacion">
                                     <%                                        OrganizacionBean organizaciones = new OrganizacionBean();
                                         List<Organizacion> lista = organizaciones.listar();
                                         Iterator<Organizacion> x = lista.iterator();
