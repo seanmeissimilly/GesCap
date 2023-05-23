@@ -83,7 +83,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="clasificacion_accion" class="form-label">Clasificación</label>
-                                <select class="form-control" name="clasificacion_accion" id="clasificacion_accion">
+                                <select class="form-select" name="clasificacion_accion" id="clasificacion_accion">
                                     <%
                                         ClasificacionBean organizaciones = new ClasificacionBean();
                                         List<Clasificacion> lista = organizaciones.listar();
@@ -102,7 +102,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="forganizativa_accion" class="form-label">Forma Organizativa</label>
-                                <select class="form-control" name="forganizativa_accion" id="forganizativa_accion">
+                                <select class="form-select" name="forganizativa_accion" id="forganizativa_accion">
                                     <%
                                         ForganizativaBean forganizativa = new ForganizativaBean();
                                         List<Organizativa> listafo = forganizativa.listar();
@@ -122,7 +122,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="area_accion" class="form-label">Área del Conocimiento</label>
-                                <select class="form-control" name="area_accion" id="area_accion">
+                                <select class="form-select" name="area_accion" id="area_accion">
                                     <%
                                         AreaBean areabean = new AreaBean();
                                         List<Area> listarea = areabean.listar();
@@ -142,7 +142,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="entidad_accion" class="form-label">Entidad Ejecutora</label>
-                                <select class="form-control" name="entidad_accion" id="entidad_accion">
+                                <select class="form-select" name="entidad_accion" id="entidad_accion">
                                     <%
                                         EntidadEjectBean daoentidadejec = new EntidadEjectBean();
                                         List<EntidadEject> listentidad = daoentidadejec.listar();
@@ -162,7 +162,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="entidad_p" class="form-label">Entidad</label>
-                                <select class="form-control" name="entidad_p" id="entidad_p">
+                                <select class="form-select" name="entidad_p" id="entidad_p">
                                     <%
                                         EntidadBean daoentidad = new EntidadBean();
                                         List<Entidad> listent = daoentidad.listar();
@@ -183,7 +183,7 @@
 
                             <div class="mb-3">
                                 <label for="modalidad_accion" class="form-label">Modalidad</label>
-                                <select class="form-control" name="modalidad_accion" id="modalidad_accion">
+                                <select class="form-select" name="modalidad_accion" id="modalidad_accion">
                                     <%
                                         ModalidadBean modalidadbean = new ModalidadBean();
                                         List<Modalidad> listmodalidad = modalidadbean.listar();
@@ -207,9 +207,9 @@
                                 if (p.getExtraplan())
                                     marked = "checked";
                             %>
-                            <div class="mb-3">
+                            <div class="mb-3 form-check form-switch">
                                 <label for="extraplan_accion" class="form-check-label">Extraplan</label>
-                                <input type="checkbox" class="form-check" name="extrapla_accion" name="masiva_accion_accion" <%=marked%>>
+                                <input type="checkbox" class="form-check-input" name="extrapla_accion" name="masiva_accion_accion" <%=marked%>>
                                 <%
                                     marked = "";
                                 %>
@@ -221,7 +221,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="evaluacion_accion" class="form-label">Evaluación</label>
-                                <select class="form-control" name="evaluacion_accion" id="evaluacion_accion">
+                                <select class="form-select" name="evaluacion_accion" id="evaluacion_accion">
                                     <%
                                         EvaluacionBean evaluacionbean = new EvaluacionBean();
                                         List<Evaluacion> listevaluacion = evaluacionbean.listar();

@@ -23,7 +23,7 @@
 </footer><!-- End Footer --> 
 
 
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
 <script src="js/datatable/buttons.html5.min.js" type="text/javascript"></script>
 <script src="js/datatable/buttons.print.min.js" type="text/javascript"></script>
 <script src="js/datatable/dataTables.buttons.min.js" type="text/javascript"></script>

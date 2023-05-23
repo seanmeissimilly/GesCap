@@ -49,7 +49,7 @@
 
                             <div class="mb-3">
                                 <label for="entidad_p" class="form-label">Entidad</label>
-                                <select class="form-control" name="entidad_p" id="entidad_p">
+                                <select class="form-select" name="entidad_p" id="entidad_p">
                                     <%
                                         EntidadBean daoentidad = new EntidadBean();
                                         List<Entidad> listent = daoentidad.listar();
@@ -69,7 +69,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="area_accion" class="form-label">Rol</label>
-                                <select class="form-control" name="id_rol" id="id_rol">
+                                <select class="form-select" name="id_rol" id="id_rol">
                                     <%
                                         RolBean rolbean = new RolBean();
                                         List<Rol> listarol = rolbean.listar();
