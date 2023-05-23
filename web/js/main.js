@@ -1,8 +1,21 @@
 let dataTable;
 let dataTableIsInitialized = false;
 
-const dataTableOptions = {      
+const dataTableOptions = {
     destroy: true,
+    dom: 'lBfrtip',
+    buttons: [
+        {
+            extend: 'collection',
+            text: 'Exportar',
+            buttons: [
+                'copy',
+                'excel',
+                'csv',                
+                'print'
+            ]
+        }
+    ],
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",
         zeroRecords: "Ningún usuario encontrado",
@@ -16,14 +29,22 @@ const dataTableOptions = {
             last: "Último",
             next: "Siguiente",
             previous: "Anterior"
+        },
+        buttons: {
+            copy: "copiar",
+            csv: "csv",
+            excel: "excel",
+            pdf: "pdf",
+            print: "imprimir"
         }
     }
+    
 };
 
 
 const initDataTable = async () => {
     if (dataTableIsInitialized) {
-        dataTable.destroy();       
+        dataTable.destroy();
     }
 
     dataTable = $("#datatable_users").DataTable(dataTableOptions);

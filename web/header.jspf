@@ -10,3 +10,5 @@
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">  
 <link href="assets/css/style.css" rel="stylesheet">
+<link href="./css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="./css/buttons.dataTables.min.css" rel="stylesheet">

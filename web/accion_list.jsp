@@ -107,42 +107,18 @@
                                         <%= accion.getId_modalidad()%>
                                     </td>                                    
                                     <td>
-                                        <%= accion.isExtraplan()? "Si" : "No" %>
+                                        <%= accion.isExtraplan() ? "Si" : "No"%>
                                     </td>
 
                                 </tr>
                                 <%}%>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Inicial</th>
-                                    <th>Final</th>
-                                    <th>Clasificación</th>
-                                    <th>Forma Organizativa</th>
-                                    <th>Área</th>
-                                    <th>Entidad</th>
-                                    <th>Entidad Ejecutora</th>
-                                    <th>Modalidad</th>                                    
-                                    <th>Extraplan</th>
-                                </tr>
-                            </tfoot>
+                            </tbody>                            
                         </table>                       
                     </div>
                 </div>
             </div>
 
-        </main>
+        </main>                            
         <%@ include file="footer.jspf" %>        
     </body>
-
-
-
-
-
-
-
-
-
 </html>

@@ -38,9 +38,7 @@
     </head>
 
     <body id="page-top">
-        <%@ include file="login.jspf" %>     
-
-
+        <%@ include file="login.jspf" %>    
         <jsp:include page="navbar.jsp">
             <jsp:param name="user" value="<%=user%>" />  
         </jsp:include>
@@ -53,9 +51,8 @@
                         <form action="Controlador">
                             <%
                                 AccionBean accion = new AccionBean();
-                                String id = ((String) request.getAttribute("id"));      
-                               
-                                
+                                String id = ((String) request.getAttribute("id"));
+
                                 List<Accion> ss = accion.list(id);
                                 Accion p = ss.get(0);
 
@@ -245,11 +242,10 @@
                             <div class="mb-3">
                                 <label for="observaciones_accion">Observaciones</label>
                                 <textarea class="form-control" name="observaciones_accion" rows="4"><%= p.getObservaciones()%></textarea>
-                            </div>
-                            
-                            <input type="hidden" name="page" value=<%=spageid%>>
+                            </div>                          
+
                             <input type="hidden" name="user" value=<%=user%>>
-                            
+
                             <div class="d-grid gap-2">
                                 <button class="btn btn-success" type="submit" name="accion" value="edit_accion">Actualizar</button>
                             </div>
