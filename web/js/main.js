@@ -2,6 +2,8 @@ let dataTable;
 let dataTableIsInitialized = false;
 
 const dataTableOptions = {
+    lengthMenu: [3, 5, 10, 15],
+    pageLength: 3,
     destroy: true,
     dom: 'lBfrtip',
     buttons: [
