@@ -134,7 +134,7 @@ public class AccionBean {
                 accion.setId_entidadejecutora(rs.getString("id_entejecutora"));
                 accion.setId_entidad(rs.getString("id_entidad"));
                 accion.setId_modalidad(rs.getString("id_modaccion"));
-                accion.setExtraplan(rs.getString("planificada") != null);
+                accion.setExtraplan(rs.getString("planificada").equals("1"));
                 accion.setCreditos(rs.getString("creditos"));
                 accion.setId_evaluacionfinal(rs.getString("id_evalfinal"));
                 accion.setObservaciones(rs.getString("observaciones"));

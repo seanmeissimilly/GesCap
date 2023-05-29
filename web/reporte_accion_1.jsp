@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="entidad_accion" class="form-label">Entidad Ejecutora</label>
-                                    <select class="form-control" name="entidad_accion" id="entidad_accion">
+                                    <select class="form-select" name="entidad_accion" id="entidad_accion">
                                     <%                                        EntidadEjectBean daoentidadejec = new EntidadEjectBean();
                                         List<EntidadEject> listentidad = daoentidadejec.listar();
 
@@ -68,7 +68,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="entidad_p" class="form-label">Entidad</label>
-                                <select class="form-control" name="entidad_p" id="entidad_p">
+                                <select class="form-select" name="entidad_p" id="entidad_p">
                                     <%
                                         EntidadBean daoentidad = new EntidadBean();
                                         List<Entidad> listent = daoentidad.listar();

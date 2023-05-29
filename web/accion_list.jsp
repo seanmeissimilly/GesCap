@@ -37,6 +37,8 @@
     </head>
     <body id="page-top">
         <%@ include file="login.jspf" %>
+        <%    Accion accion = null;
+        %>
 
         <jsp:include page="navbar.jsp">
             <jsp:param name="user" value="<%=user%>" />
@@ -60,6 +62,7 @@
                                     <th>Entidad Ejecutora</th>
                                     <th>Modalidad</th>                                    
                                     <th>Extraplan</th>
+                                    <th>Evalución</th>                                      
                                 </tr>
                             </thead>
                             <%
@@ -71,11 +74,12 @@
                             <tbody>
                                 <%                                    for (int i = 0; i < list.size(); i++) {
 
-                                        Accion accion = null;
+                                        accion = null;
                                         accion = list.get(i);
                                 %>
 
                                 <tr>
+
                                     <td>
                                         <%= accion.getId_accion()%>
                                     </td>
@@ -108,12 +112,17 @@
                                     </td>                                    
                                     <td>
                                         <%= accion.isExtraplan() ? "Si" : "No"%>
+                                    </td> 
+                                    <td>
+                                        <%= accion.getId_evaluacionfinal() %>
                                     </td>
 
                                 </tr>
                                 <%}%>
                             </tbody>                            
                         </table>                       
+
+
                     </div>
                 </div>
             </div>

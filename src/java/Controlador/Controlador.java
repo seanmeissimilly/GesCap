@@ -176,7 +176,7 @@ public class Controlador extends HttpServlet {
                         accion.setId_entidadejecutora(request.getParameter("entidad_accion"));
                         accion.setId_entidad(request.getParameter("entidad_p"));
                         accion.setId_modalidad(request.getParameter("modalidad_accion"));
-                        accion.setExtraplan(request.getParameter("extrapla_accion_accion") != null);
+                        accion.setExtraplan(request.getParameter("extraplan_accion") != null);
 
                         //Reviso si el parametro de creditos esta vacio.
                         if (request.getParameter("creditos_accion").equals("")) {
@@ -459,7 +459,7 @@ public class Controlador extends HttpServlet {
                     accion.setId_entidadejecutora(request.getParameter("entidad_accion"));
                     accion.setId_entidad(request.getParameter("entidad_p"));
                     accion.setId_modalidad(request.getParameter("modalidad_accion"));
-                    accion.setExtraplan(request.getParameter("extrapla_accion_accion") != null);
+                    accion.setExtraplan(request.getParameter("extraplan_accion") != null);
 
                     //Reviso si el parametro de creditos esta vacio.
                     if (request.getParameter("creditos_accion").equals("")) {

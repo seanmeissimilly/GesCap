@@ -29,6 +29,10 @@
         <servlet-name>Editar Accion</servlet-name>
         <jsp-file>/accion_edit.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>Error 500</servlet-name>
+        <jsp-file>/500.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dasboard</servlet-name>
         <url-pattern>/dashboard</url-pattern>
@@ -52,6 +56,10 @@
     <servlet-mapping>
         <servlet-name>Editar Accion</servlet-name>
         <url-pattern>/accion_edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Error 500</servlet-name>
+        <url-pattern>/500</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

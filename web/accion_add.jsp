@@ -170,7 +170,7 @@
 
                             <div class="mb-3 form-check form-switch">
                                 <label for="extraplan_accion" class="form-check-label">Extraplan</label>
-                                <input type="checkbox" class="form-check-input" name="extrapla_accion" name="masiva_accion_accion">
+                                <input type="checkbox" class="form-check-input" name="extraplan_accion">
                             </div>
                             <div class="mb-3">
                                 <label for="creditos_accion" class="form-label">Créditos</label>                                

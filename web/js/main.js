@@ -11,12 +11,26 @@ const dataTableOptions = {
             extend: 'collection',
             text: 'Exportar',
             buttons: [
-                'copy',
-                'excel',
-                'csv',                
-                'print'
+                {
+      extend: 'excelHtml5',
+      text: '<i class="fas fa-file-excel"> Excel</i> ',
+      titleAttr: 'Exportar a Excel',
+      className: 'btn btn-success',
+    },
+    {
+      extend: 'csv',
+      text: '<i class="fas fa-file-csv"> CSV</i> ',
+      titleAttr: 'Exportar a CSV',
+      className: 'btn btn-danger',
+    },
+    {
+      extend: 'print',
+      text: '<i class="fa fa-print"> Imprimir</i> ',
+      titleAttr: 'Imprimir',
+      className: 'btn btn-info',
+    },
             ]
-        }
+        },
     ],
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",
@@ -56,3 +70,15 @@ const initDataTable = async () => {
 window.addEventListener("load", async () => {
     await initDataTable();
 });
+
+
+function orderModal(order_id){
+    $('#orderModal').modal({
+        keyboard: true,
+        backdrop: "static"
+    });
+};
+
+
+orderModal();
+
