@@ -32,7 +32,7 @@
 <html lang="es">
     <head>
         <%@ include file="header.jspf" %>
-        <title>GesCap</title>
+        <title>GesCap Administración</title>
     </head>
     <body id="page-top">
         <%@ include file="login.jspf" %>       
@@ -40,7 +40,50 @@
         <jsp:include page="navbar.jsp">
             <jsp:param name="user" value="<%=user%>" />  
         </jsp:include>
-        <main> </main>
-            <%@ include file="footer.jspf" %>
+
+
+        <!-- Busco el usuario en la base de datos para saber si puede acceer a esta pagina -->
+        <%
+            //Busco en la base de datos el usuario.                  
+            Usuario userapp = new UsuarioBean().list(user);
+            if (!userapp.getRol().equals("3")) {
+                response.sendRedirect("./dashboard");
+            }
+        %>
+
+
+
+        <main id="main" class="main">
+
+
+            <div class="container my-4">
+                <div class="row">
+                    <div class="col-4">
+                        <h2>Administración</h2>
+                        <form name="form_accion" action="Controlador">
+                            <div class="mb-3">
+                                <label for="ldap_ip" class="form-label">Servidor LDAP</label>
+                                <input type="text" class="form-control" id="ip_ldap"
+                                       placeholder="IP LDAP" name="ldap" required="required">
+                            </div>
+                            <div class="mb-3">
+                                <label for="ldap_user" class="form-label">Usuario</label>
+                                <input type="text" class="form-control" id="user_ldap"
+                                        name="user_ldap" required="required">
+                            </div>
+                            <div class="mb-3">
+                                <label for="ldap_pass" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="pass_ldap"
+                                       name="pass_ldap" required="required">
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-success" type="submit" name="accion" value="update_ldap">Actualizar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        </main>
+        <%@ include file="footer.jspf" %>
     </body>
 </html>

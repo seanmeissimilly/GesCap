@@ -42,14 +42,23 @@
         <jsp:include page="navbar.jsp">
             <jsp:param name="user" value="<%=user%>" />  
         </jsp:include> 
-
+<!-- Busco el usuario en la base de datos para saber si puede acceer a esta pagina -->
+                <%
+                    //Busco en la base de datos el usuario.                  
+                    Usuario userapp = new UsuarioBean().list(user);
+                    
+                    //Reviso si solo tiene rol de consultor.
+                    if (userapp.getRol().equals("1")) {
+                            response.sendRedirect("./dashboard");
+                        }
+                %>
 
         <main id="main" class="main">
             <div class="container my-4">
                 <div class="row">
                     <div class="col-4">
                         <h2>Acciones</h2>
-                        <form name="form_accion" action="Controlador" onsubmit='return validar()'>
+                        <form name="form_accion" action="Controlador">
                             <div class="mb-3">
                                 <label for="nombre_accion" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="nombre_accion"

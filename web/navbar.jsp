@@ -39,7 +39,7 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="./404">
+                        <a class="dropdown-item d-flex align-items-center" href="help.jsp">
                             <i class="bi bi-question-circle"></i>
                             <span>¿Necesitas Ayuda?</span>
                         </a>
@@ -107,7 +107,7 @@
             </ul>
         </li><!-- End Acciones Nav -->
 
-        <li class="nav-item" <%=consultor%>>
+        <li class="nav-item" <%=consultor%><%=editor%>>
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="">
                 <i class="bi bi-journal-text"></i><span>Formularios</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
@@ -170,7 +170,7 @@
         </li><!-- End Components Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="./404">
+            <a class="nav-link collapsed" href="help.jsp">
                 <i class="bi bi-question-circle"></i>
                 <span>¿Necesitas Ayuda?</span>
             </a>

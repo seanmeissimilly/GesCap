@@ -23,6 +23,18 @@
         <jsp:include page="navbar.jsp">
             <jsp:param name="user" value="<%=user%>" />  
         </jsp:include>
+        
+        
+        <!-- Busco el usuario en la base de datos para saber si puede acceer a esta pagina -->
+                <%
+                    //Busco en la base de datos el usuario.                  
+                    Usuario userapp = new UsuarioBean().list(user);
+                    
+                    //reviso si el usuario tiene un rol diferente de admin.
+                    if (!userapp.getRol().equals("3")) {
+                            response.sendRedirect("./dashboard");
+                        }
+                %>
 
         <main id="main" class="main">
             <div class="container my-4">

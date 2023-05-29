@@ -4,7 +4,10 @@
  */
 package ModeloBean;
 
+
 import Config.Conexion;
+import Modelo.Ldap;
+import ModeloBean.LdapBean;
 import Modelo.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,11 +40,15 @@ public class LoginBean {
     Properties env;
 
     public LoginBean() {
+        
+        
+        Ldap ldap = new LdapBean().listar().get(0);
+       
 
         this.env = new Properties();
-        this.url = "das02.cimex.com.cu";
-        String user = "adminsitios@cimex.com.cu";
-        String password = "Narutob8o9h";
+        this.url = ldap.getIp_ldap();
+        String user = ldap.getUser_ldap();
+        String password = ldap.getPass_ldap();
 
         env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
         env.put(Context.PROVIDER_URL, "ldap://" + url);

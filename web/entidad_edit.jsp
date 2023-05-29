@@ -21,14 +21,16 @@
     </head>
     <body id="page-top">
         <%@ include file="login.jspf" %> 
-        <%            //recibo el parametro para saber cual pagina mostrar
-            int spageid;
-            if (request.getParameter("page") == null) {
-                spageid = 1;
-            } else {
-                spageid = Integer.parseInt(request.getParameter("page"));
-            }
-        %>
+       <!-- Busco el usuario en la base de datos para saber si puede acceer a esta pagina -->
+                <%
+                    //Busco en la base de datos el usuario.                  
+                    Usuario userapp = new UsuarioBean().list(user);
+                    
+                    //reviso si el usuario tiene un rol diferente de admin.
+                    if (!userapp.getRol().equals("3")) {
+                            response.sendRedirect("./dashboard");
+                        }
+                %>
 
         <jsp:include page="navbar.jsp">
             <jsp:param name="user" value="<%=user%>" />  
@@ -59,9 +61,7 @@
 
                             <div class="mb-3">                               
                                 <input type="hidden" name="txtnumero_entidad" value="<%= p.getid_entidad()%>">
-                            </div>
-
-                            <input type="hidden" name="page" value=<%=spageid%>>
+                            </div>                          
 
                             <div class="d-grid gap-2">
                                 <button class="btn btn-success" type="submit" name="accion" value="edit_entidad">Actualizar</button>
