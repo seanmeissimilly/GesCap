@@ -1,5 +1,8 @@
 <%-- Document : dashboard Created on : 16 mar 2023, 10:56:33 Author : davidam
 --%>
+<%@page import="org.javatuples.Pair"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="ModeloBean.AreaBean"%>
 <%@page import="ModeloBean.UsuarioBean" %>
 <%@page import="Modelo.Usuario"%> 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
@@ -11,7 +14,7 @@
     </head>
 
     <body>   
-        
+
         <%@ include file="login.jspf" %>        
         <jsp:include page="navbar.jsp">
             <jsp:param name="user" value="<%=user%>" />  
@@ -69,53 +72,53 @@
 
                                         <script>
                                             document.addEventListener("DOMContentLoaded", () => {
-                                                new ApexCharts(
-                                                        document.querySelector("#reportsChart"),
-                                                        {
-                                                            series: [
-                                                                {
-                                                                    name: "CCC",
-                                                                    data: [31, 40, 28, 51, 42, 82, 56],
-                                                                },
-                                                                {
-                                                                    name: "Matanzas",
-                                                                    data: [11, 32, 45, 32, 34, 52, 41],
-                                                                },
-                                                                {
-                                                                    name: "Holguin",
-                                                                    data: [15, 11, 32, 18, 9, 24, 11],
-                                                                },
-                                                            ],
-                                                            chart: {
-                                                                height: 350,
-                                                                type: "area",
-                                                                toolbar: {
-                                                                    show: false,
-                                                                },
+                                            new ApexCharts(
+                                                    document.querySelector("#reportsChart"),
+                                            {
+                                            series: [
+                                            {
+                                            name: "CCC",
+                                                    data: [31, 40, 28, 51, 42, 82, 56],
+                                            },
+                                            {
+                                            name: "Matanzas",
+                                                    data: [11, 32, 45, 32, 34, 52, 41],
+                                            },
+                                            {
+                                            name: "Holguin",
+                                                    data: [15, 11, 32, 18, 9, 24, 11],
+                                            },
+                                            ],
+                                                    chart: {
+                                                    height: 350,
+                                                            type: "area",
+                                                            toolbar: {
+                                                            show: false,
                                                             },
-                                                            markers: {
-                                                                size: 4,
-                                                            },
-                                                            colors: ["#4154f1", "#2eca6a", "#ff771d"],
-                                                            fill: {
-                                                                type: "gradient",
-                                                                gradient: {
-                                                                    shadeIntensity: 1,
+                                                    },
+                                                    markers: {
+                                                    size: 4,
+                                                    },
+                                                    colors: ["#4154f1", "#2eca6a", "#ff771d"],
+                                                    fill: {
+                                                    type: "gradient",
+                                                            gradient: {
+                                                            shadeIntensity: 1,
                                                                     opacityFrom: 0.3,
                                                                     opacityTo: 0.4,
                                                                     stops: [0, 90, 100],
-                                                                },
                                                             },
-                                                            dataLabels: {
-                                                                enabled: false,
-                                                            },
-                                                            stroke: {
-                                                                curve: "smooth",
-                                                                width: 2,
-                                                            },
-                                                            xaxis: {
-                                                                type: "datetime",
-                                                                categories: [
+                                                    },
+                                                    dataLabels: {
+                                                    enabled: false,
+                                                    },
+                                                    stroke: {
+                                                    curve: "smooth",
+                                                            width: 2,
+                                                    },
+                                                    xaxis: {
+                                                    type: "datetime",
+                                                            categories: [
                                                                     "2018-09-19T00:00:00.000Z",
                                                                     "2018-09-19T01:30:00.000Z",
                                                                     "2021-09-19T02:30:00.000Z",
@@ -123,15 +126,15 @@
                                                                     "2022-09-19T04:30:00.000Z",
                                                                     "2022-09-19T05:30:00.000Z",
                                                                     "2023-09-19T06:30:00.000Z",
-                                                                ],
-                                                            },
-                                                            tooltip: {
-                                                                x: {
-                                                                    format: "dd/MM/yy HH:mm",
-                                                                },
-                                                            },
-                                                        }
-                                                ).render();
+                                                            ],
+                                                    },
+                                                    tooltip: {
+                                                    x: {
+                                                    format: "dd/MM/yy HH:mm",
+                                                    },
+                                                    },
+                                            }
+                                            ).render();
                                             });
                                         </script>
                                         <!-- End Line Chart -->
@@ -139,6 +142,64 @@
                                 </div>
                             </div>
                             <!-- End Reports -->
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Acciones por Áreas</h5>
+                                        <%
+                                            AreaBean rr = new AreaBean();
+                                            ArrayList<Pair<String, String>> tt = rr.contarXareas("2023-01-09", "2023-01-13");
+
+                                        %>
+                                        <!-- Doughnut Chart -->
+                                        <canvas id="doughnutChart" style="max-height: 400px;"></canvas>
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded", () => {
+                                            new Chart(document.querySelector('#doughnutChart'), {
+                                            type: 'doughnut',
+                                                    data: {
+                                                    labels: [
+                                            <%                                                //Recorro la lista hasta el penultimo valor.
+                                                for (int i = 0; i < tt.size() - 1; i++) {
+
+                                            %>
+                                                    '<%=tt.get(i).getValue0()%>',
+                                            <%                                                }
+                                            %>
+
+                                                    '<%=tt.get(tt.size() - 1).getValue0()%>'
+                                                    ],
+                                                            datasets: [{
+                                                            label: 'My First Dataset',
+                                                                    data: [
+                                            <%                                                //Recorro la lista hasta el penultimo valor.
+                                                for (int i = 0; i < tt.size() - 1; i++) {
+
+                                            %>
+                                            <%=tt.get(i).getValue1()%>,
+                                            <%                                                }
+                                            %>
+                                            <%=tt.get(tt.size() - 1).getValue1()%>
+
+                                                                    ],
+                                                                    backgroundColor: [
+                                                                            'rgb(255, 99, 132)',
+                                                                            'rgb(54, 162, 235)',
+                                                                            'rgb(255, 205, 86)'
+                                                                    ],
+                                                                    hoverOffset: 4
+                                                            }]
+                                                    }
+                                            });
+                                            }
+                                            );
+                                        </script>
+                                        <!-- End Doughnut CHart -->
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body pb-0 col-4">
@@ -185,6 +246,8 @@
                 </div>
                 <!-- End Left side columns -->
             </section>
+
+
         </main>
 
         <%@ include file="footer.jspf" %>
