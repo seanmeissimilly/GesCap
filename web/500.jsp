@@ -24,7 +24,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-4">
                             <div class="text-center mt-4">
-                                <img class="mb-4 img-error" src="img/500-Internal-Error-Page.png" alt="" />                                
+                                <img class="mb-4 img-error" src="img/500-Internal-Error-Page.jpg" alt="" />                              
                                 <p class="lead">Algo salió mal.</p>
                                 <a href="./login.jsp">
                                     <i class="fas fa-arrow-left me-1"></i>

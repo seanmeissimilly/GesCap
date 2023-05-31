@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import org.javatuples.Pair;
 
 /**
  *
@@ -40,6 +41,25 @@ public class AreaBean {
                 org.setNumero(rs.getString("id_areaaccion"));
                 org.setNombre(rs.getString("descripcion"));
                 list.add(org);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public ArrayList<Pair<String, String>> contarXareas(String fechaInicial, String fechaFinal) {
+        //Creo la lista donde voy a devolver los resultados.
+        ArrayList<Pair<String, String>> list = new ArrayList<>();
+
+        //Llamo al procedimiento almacenado pasando los argumentos.
+        String sql = "call contarxareas('" + fechaInicial + "','" + fechaFinal + "')";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Pair<String, String> tupla = new Pair<String, String>(rs.getString("areas"), rs.getString("cantidad"));
+                list.add(tupla);
             }
         } catch (Exception e) {
         }

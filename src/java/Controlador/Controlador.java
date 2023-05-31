@@ -82,20 +82,6 @@ public class Controlador extends HttpServlet {
         String action = request.getParameter("accion");
 
         switch (action) {
-            case "json": {
-
-                request.setAttribute("page", request.getParameter("page"));
-
-                JSONObject obj = new JSONObject();                
-                obj.put("name", "sonoo");
-                obj.put("age", new Integer(27));
-                obj.put("salary", new Double(600000));
-                System.out.print(obj);
-
-                break;
-
-            }
-
             case "entidad_page": {
 
                 request.setAttribute("page", request.getParameter("page"));
