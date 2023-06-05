@@ -14,6 +14,8 @@ import ModeloBean.EntidadBean;
 import ModeloBean.OrganizacionBean;
 import ModeloBean.PersonaBean;
 import ModeloBean.UsuarioBean;
+import Reporte.Rerpt_list;
+import Reporte.Rerpt_plan;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -42,7 +44,8 @@ public class Controlador extends HttpServlet {
     String accion_edit = "./accion_edit";
     String urol_edit = "rol_edit.jsp";
     String urol_list = "rol_list.jsp";
-    String reporte_accion_1 = "reporte_accion_1";
+    String reporte_accion_1 = "reporte_accion_1.jsp";
+    String reporte_accion_2 = "reporte_accion_2.jsp";
 
     Persona persona = new Persona();
     Usuario user = new Usuario();
@@ -85,8 +88,31 @@ public class Controlador extends HttpServlet {
         switch (action) {
             case "send_reporteaccionp": {
 
-                request.setAttribute("page", request.getParameter("page"));
+                /*recibo los parametros del reporte*/
+                String fecha_inicial = request.getParameter("fechainicial_accion");
+                String fecha_final = request.getParameter("fechafinal_accion");
+                String entidadejecutora = request.getParameter("entidad_accion");
+                String entidad = request.getParameter("entidad_p");
+                String path = request.getParameter("path");
+
+                Rerpt_plan report = new Rerpt_plan(fecha_inicial, fecha_final, entidadejecutora, entidad, path);
+                report.showreport();
                 acceso = reporte_accion_1;
+                break;
+
+            }
+            case "send_reporteaccionlist": {
+
+                /*recibo los parametros del reporte*/
+                String fecha_inicial = request.getParameter("fechainicial_accion");
+                String fecha_final = request.getParameter("fechafinal_accion");
+                String entidadejecutora = request.getParameter("entidad_accion");
+                String entidad = request.getParameter("entidad_p");
+                String path = request.getParameter("path");
+
+                Rerpt_list report = new Rerpt_list(fecha_inicial, fecha_final, entidadejecutora, entidad, path);
+                report.showreport();
+                acceso = reporte_accion_2;
                 break;
 
             }

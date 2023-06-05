@@ -3,6 +3,8 @@
     Created on : Oct 5, 2022, 9:53:34 PM
     Author     : davidam
 --%>
+<%@page import="net.sf.jasperreports.view.JasperViewer.viewReport
+(...)"%>
 <%@page import="net.sf.jasperreports.engine.JasperPrint"%>
 <%@page import="net.sf.jasperreports.engine.JasperReport"%>
 <%@page import="net.sf.jasperreports.view.JasperViewer"%>
@@ -35,8 +37,10 @@
     parameters.put("ent", entidad.toString());
 
     /*Establecemos la ruta del reporte*/
-    JasperReport reporte = JasperCompileManager.compileReport(application.getRealPath("Reportes/accionp.jrxml"));
+    JasperReport reporte = JasperCompileManager.compileReport(application.getRealPath("Reportes/report_accion_list.jrxml"));
     JasperPrint mostareporte = JasperFillManager.fillReport(reporte, parameters, conexion);
-    JasperViewer.viewReport(mostareporte);
 
-    response.sendRedirect("reporte_accion_2.jsp");%>
+    JasperViewer.viewReport(mostareporte);
+    conexion.close();    
+    response.sendRedirect("reporte_accion_2.jsp");
+%>
