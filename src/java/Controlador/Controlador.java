@@ -42,6 +42,7 @@ public class Controlador extends HttpServlet {
     String accion_edit = "./accion_edit";
     String urol_edit = "rol_edit.jsp";
     String urol_list = "rol_list.jsp";
+    String reporte_accion_1 = "reporte_accion_1";
 
     Persona persona = new Persona();
     Usuario user = new Usuario();
@@ -82,6 +83,13 @@ public class Controlador extends HttpServlet {
         String action = request.getParameter("accion");
 
         switch (action) {
+            case "send_reporteaccionp": {
+
+                request.setAttribute("page", request.getParameter("page"));
+                acceso = reporte_accion_1;
+                break;
+
+            }
             case "entidad_page": {
 
                 request.setAttribute("page", request.getParameter("page"));

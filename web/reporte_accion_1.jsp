@@ -40,7 +40,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
                             <h2>Plan Detallado</h2>
-                            <form name="form_accion" action="report_accion_1.jsp">
+                            <form name="form_accion" action="Controlador">
                                 <div class="mb-3">
                                     <label for="fechainicial_accion" class="form-label">Fecha Inicial</label>
                                     <input type="date" class="form-control" id="fechainicial_accion"
