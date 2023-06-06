@@ -22,8 +22,7 @@
 
         <main id="main" class="main">
             <section class="section dashboard">
-                <div class="row">
-                    <!-- Left side columns -->
+                <div class="row">                   
                     <div class="col-lg-8">
                         <div class="row">
                             <div class="col-12">
@@ -44,7 +43,7 @@
 
 
                             <div class="card">
-                                
+
                                 <div class="card-body">
                                     <h5 class="card-title">
                                         Acciones por Entidades
@@ -90,7 +89,7 @@
                                                 markers: {
                                                 size: 4,
                                                 },
-                                                colors: ["#4154f1", "#2eca6a", "#ff771d","#f5bb0c","#ed647f"],
+                                                colors: ["#4154f1", "#2eca6a", "#ff771d", "#f5bb0c", "#ed647f"],
                                                 fill: {
                                                 type: "gradient",
                                                         gradient: {

@@ -10,14 +10,9 @@
     <head>
         <title>GesCap</title>
         <%@ include file="header.jspf" %>
-
     </head>
 
     <body>
-        <header>
-
-        </header>
-
         <main>
             <div class="container">
 
