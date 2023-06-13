@@ -6,7 +6,6 @@ package ModeloBean;
 
 import Config.Conexion;
 import Modelo.Area;
-import Modelo.Clasificacion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
