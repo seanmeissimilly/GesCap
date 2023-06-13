@@ -153,6 +153,11 @@
                         <i class="bi bi-circle"></i><span>Listar Acciones</span>
                     </a>
                 </li>
+                <li>
+                    <a href="reporte_accion_3.jsp">
+                        <i class="bi bi-circle"></i><span>Resultados Encuestas</span>
+                    </a>
+                </li>
             </ul>
         </li><!-- End Tables Nav -->        
 

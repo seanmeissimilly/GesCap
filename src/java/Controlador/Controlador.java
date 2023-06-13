@@ -486,6 +486,63 @@ public class Controlador extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
+        String acceso = "";
+        String action = request.getParameter("accion");
+
+        switch (action) {
+            case "add_accion": {
+
+                userdao = new UsuarioBean();
+                Usuario user = userdao.list(request.getParameter("user"));
+
+                //Reviso si el usuario solo tiene rol de consultor.
+                if (user.getRol().equals("1")) {
+                    acceso = accion_add;
+                    request.setAttribute("page", request.getParameter("page"));
+                    break;
+
+                } else {
+
+                    //creo una nueva accion.
+                    accion = new Accion();
+                    //Empiezo a asignarle los valores.
+                    accion.setNombre(request.getParameter("nombre_accion"));
+                    accion.setFecha_inicial(request.getParameter("fechainicial_accion"));
+                    accion.setFecha_final(request.getParameter("fechafinal_accion"));
+                    accion.setId_clasificacion(request.getParameter("clasificacion_accion"));
+                    accion.setId_formaorganizativa(request.getParameter("forganizativa_accion"));
+                    accion.setId_area(request.getParameter("area_accion"));
+                    accion.setId_entidadejecutora(request.getParameter("entidad_accion"));
+                    accion.setId_entidad(request.getParameter("entidad_p"));
+                    accion.setId_modalidad(request.getParameter("modalidad_accion"));
+                    accion.setExtraplan(request.getParameter("extraplan_accion") != null);
+
+                    //Reviso si el parametro de creditos esta vacio.
+                    if (request.getParameter("creditos_accion").equals("")) {
+                        accion.setCreditos("0");
+                    } else {
+                        accion.setCreditos(request.getParameter("creditos_accion"));
+                    }
+
+                    accion.setId_evaluacionfinal(request.getParameter("evaluacion_accion"));
+                    accion.setObservaciones(request.getParameter("observaciones_accion"));
+                    accion.setFicha(request.getParameter("descripcion_accion"));
+
+                    //Reviso si el usuario tiene rol de editor y si esta en su entidad.
+                    if (user.getRol().equals("2") && user.getEntidad().equals(accion.getId_entidad()) || user.getRol().equals("3")) {
+                        acciondao.add(accion);
+                        request.setAttribute("page", request.getParameter("page"));
+                        acceso = accion_add;
+                        break;
+
+                    }
+                    acceso = accion_add;
+                    break;
+                }
+
+            }
+        }
     }
 
     @Override

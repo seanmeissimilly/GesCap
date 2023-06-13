@@ -58,7 +58,7 @@
                 <div class="row">
                     <div class="col-4">
                         <h2>Acciones</h2>
-                        <form name="form_accion" action="Controlador">
+                        <form name="form_accion" action="Controlador" method="get">
                             <div class="mb-3">
                                 <label for="nombre_accion" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="nombre_accion"
