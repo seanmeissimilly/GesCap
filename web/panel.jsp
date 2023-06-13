@@ -206,7 +206,7 @@
                                 <%                                                }
                                 %>
 
-                                        '<%=tt.get(tt.size() - 1).getValue0()%>'
+                                        '<%=(tt.size() > 0) ? tt.get(tt.size() - 1).getValue0() : 0%>'
                                         ],
                                                 datasets: [{
                                                 label: 'Cantidad',
@@ -218,7 +218,7 @@
                                 <%=tt.get(i).getValue1()%>,
                                 <%                                                }
                                 %>
-                                <%=tt.get(tt.size() - 1).getValue1()%>
+                                <%=(tt.size() > 0) ? tt.get(tt.size() - 1).getValue1() : 0%>
 
                                                         ],
                                                         backgroundColor: [
