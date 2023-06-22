@@ -57,7 +57,7 @@
 
                 </ul><!-- End Profile Dropdown Items -->
             </li><!-- End Profile Nav -->
-           
+
         </ul>
     </nav>
 
@@ -102,8 +102,6 @@
                         <i class="bi bi-circle"></i><span>Listar</span>
                     </a>
                 </li>
-
-
             </ul>
         </li><!-- End Acciones Nav -->
 

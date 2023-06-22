@@ -41,7 +41,9 @@
         <jsp:include page="navbar.jsp">
             <jsp:param name="user" value="<%=user%>" />  
         </jsp:include>
-        <main> </main>
-            <%@ include file="footer.jspf" %>
+        <main> 
+
+        </main>
+        <%@ include file="footer.jspf" %>
     </body>
 </html>

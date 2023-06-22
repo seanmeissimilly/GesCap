@@ -42,16 +42,16 @@
         <jsp:include page="navbar.jsp">
             <jsp:param name="user" value="<%=user%>" />  
         </jsp:include> 
-<!-- Busco el usuario en la base de datos para saber si puede acceer a esta pagina -->
-                <%
-                    //Busco en la base de datos el usuario.                  
-                    Usuario userapp = new UsuarioBean().list(user);
-                    
-                    //Reviso si solo tiene rol de consultor.
-                    if (userapp.getRol().equals("1")) {
-                            response.sendRedirect("./dashboard");
-                        }
-                %>
+        <!-- Busco el usuario en la base de datos para saber si puede acceer a esta pagina -->
+        <%
+            //Busco en la base de datos el usuario.                  
+            Usuario userapp = new UsuarioBean().list(user);
+
+            //Reviso si solo tiene rol de consultor.
+            if (userapp.getRol().equals("1")) {
+                response.sendRedirect("./dashboard");
+            }
+        %>
 
         <main id="main" class="main">
             <div class="container my-4">
@@ -228,6 +228,7 @@
                                     <th>Entidad</th>
                                     <th>Entidad Ejecutora</th>                                    
                                     <th></th>
+                                    <th>Encuesta</th>
                                 </tr>
                             </thead>
                             <%
@@ -269,6 +270,10 @@
                                                 class="fa-solid fa-pencil"></i></a>
                                         <a class="btn btn-sm btn-danger" href="Controlador?accion=accion_delete&id=<%= accion.getId_accion()%>&user=<%=user%>" aria-label="Borrar"><i
                                                 class="fa-solid fa-trash-can"></i></a>
+
+                                    </td>
+                                    <td class="text-center" >                                       
+                                        <a class="btn btn-outline-secondary" href="Controlador?accion=accion_encuesta&id=<%= accion.getId_accion()%>&user=<%=user%>" aria-label="Encuesta">Reacción</a>
 
                                     </td>
 

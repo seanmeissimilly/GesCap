@@ -43,6 +43,18 @@
             <jsp:param name="user" value="<%=user%>" />  
         </jsp:include>
 
+
+        <!-- Busco el usuario en la base de datos para saber si puede acceer a esta pagina -->
+        <%
+            //Busco en la base de datos el usuario.                  
+            Usuario userapp = new UsuarioBean().list(user);
+
+            //reviso si el usuario tiene un rol diferente de admin o editor.
+            if (userapp.getRol().equals("1")) {
+                response.sendRedirect("./dashboard");
+            }
+        %>
+
         <main id="main" class="main">
             <div class="container my-4">
                 <div class="row">
