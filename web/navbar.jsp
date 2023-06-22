@@ -153,7 +153,7 @@
                 </li>
                 <li>
                     <a href="reporte_accion_3.jsp">
-                        <i class="bi bi-circle"></i><span>Resultados Encuestas</span>
+                        <i class="bi bi-circle"></i><span>Reporte Encuesta Reacción</span>
                     </a>
                 </li>
             </ul>
