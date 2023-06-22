@@ -62,17 +62,17 @@
 
             %>           
 
-            <form action="Controlador">
+            <form action="Controlador" method="get">
                 <div class="container text-end">
                     <div class="row"> 
                         <div class="col-4">
                             <div class="mb-2">
                                 <label>ID :</label>
                                 <input class="form-control-sm" type="text" name="number_accion"
-                                       value="<%= p.getId_accion()%>" id="number_accion" disabled><br>
+                                       value="<%= p.getId_accion()%>" id="number_accion" readonly><br>
                                 <label>Nombre :</label>
                                 <input class="form-control-sm" type="text" name="nombre_accion"
-                                       value="<%= p.getNombre()%>" id="nombre_accion" disabled><br>                               
+                                       value="<%= p.getNombre()%>" id="nombre_accion" readonly><br>                               
 
                             </div>                            
                         </div>
@@ -84,19 +84,19 @@
                             </div>
                             <div class="mb-1">  
                                 <label>Técnicos:</label>
-                                <input type="number" class="form-control-sm" id="num6" min="0" placeholder="Técnicos"><br>
+                                <input type="number" class="form-control-sm" id="num6" name="num6" min="0" placeholder="Técnicos"><br>
 
                                 <label>Servicios:</label>
-                                <input type="number" class="form-control-sm" id="num7" min="0" placeholder="Servicios"><br>
+                                <input type="number" class="form-control-sm" id="num7" name="num7" min="0" placeholder="Servicios"><br>
 
                                 <label>Operarios:</label>
-                                <input type="number" class="form-control-sm" id="num8" min="0" placeholder="Operarios"><br>
+                                <input type="number" class="form-control-sm" id="num8" name="num8" min="0" placeholder="Operarios"><br>
 
                                 <label>Administrativos:</label>
-                                <input type="number" class="form-control-sm" id="num9" min="0" placeholder="Administrativos"><br>
+                                <input type="number" class="form-control-sm" id="num9" name="num9" min="0" placeholder="Administrativos"><br>
 
                                 <label>Total:</label>
-                                <input type="number" class="form-control-sm" id="num10" min="0" placeholder="Total" disabled><br>
+                                <input type="number" class="form-control-sm" id="num10" name="num10" min="0" placeholder="Total" readonly><br>
                             </div>
                         </div>
                         <div class="col">
@@ -105,25 +105,25 @@
                             </div>
                             <div class="mb-1">  
                                 <label>Directivos 1:</label>
-                                <input type="number" class="form-control-sm" id="num11" min="0" placeholder="Directivos 1"><br>
+                                <input type="number" class="form-control-sm" id="num11" name="num11" min="0" placeholder="Directivos 1"><br>
 
                                 <label>Directivos 2:</label>
-                                <input type="number" class="form-control-sm" id="num12" min="0" placeholder="Directivos 2"><br>
+                                <input type="number" class="form-control-sm" id="num12" name="num12" min="0" placeholder="Directivos 2"><br>
 
                                 <label>Directivos 3:</label>
-                                <input type="number" class="form-control-sm" id="num13" min="0" placeholder="Directivos 3"><br>
+                                <input type="number" class="form-control-sm" id="num13" name="num13" min="0" placeholder="Directivos 3"><br>
 
                                 <label>Ejecutivos 1:</label>
-                                <input type="number" class="form-control-sm" id="num14" min="0" placeholder="Ejecutivos 1"><br>
+                                <input type="number" class="form-control-sm" id="num14" name="num14" min="0" placeholder="Ejecutivos 1"><br>
 
                                 <label>Ejecutivos 2:</label>
-                                <input type="number" class="form-control-sm" id="num15" min="0" placeholder="Ejecutivos 2"><br>
+                                <input type="number" class="form-control-sm" id="num15" name="num15" min="0" placeholder="Ejecutivos 2"><br>
 
                                 <label>Ejecutivos 3:</label>
-                                <input type="number" class="form-control-sm" id="num16" min="0" placeholder="Ejecutivos 3"><br>
+                                <input type="number" class="form-control-sm" id="num16" name="num16" min="0" placeholder="Ejecutivos 3"><br>
 
                                 <label>Total :</label>
-                                <input type="number" class="form-control-sm" id="num17" min="0" placeholder="Total" disabled><br>
+                                <input type="number" class="form-control-sm" id="num17" name="num17" min="0" placeholder="Total" readonly><br>
                             </div>
                         </div>  
                         <div class="col">
@@ -132,15 +132,15 @@
                             </div>
                             <div class="mb-1">     
                                 <label>Excelente:</label>
-                                <input type="number" class="form-control-sm" id="num1" min="0" placeholder="Excelente"><br>
+                                <input type="number" class="form-control-sm" id="num1" name="num1" min="0" placeholder="Excelente"><br>
                                 <label>Bien:</label>
-                                <input type="number" class="form-control-sm" id="num2" min="0" placeholder="Bien"><br>
+                                <input type="number" class="form-control-sm" id="num2" name="num2" min="0" placeholder="Bien"><br>
                                 <label>Regular:</label>
-                                <input type="number" class="form-control-sm" id="num3" min="0" placeholder="Regular"><br>
+                                <input type="number" class="form-control-sm" id="num3" name="num3" min="0" placeholder="Regular"><br>
                                 <label>Mal:</label>
-                                <input type="number" class="form-control-sm" id="num4" min="0" placeholder="Mal"><br>
+                                <input type="number" class="form-control-sm" id="num4" name="num4" min="0" placeholder="Mal"><br>
                                 <label>No Evaluados:</label>
-                                <input type="number" class="form-control-sm" id="num5" min="0" placeholder="No Evaluados"><br>
+                                <input type="number" class="form-control-sm" id="num5" name="num5" min="0" placeholder="No Evaluados"><br>
                             </div>
                         </div>
 
@@ -152,19 +152,19 @@
                             </div>
                             <div class="mb-1">  
                                 <label>Técnicos:</label>
-                                <input type="number" class="form-control-sm" id="num27" min="0" placeholder="Técnicos"><br>
+                                <input type="number" class="form-control-sm" id="num27" name="num27" min="0" plnaceholder="Técnicos"><br>
 
                                 <label>Servicios:</label>
-                                <input type="number" class="form-control-sm" id="num28" min="0" placeholder="Servicios"><br>
+                                <input type="number" class="form-control-sm" id="num28" name="num28" min="0" placeholder="Servicios"><br>
 
                                 <label>Operarios:</label>
-                                <input type="number" class="form-control-sm" id="num29" min="0" placeholder="Operarios"><br>
+                                <input type="number" class="form-control-sm" id="num29" name="num29" min="0" placeholder="Operarios"><br>
 
                                 <label>Administrativos:</label>
-                                <input type="number" class="form-control-sm" id="num30" min="0" placeholder="Administrativos"><br>
+                                <input type="number" class="form-control-sm" id="num30" name="num30" min="0" placeholder="Administrativos"><br>
 
                                 <label>Total:</label>
-                                <input type="number" class="form-control-sm" id="num31" min="0" placeholder="Total"disabled><br>
+                                <input type="number" class="form-control-sm" id="num31" name="num31" min="0" placeholder="Total" readonly><br>
                             </div>
                         </div>
                         <div class="col-4">
@@ -173,25 +173,25 @@
                             </div>
                             <div class="mb-1">  
                                 <label>Directivos 1:</label>
-                                <input type="number" class="form-control-sm" id="num18" min="0" placeholder="Directivos 1"><br>
+                                <input type="number" class="form-control-sm" id="num18" name="num18" min="0" placeholder="Directivos 1"><br>
 
                                 <label>Directivos 2:</label>
-                                <input type="number" class="form-control-sm" id="num19" min="0" placeholder="Directivos 2"><br>
+                                <input type="number" class="form-control-sm" id="num19" name="num19" min="0" placeholder="Directivos 2"><br>
 
                                 <label>Directivos 3:</label>
-                                <input type="number" class="form-control-sm" id="num20" min="0" placeholder="Directivos 3"><br>
+                                <input type="number" class="form-control-sm" id="num20" name="num20" min="0" placeholder="Directivos 3"><br>
 
                                 <label>Ejecutivos 1:</label>
-                                <input type="number" class="form-control-sm" id="num21" min="0" placeholder="Ejecutivos 1"><br>
+                                <input type="number" class="form-control-sm" id="num21" name="num21" min="0" placeholder="Ejecutivos 1"><br>
 
                                 <label>Ejecutivos 2:</label>
-                                <input type="number" class="form-control-sm" id="num22" min="0" placeholder="Ejecutivos 2"><br>
+                                <input type="number" class="form-control-sm" id="num22" name="num22" min="0" placeholder="Ejecutivos 2"><br>
 
                                 <label>Ejecutivos 3:</label>
-                                <input type="number" class="form-control-sm" id="num23" min="0" placeholder="Ejecutivos 3"><br>
+                                <input type="number" class="form-control-sm" id="num23" name="num23" min="0" placeholder="Ejecutivos 3"><br>
 
                                 <label>Total :</label>
-                                <input type="number" class="form-control-sm" id="num24" min="0" placeholder="Total" disabled><br>
+                                <input type="number" class="form-control-sm" id="num24" name="num24" min="0" placeholder="Total" readonly><br>
                             </div>
                         </div>
                         <div class="col-4">
@@ -201,9 +201,9 @@
                             <div class="mb-1"> 
 
                                 <label>Total Plan:</label>
-                                <input type="number" class="form-control-sm" id="num25" min="0" placeholder="Total Plan" disabled><br>
+                                <input type="number" class="form-control-sm" id="num25" min="0" placeholder="Total Plan" readonly><br>
                                 <label>Total Real:</label>
-                                <input type="number" class="form-control-sm" id="num26" min="0" placeholder="Total Real" disabled><br>
+                                <input type="number" class="form-control-sm" id="num26" min="0" placeholder="Total Real" readonly><br>
                             </div>
                         </div>
                     </div>    
@@ -218,6 +218,8 @@
                         <div class="d-grid gap-2 mb-1">
                             <button class="btn btn-success" type="submit" name="accion" value="edit_enc">Guardar</button>
                         </div>
+                        
+                        <input type="submit" value="Enviar">
 
                     </div>
                 </div>

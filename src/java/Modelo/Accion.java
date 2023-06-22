@@ -30,9 +30,18 @@ public class Accion {
     boolean extraplan;
     String creditos;
     String id_evaluacionfinal;
+    String id_encuestareacc;
     String observaciones;
 
     public Accion() {
+    }
+
+    public String getId_encuestareacc() {
+        return id_encuestareacc;
+    }
+
+    public void setId_encuestareacc(String id_encuestareacc) {
+        this.id_encuestareacc = id_encuestareacc;
     }
 
     public String getId_entidad() {

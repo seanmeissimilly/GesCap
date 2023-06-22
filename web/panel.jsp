@@ -1,5 +1,9 @@
 <%-- Document : dashboard Created on : 16 mar 2023, 10:56:33 Author : davidam
 --%>
+<%@page import="ModeloBean.AccionBean"%>
+<%@page import="Modelo.Accion"%>
+<%@page import="ModeloBean.EncReaccionBean"%>
+<%@page import="Modelo.EncReaccion"%>
 <%@page import="org.javatuples.Pair"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloBean.AreaBean"%>
@@ -188,6 +192,11 @@
                             <%
                                 AreaBean rr = new AreaBean();
                                 ArrayList<Pair<String, String>> tt = rr.contarXareas("2019-01-01", "2025-01-01");
+                                
+                                AccionBean rrr = new AccionBean();
+                                Accion accion2 = rrr.list("50").get(0);
+                                accion2.setId_encuestareacc("9");
+                                rrr.edit2(accion2, accion2.getId_accion());
 
                             %>
                             <!-- Doughnut Chart -->

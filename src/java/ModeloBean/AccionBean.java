@@ -226,6 +226,30 @@ public class AccionBean {
     }
 
     public void encreaccion(Accion accion, EncReaccion reaccion) {
-        
+
+        //creo la semilla de la reaccion.
+        EncReaccionBean reaccionbean = new EncReaccionBean();
+
+        //la inserto en la base de datos.
+        if (reaccionbean.add(reaccion)) {
+
+            EncReaccion rea = reaccionbean.list(reaccion.getId_accion());
+
+            accion.setId_encuestareacc(Integer.toString(rea.getId_encuestareacc()));
+            edit2(accion, accion.getId_accion());
+        }
+
+    }
+
+    public boolean edit2(Accion accion, String id_accion) {
+        String sql = "UPDATE accioncapacitacion SET id_encuestareacc="+ accion.getId_encuestareacc() +" WHERE id_accion = " + id_accion;
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+        }
+        return false;
     }
 }

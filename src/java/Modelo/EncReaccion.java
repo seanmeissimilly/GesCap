@@ -10,6 +10,9 @@ package Modelo;
  */
 public class EncReaccion {
 
+    int id_accion;
+    int id_encuestareacc;
+
     //Tipos de trabajadores real y plan.
     int tra_real1;
     int tra_real2;
@@ -271,6 +274,22 @@ public class EncReaccion {
 
     public void setResultado5(int resultado5) {
         this.resultado5 = resultado5;
+    }
+
+    public int getId_accion() {
+        return id_accion;
+    }
+
+    public void setId_accion(int id_accion) {
+        this.id_accion = id_accion;
+    }
+
+    public int getId_encuestareacc() {
+        return id_encuestareacc;
+    }
+
+    public void setId_encuestareacc(int id_encuestareacc) {
+        this.id_encuestareacc = id_encuestareacc;
     }
 
 }

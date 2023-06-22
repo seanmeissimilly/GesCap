@@ -1,6 +1,5 @@
 package Controlador;
 
-import org.json.simple.JSONObject;
 import Modelo.Accion;
 import Modelo.Coordinador;
 import Modelo.Cursista;
@@ -17,8 +16,6 @@ import ModeloBean.PersonaBean;
 import ModeloBean.UsuarioBean;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -159,10 +156,45 @@ public class Controlador extends HttpServlet {
 
                         //Empiezo a asignarle los valores.
                         EncReaccion reaccion = new EncReaccion();
+                        
+                        //Ingreso el id de la accion.
+                        reaccion.setId_accion(Integer.parseInt(id));
+
+                        //Trabajadores Plan
                         reaccion.setTra_plan1(Integer.parseInt(request.getParameter("num27")));
                         reaccion.setTra_plan2(Integer.parseInt(request.getParameter("num28")));
                         reaccion.setTra_plan3(Integer.parseInt(request.getParameter("num29")));
-                        reaccion.setTra_plan4(Integer.parseInt(request.getParameter("num30")));                       
+                        reaccion.setTra_plan4(Integer.parseInt(request.getParameter("num30")));
+
+                        //Trabajadores Real
+                        reaccion.setTra_real1(Integer.parseInt(request.getParameter("num6")));
+                        reaccion.setTra_real2(Integer.parseInt(request.getParameter("num7")));
+                        reaccion.setTra_real3(Integer.parseInt(request.getParameter("num8")));
+                        reaccion.setTra_real4(Integer.parseInt(request.getParameter("num9")));
+
+                        //Cuadros Plan
+                        reaccion.setCua_dirplan1(Integer.parseInt(request.getParameter("num18")));
+                        reaccion.setCua_dirplan2(Integer.parseInt(request.getParameter("num19")));
+                        reaccion.setCua_dirplan3(Integer.parseInt(request.getParameter("num20")));
+                        reaccion.setCua_ejecplan1(Integer.parseInt(request.getParameter("num21")));
+                        reaccion.setCua_ejecplan2(Integer.parseInt(request.getParameter("num22")));
+                        reaccion.setCua_ejecplan3(Integer.parseInt(request.getParameter("num23")));
+
+                        //Cuadros Real
+                        reaccion.setCua_dirreal1(Integer.parseInt(request.getParameter("num11")));
+                        reaccion.setCua_dirreal2(Integer.parseInt(request.getParameter("num12")));
+                        reaccion.setCua_dirreal3(Integer.parseInt(request.getParameter("num13")));
+                        reaccion.setCua_ejecreal1(Integer.parseInt(request.getParameter("num14")));
+                        reaccion.setCua_ejecreal2(Integer.parseInt(request.getParameter("num15")));
+                        reaccion.setCua_ejecreal3(Integer.parseInt(request.getParameter("num16")));
+
+                        //Resultados Docentes.
+                        reaccion.setResultado1(Integer.parseInt(request.getParameter("num1")));
+                        reaccion.setResultado2(Integer.parseInt(request.getParameter("num2")));
+                        reaccion.setResultado3(Integer.parseInt(request.getParameter("num3")));
+                        reaccion.setResultado4(Integer.parseInt(request.getParameter("num4")));
+                        reaccion.setResultado5(Integer.parseInt(request.getParameter("num5")));
+
                         acciondao.encreaccion(ac, reaccion);
 
                     }
@@ -545,62 +577,6 @@ public class Controlador extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
 
-        String acceso = "";
-        String action = request.getParameter("accion");
-
-        switch (action) {
-            case "add_accion": {
-
-                userdao = new UsuarioBean();
-                Usuario user = userdao.list(request.getParameter("user"));
-
-                //Reviso si el usuario solo tiene rol de consultor.
-                if (user.getRol().equals("1")) {
-                    acceso = accion_add;
-                    request.setAttribute("page", request.getParameter("page"));
-                    break;
-
-                } else {
-
-                    //creo una nueva accion.
-                    accion = new Accion();
-                    //Empiezo a asignarle los valores.
-                    accion.setNombre(request.getParameter("nombre_accion"));
-                    accion.setFecha_inicial(request.getParameter("fechainicial_accion"));
-                    accion.setFecha_final(request.getParameter("fechafinal_accion"));
-                    accion.setId_clasificacion(request.getParameter("clasificacion_accion"));
-                    accion.setId_formaorganizativa(request.getParameter("forganizativa_accion"));
-                    accion.setId_area(request.getParameter("area_accion"));
-                    accion.setId_entidadejecutora(request.getParameter("entidad_accion"));
-                    accion.setId_entidad(request.getParameter("entidad_p"));
-                    accion.setId_modalidad(request.getParameter("modalidad_accion"));
-                    accion.setExtraplan(request.getParameter("extraplan_accion") != null);
-
-                    //Reviso si el parametro de creditos esta vacio.
-                    if (request.getParameter("creditos_accion").equals("")) {
-                        accion.setCreditos("0");
-                    } else {
-                        accion.setCreditos(request.getParameter("creditos_accion"));
-                    }
-
-                    accion.setId_evaluacionfinal(request.getParameter("evaluacion_accion"));
-                    accion.setObservaciones(request.getParameter("observaciones_accion"));
-                    accion.setFicha(request.getParameter("descripcion_accion"));
-
-                    //Reviso si el usuario tiene rol de editor y si esta en su entidad.
-                    if (user.getRol().equals("2") && user.getEntidad().equals(accion.getId_entidad()) || user.getRol().equals("3")) {
-                        acciondao.add(accion);
-                        request.setAttribute("page", request.getParameter("page"));
-                        acceso = accion_add;
-                        break;
-
-                    }
-                    acceso = accion_add;
-                    break;
-                }
-
-            }
-        }
     }
 
     @Override
