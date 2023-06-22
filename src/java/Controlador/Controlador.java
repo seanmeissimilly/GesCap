@@ -39,6 +39,7 @@ public class Controlador extends HttpServlet {
     String accion_add = "./accion_add";
     String accion_edit = "./accion_edit";
     String accion_enc = "accion_enc.jsp";
+    String accion_enct = "accion_enct.jsp";
     String urol_edit = "rol_edit.jsp";
     String urol_list = "rol_list.jsp";
     String reporte_accion_1 = "reporte_accion_1.jsp";
@@ -345,6 +346,32 @@ public class Controlador extends HttpServlet {
                         request.setAttribute("id", id);
                         request.setAttribute("user", user.getUsername());
                         acceso = accion_enc;
+                        break;
+                    }
+                }
+                acceso = accion_enc;
+                break;
+
+            }
+            case "accion_encuestat": {
+
+                userdao = new UsuarioBean();
+                user = userdao.list(request.getParameter("user"));
+                if (!user.getRol().equals("1")) {
+
+                    //Recibo el parametro del id de la accion.
+                    String id = request.getParameter("id");
+
+                    //Busco esa accion en la base de datos.
+                    acciondao = new AccionBean();
+                    Accion ac = acciondao.list(id).get(0);
+
+                    //Reviso si el usuario que quiere editar la accion es de la misma entidad que la accion.
+                    if (ac.getEntidad().equals(user.getEntidad()) || user.getRol().equals("3")) {
+
+                        request.setAttribute("id", id);
+                        request.setAttribute("user", user.getUsername());
+                        acceso = accion_enct;
                         break;
                     }
                 }

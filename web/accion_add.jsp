@@ -273,7 +273,8 @@
 
                                     </td>
                                     <td class="text-center" >                                       
-                                        <a class="btn btn-outline-secondary" href="Controlador?accion=accion_encuesta&id=<%= accion.getId_accion()%>&user=<%=user%>" aria-label="Encuesta">Reacción</a>
+                                        <a class="btn btn-outline-secondary" href="Controlador?accion=accion_encuesta&id=<%= accion.getId_accion()%>&user=<%=user%>" aria-label="Encuesta">R</a>
+                                        <a class="btn btn-outline-secondary" href="Controlador?accion=accion_encuestat&id=<%= accion.getId_accion()%>&user=<%=user%>" aria-label="Encuesta">T</a>
 
                                     </td>
 

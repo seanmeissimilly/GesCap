@@ -192,11 +192,7 @@
                             <%
                                 AreaBean rr = new AreaBean();
                                 ArrayList<Pair<String, String>> tt = rr.contarXareas("2019-01-01", "2025-01-01");
-                                
-                                AccionBean rrr = new AccionBean();
-                                Accion accion2 = rrr.list("50").get(0);
-                                accion2.setId_encuestareacc("9");
-                                rrr.edit2(accion2, accion2.getId_accion());
+                               
 
                             %>
                             <!-- Doughnut Chart -->

@@ -42,7 +42,7 @@ public class AccionBean {
 
     public List listar() {
         ArrayList<Accion> list = new ArrayList<>();
-        String sql = "SELECT accioncapacitacion.id_accion as id_accion,entidad.descripcion AS id_entidad, accioncapacitacion.creditos as creditos, accioncapacitacion.observaciones as observaciones, accioncapacitacion.planificada as planificada, accioncapacitacion.nombre as nombre, accioncapacitacion.fechainicio as fechainicio, accioncapacitacion.fechafinal as fechafinal, clasificacionaccion.descripcion as id_clafcaccion, formaorganizativa.descripcion as id_formorg, areaaccion.descripcion as id_areaaccion, entidadejecutora.descripcion as id_entejecutora, evalfinal.descripcion as id_evalfinal, accioncapacitacion.ficha as ficha, modalidadaccion.descripcion as id_modaccion FROM accioncapacitacion, entidad, formaorganizativa, clasificacionaccion, areaaccion, entidadejecutora, evalfinal, modalidadaccion WHERE clasificacionaccion.id_clafcaccion=accioncapacitacion.id_clafcaccion AND formaorganizativa.id_formorg=accioncapacitacion.id_formorg AND areaaccion.id_areaaccion=accioncapacitacion.id_areaaccion AND entidadejecutora.id_entejecutora=accioncapacitacion.id_entejecutora AND evalfinal.id_evalfinal=accioncapacitacion.id_evalfinal AND accioncapacitacion.id_modaccion=modalidadaccion.id_modaccion AND entidad.id_entidad = accioncapacitacion.id_entidad ORDER BY accioncapacitacion.id_accion DESC";
+        String sql = "SELECT accioncapacitacion.id_accion as id_accion,entidad.descripcion AS id_entidad,accioncapacitacion.id_encuestareacc AS id_encuestareacc, accioncapacitacion.creditos as creditos, accioncapacitacion.observaciones as observaciones, accioncapacitacion.planificada as planificada, accioncapacitacion.nombre as nombre, accioncapacitacion.fechainicio as fechainicio, accioncapacitacion.fechafinal as fechafinal, clasificacionaccion.descripcion as id_clafcaccion, formaorganizativa.descripcion as id_formorg, areaaccion.descripcion as id_areaaccion, entidadejecutora.descripcion as id_entejecutora, evalfinal.descripcion as id_evalfinal, accioncapacitacion.ficha as ficha, modalidadaccion.descripcion as id_modaccion FROM accioncapacitacion, entidad, formaorganizativa, clasificacionaccion, areaaccion, entidadejecutora, evalfinal, modalidadaccion WHERE clasificacionaccion.id_clafcaccion=accioncapacitacion.id_clafcaccion AND formaorganizativa.id_formorg=accioncapacitacion.id_formorg AND areaaccion.id_areaaccion=accioncapacitacion.id_areaaccion AND entidadejecutora.id_entejecutora=accioncapacitacion.id_entejecutora AND evalfinal.id_evalfinal=accioncapacitacion.id_evalfinal AND accioncapacitacion.id_modaccion=modalidadaccion.id_modaccion AND entidad.id_entidad = accioncapacitacion.id_entidad ORDER BY accioncapacitacion.id_accion DESC";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -64,6 +64,7 @@ public class AccionBean {
                 accion.setId_entidadejecutora(rs.getString("id_entejecutora"));
                 accion.setId_entidad(rs.getString("id_entidad"));
                 accion.setId_modalidad(rs.getString("id_modaccion"));
+                accion.setId_encuestareacc(rs.getString("id_encuestareacc"));
                 list.add(accion);
             }
         } catch (Exception e) {
@@ -100,6 +101,7 @@ public class AccionBean {
                 + "	entidad.descripcion AS id_entidad,\n"
                 + "	evalfinal.descripcion AS id_evalfinal,\n"
                 + "	accioncapacitacion.id_entidad AS entidad,\n"
+                + "	accioncapacitacion.id_encuestareacc AS id_encuestareacc,\n"
                 + "	accioncapacitacion.ficha AS ficha \n"
                 + "FROM\n"
                 + "	accioncapacitacion,\n"
@@ -141,6 +143,7 @@ public class AccionBean {
                 accion.setObservaciones(rs.getString("observaciones"));
                 accion.setFicha(rs.getString("ficha"));
                 accion.setEntidad(rs.getString("entidad"));
+                accion.setId_encuestareacc(rs.getString("id_encuestareacc"));
                 list.add(accion);
             }
         } catch (Exception e) {
@@ -175,6 +178,7 @@ public class AccionBean {
                 + "	entidadejecutora.descripcion AS id_entejecutora,\n"
                 + "	evalfinal.descripcion AS id_evalfinal,\n"
                 + "	accioncapacitacion.ficha AS ficha,\n"
+                + "	accioncapacitacion.id_encuestareacc AS id_encuestareacc,\n"
                 + "	modalidadaccion.descripcion AS id_modaccion \n"
                 + "FROM\n"
                 + "	accioncapacitacion,\n"
@@ -218,6 +222,7 @@ public class AccionBean {
                 accion.setId_area(rs.getString("id_areaaccion"));
                 accion.setId_entidadejecutora(rs.getString("id_entejecutora"));
                 accion.setId_modalidad(rs.getString("id_modaccion"));
+                accion.setId_encuestareacc(rs.getString("id_encuestareacc"));
                 list.add(accion);
             }
         } catch (Exception e) {
@@ -230,19 +235,27 @@ public class AccionBean {
         //creo la semilla de la reaccion.
         EncReaccionBean reaccionbean = new EncReaccionBean();
 
-        //la inserto en la base de datos.
-        if (reaccionbean.add(reaccion)) {
+        //Reviso si tengo que adiccionar la reaccion o solo actualizar.
+        if (accion.getId_encuestareacc() != null) {
 
-            EncReaccion rea = reaccionbean.list(reaccion.getId_accion());
+            reaccionbean.update(reaccion);
 
-            accion.setId_encuestareacc(Integer.toString(rea.getId_encuestareacc()));
-            edit2(accion, accion.getId_accion());
+        } else {
+
+            //la inserto en la base de datos.
+            if (reaccionbean.add(reaccion)) {
+
+                EncReaccion rea = reaccionbean.list(reaccion.getId_accion());
+
+                accion.setId_encuestareacc(Integer.toString(rea.getId_encuestareacc()));
+                edit2(accion, accion.getId_accion());
+            }
         }
 
     }
 
     public boolean edit2(Accion accion, String id_accion) {
-        String sql = "UPDATE accioncapacitacion SET id_encuestareacc="+ accion.getId_encuestareacc() +" WHERE id_accion = " + id_accion;
+        String sql = "UPDATE accioncapacitacion SET id_encuestareacc=" + accion.getId_encuestareacc() + " WHERE id_accion = " + id_accion;
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
