@@ -6,6 +6,7 @@ package ModeloBean;
 
 import Modelo.Accion;
 import Config.Conexion;
+import Modelo.EncReaccion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -222,5 +223,9 @@ public class AccionBean {
         } catch (Exception e) {
         }
         return list;
+    }
+
+    public void encreaccion(Accion accion, EncReaccion reaccion) {
+        
     }
 }

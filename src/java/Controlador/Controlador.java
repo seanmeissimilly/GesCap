@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 import Modelo.Accion;
 import Modelo.Coordinador;
 import Modelo.Cursista;
+import Modelo.EncReaccion;
 import Modelo.Entidad;
 import Modelo.Organizacion;
 import Modelo.Persona;
@@ -157,13 +158,16 @@ public class Controlador extends HttpServlet {
                     if (ac.getEntidad().equals(user.getEntidad()) || user.getRol().equals("3")) {
 
                         //Empiezo a asignarle los valores.
-                        accion.setNombre(request.getParameter("nombre_accion"));                      
-                        accion.setObservaciones(request.getParameter("observaciones_accion"));
-                        acciondao.edit(accion, id);
+                        EncReaccion reaccion = new EncReaccion();
+                        reaccion.setTra_plan1(Integer.parseInt(request.getParameter("num27")));
+                        reaccion.setTra_plan2(Integer.parseInt(request.getParameter("num28")));
+                        reaccion.setTra_plan3(Integer.parseInt(request.getParameter("num29")));
+                        reaccion.setTra_plan4(Integer.parseInt(request.getParameter("num30")));                       
+                        acciondao.encreaccion(ac, reaccion);
 
                     }
                 }
-                
+
                 acceso = accion_add;
                 break;
 
@@ -209,7 +213,7 @@ public class Controlador extends HttpServlet {
 
                     }
                 }
-             
+
                 acceso = accion_add;
                 break;
 
