@@ -10,6 +10,7 @@ import Modelo.Persona;
 import Modelo.Profesor;
 import Modelo.Usuario;
 import ModeloBean.AccionBean;
+import ModeloBean.AreaBean;
 import ModeloBean.EntidadBean;
 import ModeloBean.OrganizacionBean;
 import ModeloBean.PersonaBean;
@@ -55,6 +56,7 @@ public class Controlador extends HttpServlet {
     Accion accion = new Accion();
 
     PersonaBean dao = new PersonaBean();
+    AreaBean areadao = new AreaBean();
     UsuarioBean userdao = new UsuarioBean();
     OrganizacionBean orgdao = new OrganizacionBean();
     EntidadBean entdao = new EntidadBean();
@@ -85,27 +87,6 @@ public class Controlador extends HttpServlet {
 
         switch (action) {
 
-            case "entidad_page": {
-
-                request.setAttribute("page", request.getParameter("page"));
-                acceso = entidad_list;
-                break;
-
-            }
-            case "rol_page": {
-
-                request.setAttribute("page", request.getParameter("page"));
-                acceso = urol_list;
-                break;
-
-            }
-            case "accion_page": {
-
-                request.setAttribute("page", request.getParameter("page"));
-                acceso = accion_add;
-                break;
-
-            }
             case "persona_list": {
 
                 acceso = persona_list;
@@ -157,7 +138,7 @@ public class Controlador extends HttpServlet {
 
                         //Empiezo a asignarle los valores.
                         EncReaccion reaccion = new EncReaccion();
-                        
+
                         //Ingreso el id de la accion.
                         reaccion.setId_accion(Integer.parseInt(id));
 

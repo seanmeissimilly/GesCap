@@ -12,9 +12,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <html lang="es">
+
     <head>
         <%@ include file="header.jspf" %>
         <title>GesCap Tablero</title>
+        <script src="js/Chart.js v2.9.4.js" type="text/javascript"></script>
     </head>
 
     <body>   
@@ -51,87 +53,84 @@
                                 <div class="card-body">
                                     <h5 class="card-title">
                                         Acciones por Entidades
+
+
                                     </h5>
+                                   
 
-                                    <!-- Line Chart -->
-                                    <div id="reportsChart"></div>
+                                    <%
+                                        AreaBean rr = new AreaBean();
+                                        ArrayList<Pair<String, String>> cantxentidades = rr.contarXentidades("2019-01-01", "2025-01-01");
+                                    %>
 
+                                    <canvas id="grafico"></canvas>
                                     <script>
-                                        document.addEventListener("DOMContentLoaded", () => {
-                                        new ApexCharts(
-                                                document.querySelector("#reportsChart"),
-                                        {
-                                        series: [
-                                        {
-                                        name: "CCC",
-                                                data: [31, 40, 28, 51, 42, 82, 56],
-                                        },
-                                        {
-                                        name: "Matanzas",
-                                                data: [11, 32, 78, 32, 34, 52, 41],
-                                        },
-                                        {
-                                        name: "Holguin",
-                                                data: [15, 1, 32, 18, 9, 20, 11],
-                                        },
-                                        {
-                                        name: "Tarará",
-                                                data: [15, 11, 32, 13, 67, 22, 32],
-                                        },
-                                        {
-                                        name: "Coral Negro",
-                                                data: [16, 11, 32, 18, 34, 29, 12],
-                                        },
+                                        // Obtener el contexto del canvas
+                                        var ctx = document.getElementById('grafico').getContext('2d');
+                                        // Crear el dataset de los datos
+                                        var data = {
+                                        labels: [
+                                        <%                                            for (int i = 0; i < cantxentidades.size(); i++) {
+
+                                        %>
+                                        "<%= cantxentidades.get(i).getValue0()%>",
+                                        <% } %>
                                         ],
-                                                chart: {
-                                                height: 350,
-                                                        type: "area",
-                                                        toolbar: {
-                                                        show: false,
-                                                        },
-                                                },
-                                                markers: {
-                                                size: 4,
-                                                },
-                                                colors: ["#4154f1", "#2eca6a", "#ff771d", "#f5bb0c", "#ed647f"],
-                                                fill: {
-                                                type: "gradient",
-                                                        gradient: {
-                                                        shadeIntensity: 1,
-                                                                opacityFrom: 0.3,
-                                                                opacityTo: 0.4,
-                                                                stops: [0, 90, 100],
-                                                        },
-                                                },
-                                                dataLabels: {
-                                                enabled: false,
-                                                },
-                                                stroke: {
-                                                curve: "smooth",
-                                                        width: 2,
-                                                },
-                                                xaxis: {
-                                                type: "text",
-                                                        categories: [
-                                                                "enero",
-                                                                "febrero",
-                                                                "marzo",
-                                                                "abril",
-                                                                "mayo",
-                                                                "junio",
-                                                                "julio",
+                                                datasets: [{
+                                                label: "Cantidad",
+                                                        backgroundColor: 'rgba( 106, 218, 196 , 0.7)',
+                                                        borderColor: 'rgba( 106, 218, 196 ,1)',
+                                                        data: [
+                                        <%
+                                            for (int i = 0; i < cantxentidades.size(); i++) {%>
+                                        <%= cantxentidades.get(i).getValue1()%>,
+                                        <% } %>
                                                         ],
+                                                }]
+                                        };
+                                        // Crear las opciones del gráfico
+                                        var options = {
+                                        responsive: true,
+                                                title: {
+                                                display: true,
+                                                        text: ''
                                                 },
-                                                tooltip: {
-                                                x: {
-                                                format: "dd/MM/yy",
+                                                tooltips: {
+                                                mode: 'index',
+                                                        intersect: false
                                                 },
+                                                hover: {
+                                                mode: 'nearest',
+                                                        intersect: true
                                                 },
-                                        }
-                                        ).render();
+                                                scales: {
+                                                xAxes: [{
+                                                display: true,
+                                                        scaleLabel: {
+                                                        display: true,
+                                                                labelString: 'Entidades'
+                                                        }
+                                                }],
+                                                        yAxes: [{
+                                                        display: true,
+                                                                scaleLabel: {
+                                                                display: true,
+                                                                        labelString: 'Cantidad'
+                                                                },
+                                                                ticks: {
+                                                                beginAtZero: true
+                                                                }
+                                                        }]
+                                                }
+                                        };
+                                        // Crear el gráfico de barras
+                                        var chart = new Chart(ctx, {
+                                        type: 'bar',
+                                                data: data,
+                                                options: options
                                         });
                                     </script>
-                                    <!-- End Line Chart -->
+
                                 </div>
                             </div>
                         </div>
@@ -179,20 +178,19 @@
                         <div class="card-body">
                             <h5 class="card-title">Acciones por Áreas</h5>
 
-                            <div class="mb-3">
-                                <label for="fechainicial_accion" class="form-label">Fecha Inicial</label>
-                                <input type="date" class="form-control" id="fechainicial_accion"
+                            <div class="mb-1">
+                                <label for="fechainicial_accion" class="form-label-sm">Fecha Inicial</label>
+                                <input type="date" class="form-control-sm" id="fechainicial_accion"
                                        name="fechainicial_accion" value="2019-01-01">
                             </div>
-                            <div class="mb-3">
-                                <label for="fechafinal_accion" class="form-label">Fecha Final</label>
-                                <input type="date" class="form-control" id="fechafinal_accion"
+                            <div class="mb-1">
+                                <label for="fechafinal_accion" class="form-label-sm">Fecha Final</label>
+                                <input type="date" class="form-control-sm" id="fechafinal_accion"
                                        name="fechafinal_accion" value="2025-01-01">
                             </div>
-                            <%
-                                AreaBean rr = new AreaBean();
+                            <%                                rr = new AreaBean();
                                 ArrayList<Pair<String, String>> tt = rr.contarXareas("2019-01-01", "2025-01-01");
-                               
+
 
                             %>
                             <!-- Doughnut Chart -->

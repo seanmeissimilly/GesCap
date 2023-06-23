@@ -65,4 +65,22 @@ public class AreaBean {
         }
         return list;
     }
+    public ArrayList<Pair<String, String>> contarXentidades(String fechaInicial, String fechaFinal) {
+        //Creo la lista donde voy a devolver los resultados.
+        ArrayList<Pair<String, String>> list = new ArrayList<>();
+
+        //Llamo al procedimiento almacenado pasando los argumentos.
+        String sql = "call contarxentidades('" + fechaInicial + "','" + fechaFinal + "')";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Pair<String, String> tupla = new Pair<String, String>(rs.getString("nombre"), rs.getString("cantidad"));
+                list.add(tupla);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
 }
