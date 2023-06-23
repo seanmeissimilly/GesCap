@@ -1,169 +1,532 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_reaccion" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f8c288f6-126b-4a9c-906e-2043f56c534a">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="86169806-034e-4276-9bf6-9978807d048d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Tutorial"/>
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
-	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
-	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
-	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
-	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
-		<conditionalStyle>
-			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
-			<style mode="Opaque" backcolor="#F0EFEF"/>
-		</conditionalStyle>
-	</style>
-	<subDataset name="PieChartDataset" uuid="119a5999-4ce0-4207-be52-df3915daaa30"/>
+	<property name="ireport.y" value="251"/>
+	<parameter name="id_accion" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select * from accioncapacitacion]]>
+		<![CDATA[SELECT
+	encuestareaccion.*,
+	accioncapacitacion.id_accion,
+	accioncapacitacion.nombre,
+	SUM( encuestareaccion.tra_real1 + encuestareaccion.tra_real2 + encuestareaccion.tra_real3 + encuestareaccion.tra_real4 ) AS suma_trabreal,
+	SUM( encuestareaccion.tra_plan1 + encuestareaccion.tra_plan2 + encuestareaccion.tra_plan3 + encuestareaccion.tra_plan4 ) AS suma_trabplan,
+	SUM( encuestareaccion.cua_ejecreal1 + encuestareaccion.cua_ejecreal2 + encuestareaccion.cua_ejecreal3 ) AS suma_cuadroejecreal,
+	SUM( encuestareaccion.cua_ejecplan1 + encuestareaccion.cua_ejecplan2 + encuestareaccion.cua_ejecplan3 ) AS suma_cuadroejecplan,
+	SUM( encuestareaccion.cua_dirreal1 + encuestareaccion.cua_dirreal2 + encuestareaccion.cua_dirreal3 ) AS suma_cuadrodirereal,
+	SUM( encuestareaccion.cua_dirplan1 + encuestareaccion.cua_dirplan2 + encuestareaccion.cua_dirplan3 ) AS suma_cuadrodireplan,
+	SUM(
+		encuestareaccion.cua_ejecreal1 + encuestareaccion.cua_ejecreal2 + encuestareaccion.cua_ejecreal3 + encuestareaccion.cua_dirreal1 + encuestareaccion.cua_dirreal2 + encuestareaccion.cua_dirreal3 + encuestareaccion.tra_real1 + encuestareaccion.tra_real2 + encuestareaccion.tra_real3 + encuestareaccion.tra_real4
+	) AS total_real,
+	SUM(
+		encuestareaccion.tra_plan1 + encuestareaccion.tra_plan2 + encuestareaccion.tra_plan3 + encuestareaccion.tra_plan4 + encuestareaccion.cua_ejecplan1 + encuestareaccion.cua_ejecplan2 + encuestareaccion.cua_ejecplan3 + encuestareaccion.cua_dirplan1 + encuestareaccion.cua_dirplan2 + encuestareaccion.cua_dirplan3
+	) AS total_plan,
+	evalfinal.descripcion as evalfinal,
+	SUM(
+		encuestareaccion.cua_ejecreal1 + encuestareaccion.cua_ejecreal2 + encuestareaccion.cua_ejecreal3 + encuestareaccion.cua_dirreal1 + encuestareaccion.cua_dirreal2 + encuestareaccion.cua_dirreal3 + encuestareaccion.tra_real1 + encuestareaccion.tra_real2 + encuestareaccion.tra_real3 + encuestareaccion.tra_real4
+	)/SUM(
+		encuestareaccion.tra_plan1 + encuestareaccion.tra_plan2 + encuestareaccion.tra_plan3 + encuestareaccion.tra_plan4 + encuestareaccion.cua_ejecplan1 + encuestareaccion.cua_ejecplan2 + encuestareaccion.cua_ejecplan3 + encuestareaccion.cua_dirplan1 + encuestareaccion.cua_dirplan2 + encuestareaccion.cua_dirplan3
+	) as participacion
+FROM
+	encuestareaccion,
+	accioncapacitacion,
+	evalfinal
+WHERE
+	encuestareaccion.id_accion = accioncapacitacion.id_accion AND
+	encuestareaccion.id_accion = $P{id_accion} AND
+	accioncapacitacion.id_evalfinal = evalfinal.id_evalfinal]]>
 	</queryString>
 	<field name="id_accion" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="masiva" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="exterior" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="creditos" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="observaciones" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="planificada" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="nombre" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="fechainicio" class="java.sql.Date">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="fechafinal" class="java.sql.Date">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="id_encuestatrans" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="id_encuestareacc" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="id_evalfinal" class="java.lang.Integer">
+	<field name="resultado1" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="id_presupuesto" class="java.lang.Integer">
+	<field name="resultado2" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="id_clafcaccion" class="java.lang.Integer">
+	<field name="resultado3" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="id_formorg" class="java.lang.Integer">
+	<field name="resultado4" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="id_cursosituacion" class="java.lang.Integer">
+	<field name="resultado5" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="id_areaaccion" class="java.lang.Integer">
+	<field name="tra_real1" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="id_entidad" class="java.lang.String">
+	<field name="tra_real2" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="id_entejecutora" class="java.lang.Integer">
+	<field name="tra_real3" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="id_modaccion" class="java.lang.Integer">
+	<field name="tra_real4" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="id_coordinador" class="java.lang.String">
+	<field name="tra_plan1" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="ficha" class="java.lang.String">
+	<field name="tra_plan2" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="tra_plan3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tra_plan4" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cua_dirreal1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cua_dirreal2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cua_dirreal3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cua_dirplan1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cua_dirplan2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cua_dirplan3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cua_ejecreal1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cua_ejecreal2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cua_ejecreal3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cua_ejecplan1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cua_ejecplan2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cua_ejecplan3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="suma_trabreal" class="java.lang.Double"/>
+	<field name="suma_trabplan" class="java.lang.Double"/>
+	<field name="suma_cuadroejecreal" class="java.lang.Double"/>
+	<field name="suma_cuadroejecplan" class="java.lang.Double"/>
+	<field name="suma_cuadrodirereal" class="java.lang.Double"/>
+	<field name="suma_cuadrodireplan" class="java.lang.Double"/>
+	<field name="total_real" class="java.lang.Double"/>
+	<field name="total_plan" class="java.lang.Double"/>
+	<field name="evalfinal" class="java.lang.String"/>
+	<field name="participacion" class="java.math.BigDecimal"/>
+	<variable name="participacion" class="java.lang.Float">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
 	<background>
-		<band height="555" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="94" splitType="Stretch">
+		<band height="89" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="8" width="555" height="1" uuid="afc442b1-318a-4a92-8801-ea03602b76d7"/>
+			</line>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="60" width="555" height="1" uuid="9e65114c-5703-4822-ae86-7a2ca325e973"/>
+			</line>
 			<staticText>
-				<reportElement style="SubTitle" x="336" y="65" width="449" height="29" uuid="0b81f4ef-6c6e-4b6d-8125-e1c38763dd1f"/>
-				<textElement textAlignment="Right">
-					<font size="22" isBold="false"/>
+				<reportElement x="64" y="17" width="424" height="35" uuid="2bbacb13-6485-4c34-b54c-6562af10e7c7"/>
+				<textElement textAlignment="Center">
+					<font size="26" isBold="true"/>
 				</textElement>
-				<text><![CDATA[]]></text>
+				<text><![CDATA[Reporte de Reacción]]></text>
 			</staticText>
-			<frame>
-				<reportElement mode="Opaque" x="-20" y="0" width="822" height="65" forecolor="#006699" backcolor="#006699" uuid="259892fa-895e-49df-b5b1-10d6c5d7d0ec"/>
-				<staticText>
-					<reportElement style="Title" x="231" y="0" width="578" height="65" uuid="d564c02f-9d0b-4180-a7f1-30816924c776"/>
-					<textElement textAlignment="Right">
-						<font size="54" isBold="false"/>
-					</textElement>
-					<text><![CDATA[Reporte de Reacción]]></text>
-				</staticText>
-			</frame>
 		</band>
 	</title>
 	<pageHeader>
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="142" splitType="Stretch">
-			<frame>
-				<reportElement x="227" y="0" width="575" height="14" uuid="c181c377-6e9b-482f-a225-1c150de8b2a1"/>
-				<staticText>
-					<reportElement style="Column header" positionType="Float" x="0" y="0" width="132" height="14" forecolor="#000000" uuid="989556dc-5599-49cf-9fc6-581a1432c023"/>
-					<textElement>
-						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
-					</textElement>
-					<text><![CDATA[Label]]></text>
-				</staticText>
-			</frame>
-		</band>
+		<band splitType="Stretch"/>
 	</columnHeader>
-	<columnFooter>
-		<band height="124" splitType="Stretch">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="958b7866-8799-4c3e-ad62-745851529ded"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
-			</line>
+	<detail>
+		<band height="409" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="12" y="0" width="543" height="391" uuid="8e7f8a63-7933-44ae-9c5d-db0619bf6a9e"/>
+			</rectangle>
 			<textField>
-				<reportElement x="178" y="35" width="100" height="20" uuid="b0e50d40-5b0c-483f-88a7-bdbcdbf27fa5"/>
+				<reportElement x="149" y="250" width="373" height="0" uuid="792ad0a6-2161-4438-82bb-f1b85cfeeadf"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="149" y="290" width="373" height="0" uuid="02f5796a-6fc1-40b4-abf3-9f0991b4cffa"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="190" width="139" height="0" uuid="db856cd6-6c19-483d-832b-83c81f51bfc0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modalidad]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="149" y="190" width="373" height="0" uuid="ee6b80f5-e85c-4a64-b5f9-7a30d57b3d6a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="149" y="210" width="373" height="0" uuid="2e240fee-7a18-42a5-9e67-b70c19571950"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="149" y="230" width="373" height="0" uuid="b285a6a1-8535-4fc0-89a8-1c2c02d9c9be"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="28" y="230" width="139" height="20" uuid="aaaa579d-c3f3-4530-85c7-d75c9378e909"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="190" width="139" height="20" uuid="36e7691c-f83b-45a4-b25c-4013abd069d6"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Cuadros Real]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement x="176" y="210" width="82" height="20" uuid="e6056865-db58-43d7-90ff-0a2c1b3ef983"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resultado1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="29" width="139" height="20" uuid="b103570e-c632-43cc-8ffe-4c3e94302253"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="210" width="139" height="20" uuid="ceb1ad82-8f85-424e-bd45-0d3d1a290a83"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Excelente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="132" width="139" height="20" uuid="16826609-a070-4bca-b3fc-5f8c12e0745b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Trabajadores Plan]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement x="177" y="10" width="142" height="20" uuid="b33e65bf-a14e-41c0-a177-8ae3bee19027"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{id_accion}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="176" y="30" width="373" height="20" uuid="5b694b50-2679-4012-b268-822da86b4760"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="152" width="139" height="20" uuid="559f02e7-df42-40b2-8564-446e3fe658e4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Trabajadores Real]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="170" width="139" height="20" uuid="7ba3c433-3559-46c2-a763-91e741f6cf1a"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Cuadros Plan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="176" y="230" width="82" height="20" uuid="6173bb51-5333-4c50-a6b4-f4e67123f106"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resultado2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="10" width="139" height="20" uuid="814808f1-8b60-423a-a2bb-7d2adfe25d41"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="92" width="139" height="20" uuid="37417aee-d22d-406b-b1b8-3c841c5b8dc1"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Participación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="112" width="139" height="20" uuid="0bfa4147-1c6e-4bee-9631-d469ec4f0443"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Evaluación Final]]></text>
+			</staticText>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="177" y="92" width="81" height="20" uuid="44e8096c-412b-4a13-911b-83273e7d6552"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{participacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="112" width="82" height="20" uuid="882b884f-be21-42fe-8e09-41a4dfae5e4e"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{evalfinal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="176" y="132" width="82" height="20" uuid="dc03bf11-89de-4a37-ae9d-4b6c95b5a41e"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{suma_trabplan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="176" y="152" width="82" height="20" uuid="fcc734ae-9e9e-49a8-840b-579edc75a91f"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{suma_trabreal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="177" y="172" width="81" height="20" uuid="696adabb-03fa-4550-9eeb-37da73139d07"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{suma_cuadrodireplan}+$F{suma_cuadroejecplan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="176" y="190" width="82" height="20" uuid="257a1b0e-0c51-4d80-8972-4c0d1b185718"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{suma_cuadrodirereal}+$F{suma_cuadroejecreal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="48" width="139" height="22" uuid="00cf6113-e906-45db-8544-30eaf7723d0c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Plan]]></text>
+			</staticText>
+			<textField pattern="###0;-###0">
+				<reportElement x="176" y="48" width="82" height="22" uuid="2600225e-810b-40da-89b6-a7b35fad1439"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_plan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="70" width="139" height="22" uuid="146e6a09-fd12-491b-bc9d-77a4d7d3a0bf"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Real]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement x="177" y="70" width="81" height="22" uuid="bbae15c8-273c-4d2f-a70a-3f85fa2f3f2a"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_real}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="28" y="250" width="139" height="20" uuid="3b55a5d5-91ef-451d-8b30-fe7de98916cc"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Regular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="290" width="139" height="20" uuid="d62cd4df-691f-48ee-9a87-202a2456debb"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Evaluados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="270" width="139" height="20" uuid="3725eb8c-3b40-4011-8756-7db85f236f0f"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="176" y="250" width="82" height="20" uuid="462da204-1502-4a54-a2ee-22162385592b"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resultado3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="270" width="81" height="20" uuid="ed56cba5-e559-4695-93ea-75582e104c3a"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resultado4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="290" width="81" height="20" uuid="452f06e4-1635-434e-9601-e3c9efaba315"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resultado5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="258" y="210" width="143" height="20" uuid="041a62c7-71ad-45c9-be6d-5a4bb199b8a6"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resultado1}*1/$F{total_real}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="258" y="230" width="143" height="20" uuid="f58a532f-80c3-4f1f-83c0-548ef79e2e20"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resultado2}*1/$F{total_real}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="258" y="250" width="143" height="20" uuid="c214ac0c-63fe-4c5a-9164-4bca74094659"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resultado3}*1/$F{total_real}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="258" y="270" width="143" height="20" uuid="3215a207-bbcc-4a77-ba00-7f8fef7060f2"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resultado4}*1/$F{total_real}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="258" y="290" width="143" height="20" uuid="e686e165-5167-4ed2-ac11-cb4029fa4366"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resultado5}*1/$F{total_real}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="258" y="132" width="143" height="20" uuid="fe62d848-b6e2-4871-a64a-8b363efd52db"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{suma_trabplan}*1/$F{total_plan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="258" y="152" width="143" height="20" uuid="2fe57a67-daa6-4176-8052-787aec4a45c5"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{suma_trabreal}*1/$F{total_real}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="258" y="172" width="143" height="20" uuid="7bbae740-ec6a-4c1b-b2e0-50493d800ae2"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{suma_cuadrodireplan}+$F{suma_cuadroejecplan})*1/$F{total_plan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="258" y="190" width="143" height="20" uuid="7816d0c6-948c-43c1-add3-b0b6fd3c7219"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{suma_cuadrodirereal}+$F{suma_cuadroejecreal})*1/$F{total_real}]]></textFieldExpression>
+			</textField>
 		</band>
+		<band height="50"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="16" splitType="Stretch">
-			<frame>
-				<reportElement mode="Opaque" x="2" y="0" width="800" height="16" forecolor="#D0B48E" backcolor="#006699" uuid="f1aa9181-f35a-4ae7-98f5-bb3107845cae"/>
-				<textField evaluationTime="Report">
-					<reportElement style="Column header" x="753" y="0" width="40" height="16" forecolor="#FFFFFF" uuid="d3ba20eb-ae1a-42c0-86d5-f646e705a8db"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
-					</textElement>
-					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement style="Column header" x="673" y="0" width="80" height="16" forecolor="#FFFFFF" uuid="e76e78fe-f1c4-4d74-8b42-6b545091fb39"/>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
-					</textElement>
-					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-				</textField>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement style="Column header" x="2" y="0" width="197" height="16" forecolor="#FFFFFF" uuid="a392576f-5c66-4215-8653-638d7adf0883"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-				</textField>
-			</frame>
+		<band height="70" splitType="Stretch">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="519" y="39" width="36" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="2e599247-f010-4d66-937b-d79f0e681601"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="0" y="39" width="209" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="7ea35147-36a1-4f2e-82ec-e96a50d77f20"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="349" y="39" width="170" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="2147af86-08c2-4fd7-82fe-ee04e73c3b37"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageFooter>
 	<summary>
